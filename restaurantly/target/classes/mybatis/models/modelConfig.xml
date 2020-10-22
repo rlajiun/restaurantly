@@ -4,11 +4,6 @@
 
 <configuration>
   <typeAliases>
-    <typeAlias type="com.restaurantly.goods.vo.GoodsVO" alias="goodsVO" />
-    <typeAlias type="com.restaurantly.goods.vo.ImageFileVO" alias="imageFileVO" />
-    <typeAlias type="com.restaurantly.member.vo.MemberVO" alias="memberVO" />
-    <typeAlias type="com.restaurantly.cart.vo.CartVO" alias="cartVO" />
-    <typeAlias type="com.restaurantly.order.vo.OrderVO" alias="orderVO" />
-    <typeAlias type="com.restaurantly.mypage.vo.MyPageVO" alias="mypageVO" />
+    <typeAlias type="com.restaurantly.restaurant.dto.RestaurantDTO" alias="restaurantDTO" />
   </typeAliases>
 </configuration>
