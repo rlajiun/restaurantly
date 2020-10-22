@@ -41,7 +41,7 @@
 
 
 	<select id="selectReivew" resultType="articleVO" <!-- REVIEWVO -->
-		parameterType="int">
+		parameterType="integer">
     <![CDATA[
       SELECT * from review
       where review_id = #{review_id}		
