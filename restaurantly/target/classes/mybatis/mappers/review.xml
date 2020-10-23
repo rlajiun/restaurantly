@@ -4,29 +4,29 @@
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="mapper.review">
-	<resultMap id="articlesResult" type="articleVO">
+	<resultMap id="reviewsResult" type="reviewVO">
 		<result property="level" column="level" />
-		<result property="articleNO" column="articleNO" />
-		<result property="parentNO" column="parentNO" />
+		<result property="review_id" column="review_id" />
+		<!-- <result property="parentNO" column="parentNO" /> -->
 		<!-- <result property="title" column="title" /> -->
 		<result property="content" column="content" />
-		<result property="writeDate" column="writeDate" />
-		<result property="imageFileName" column="imageFileName" />
+		<result property="review_review_writedate" column="review_review_writedate" />
+		<result property="review_image_path" column="review_image_path" />
 	</resultMap>
 
 	<resultMap id="imgResult" type="imageVO">
 		<result property="imageFileNO" column="imageFileNO" />
-		<result property="articleNO" column="articleNO" />
-		<result property="imageFileName" column="imageFileName" />
+		<result property="review_id" column="review_id" />
+		<result property="review_image_path" column="review_image_path" />
 	</resultMap>
 	<!-- 리뷰 등록 리뷰 수정 리뷰 삭제 -->
-	<select id="selectAllArticlesList" resultMap="articlesResult">
+	<select id="selectAllreviewsList" resultMap="reviewsResult">
     <![CDATA[
-      SELECT level, articleNO, parentNO, content, writeDate, imageFileName, id
+      SELECT level, review_id, parentNO, content, review_review_writedate, review_image_path, id
       from a_board
       START WITH  parentNO=0
-      CONNECT BY PRIOR articleNO=parentNO 
-      ORDER SIBLINGS BY articleNO DESC		
+      CONNECT BY PRIOR review_id=parentNO 
+      ORDER SIBLINGS BY review_id DESC		
     ]]>
 	</select>
 
@@ -40,7 +40,7 @@
 	</insert>
 
 
-	<select id="selectReivew" resultType="articleVO" <!-- REVIEWVO -->
+	<select id="selectReivew" resultType="reviewVO" <!-- REVIEWVO -->
 		parameterType="integer">
     <![CDATA[
       SELECT * from review
@@ -53,7 +53,7 @@
       update review
 		<!-- set title=#{title}, -->
 		review_content=#{review_content}
-		<if test="imageFileName!='' and imageFileName!=null">
+		<if test="review_image_path!='' and review_image_path!=null">
 			, review_image_path=#{review_image_path}
 		</if>
 		where review_id=#{review_id}	
@@ -62,25 +62,25 @@
 
 	</update>
 
-	<delete id="deleteArticle" parameterType="int">
+	<delete id="deletereview" parameterType="int">
     <![CDATA[
       delete from a_board
-      where articleNO in (
-         SELECT articleNO FROM  a_board
-         START WITH articleNO = #{articleNO}
-         CONNECT BY PRIOR  articleNO = parentNO )
+      where review_id in (
+         SELECT review_id FROM  a_board
+         START WITH review_id = #{review_id}
+         CONNECT BY PRIOR  review_id = parentNO )
     ]]>
 	</delete>
 
 	<!-- 다중 이미지 추가 SQL문 -->
 
-	<!-- <insert id="insertNewArticle" parameterType="java.util.Map"> <![CDATA[ 
-		insert into a_board(articleNO, id, title, content, imageFileName) values(#{articleNO}, 
+	<!-- <insert id="insertNewreview" parameterType="java.util.Map"> <![CDATA[ 
+		insert into a_board(review_id, id, title, content, review_image_path) values(#{review_id}, 
 		#{id}, #{title}, #{content}, null) ]]> </insert> <insert id="insertNewImage" 
 		parameterType="java.util.Map"> <foreach item="item" collection="list" open="INSERT 
 		ALL" separator=" " close="SELECT * FROM DUAL" > INTO t_imageFile(imageFileNO, 
-		imageFileName, articleNO, regDate) VALUES (#{item.imageFileNO}, #{item.imageFileName}, 
-		#{item.articleNO}, sysdate) </foreach> </insert> -->
+		review_image_path, review_id, regDate) VALUES (#{item.imageFileNO}, #{item.review_image_path}, 
+		#{item.review_id}, sysdate) </foreach> </insert> -->
 	<select id="selectNewImageFileNO" resultType="int">
     <![CDATA[
       SELECT  nvl(max(imageFileNO),0) from t_imageFile		
@@ -91,8 +91,8 @@
 	<select id="selectImageFileList" resultMap="imgResult"
 		parameterType="int">
     <![CDATA[
-      SELECT * from t_imageFile
-      where articleNO=#{articleNO}	
+      SELECT * from t_imageFileo9
+      where review_id=#{review_id}	
     ]]>
 	</select>
 
