@@ -3,32 +3,37 @@
       PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mapper.customer">
-	<resultMap id="customerResult" type="CustomerVO">
-	<result property="customer_id" column="customer_id" />
-	<result property="customer_pw" column="customer_pw" />
-	<result property="customer_name" column="customer_name" />
-	<result property="customer_email" column="customer_email" />
-	<result property="customer_phone" column="customer_phone" />
-	<result property="customer_birthdate" column="customer_birthdate" />
-	<result property="customer_joindate" column="customer_joindate" />
-	<result property="customer_image_path" column="customer_image_path" />
+	<resultMap id="customerResult" type="customerVO">
+		<result property="customer_id" column="customer_id" />
+		<result property="customer_pw" column="customer_pw" />
+		<result property="customer_name" column="customer_name" />
+		<result property="customer_email" column="customer_email" />
+		<result property="customer_phone" column="customer_phone" />
+		<result property="customer_birthdate"
+			column="customer_birthdate" />
+		<result property="customer_joindate" column="customer_joindate" />
+		<result property="customer_image_path"
+			column="customer_image_path" />
+		<result property="customer_state" column="customer_state" / >
 	</resultMap>
-	
-	<select id="login" resultType="CustomerVO" parameterType="java.util.Map">
+
+	<select id="login" resultType="customerVO"
+		parameterType="java.util.Map">
 		<![CDATA[
 			select * from customer 
 			where customer_id = #{customer_id}
 			and customer_pw = #{customer_pw}
 		]]>
 	</select>
-	
-	<select id="selectOverlappedID" parameterType="String" resultType="String">
-	   select decode(count(*),1, 'true', 0, 'false')
-	   from customer
-	   where customer_id = #{id}
+
+	<select id="selectOverlappedID" parameterType="String"
+		resultType="String">
+		select decode(count(*),1, 'true', 0, 'false')
+		from customer
+		where customer_id = #{id}
 	</select>
-	
-	<insert id="insertNewMember"  parameterType="memberVO">
+
+	<insert id="insertNewMember" parameterType="memberVO">
   <![CDATA[
     	insert into customer(customer_id,
 				 					 customer_pw,
@@ -38,6 +43,7 @@
                                      customer_birthdate,
                                      customer_joindate,
                                      customer_image_path,
+                                     customer_state
                                      )
 							 values(#{customer_id},
 									#{customer_pw},
@@ -46,9 +52,10 @@
                                    	#{customer_phone},
                                    	#{customer_birthdate},
                                     #{customer_joindate},
-                                    #{customer_image_path}
+                                    #{customer_image_path},
+                                    #{customer_state}
                                     )
                                         
-   ]]>      
-  </insert>
-  </mapper>
+   ]]>
+	</insert>
+</mapper>
