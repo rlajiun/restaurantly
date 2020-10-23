@@ -10,13 +10,13 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter @Setter
 public class RestaurantDTO {
-	private String restaurant_license; /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
-	private String owner_id; /* ÆÇ¸ÅÀÚID */
-	private String restaurant_name; /* »óÈ£¸í */
-	private String restaurant_phone; /* ÀüÈ­¹øÈ£ */
-	private String restaurant_representative; /* ´ëÇ¥ÀÚ¸í */
-	private String restaurant_detail; /* »ó¼¼ÁÖ¼Ò */
-	private String restaurant_item; /* Á¾¸ñ */
-	private String restaurant_introduction; /* ¼Ò°³±Û */
-	private String restaurant_image_path; /* »çÁø°æ·Î */
+	private String restaurant_license; /* ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ */
+	private String owner_id; /* íŒë§¤ìID */
+	private String restaurant_name; /* ìƒí˜¸ëª… */
+	private String restaurant_phone; /* ì „í™”ë²ˆí˜¸ */
+	private String restaurant_representative; /* ëŒ€í‘œìëª… */
+	private String restaurant_detail; /* ìƒì„¸ì£¼ì†Œ */
+	private String restaurant_item; /* ì¢…ëª© */
+	private String restaurant_introduction; /* ì†Œê°œê¸€ */
+	private String restaurant_image_path; /* ì‚¬ì§„ê²½ë¡œ */
 }

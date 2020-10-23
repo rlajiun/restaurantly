@@ -16,20 +16,20 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 
 	@Override
 	public List<RestaurantDTO> selectRestaurantList(String restaurant_item) throws DataAccessException {
-		List<RestaurantDTO> restaurantList = (List)sqlSession.selectList("mapper.mypage.selectMyOrderGoodsList",member_id);
+		List<RestaurantDTO> restaurantList = (List)sqlSession.selectList("mapper.restaurant.selectRestaurantList", restaurant_item);
 		return restaurantList;
 	}
 
 	@Override
 	public List<RestaurantDTO> selectRandomRestaurantList(String menu_category) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		List<RestaurantDTO> restaurantList = (List)sqlSession.selectList("mapper.restaurant.selectRandomRestaurantList", menu_category);
+		return restaurantList;
 	}
 
 	@Override
 	public RestaurantDTO selectRestaurant(String restaurant_license) throws DataAccessException {
-		// TODO Auto-generated method stub
-		return null;
+		RestaurantDTO restaurant = (RestaurantDTO)sqlSession.selectList("mapper.restaurant.selectRestaurant", restaurant_license);
+		return restaurant;
 	}
 
 }
