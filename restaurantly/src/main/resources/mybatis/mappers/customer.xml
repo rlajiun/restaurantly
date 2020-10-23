@@ -14,7 +14,7 @@
 		<result property="customer_joindate" column="customer_joindate" />
 		<result property="customer_image_path"
 			column="customer_image_path" />
-		<result property="customer_state" column="customer_state" / >
+		<result property="customer_state" column="customer_state" />
 	</resultMap>
 
 	<select id="login" resultType="customerVO"
