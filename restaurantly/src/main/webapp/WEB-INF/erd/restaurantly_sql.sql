@@ -1,38 +1,38 @@
-/* °í°´ */
+/* ê³ ê° */
 DROP TABLE customer 
 	CASCADE CONSTRAINTS;
 
-/* ÆÇ¸ÅÀÚ */
+/* íŒë§¤ì */
 DROP TABLE owner 
 	CASCADE CONSTRAINTS;
 
-/* ½Ä´ç */
+/* ì‹ë‹¹ */
 DROP TABLE restaurant 
 	CASCADE CONSTRAINTS;
 
-/* ¿¹¾à */
+/* ì˜ˆì•½ */
 DROP TABLE booking 
 	CASCADE CONSTRAINTS;
 
-/* ½Ä´ç¸Ş´º */
+/* ì‹ë‹¹ë©”ë‰´ */
 DROP TABLE menu 
 	CASCADE CONSTRAINTS;
 
-/* ¸®ºä */
+/* ë¦¬ë·° */
 DROP TABLE review 
 	CASCADE CONSTRAINTS;
 
-/* °í°´ */
+/* ê³ ê° */
 CREATE TABLE customer (
-	customer_id VARCHAR2(20) NOT NULL, /* °í°´ID */
-	customer_pw VARCHAR2(100) NOT NULL, /* ºñ¹Ğ¹øÈ£ */
-	customer_name VARCHAR2(50) NOT NULL, /* ÀÌ¸§ */
-	customer_email VARCHAR2(40), /* ÀÌ¸ŞÀÏ */
-	customer_phone VARCHAR2(30), /* ÀüÈ­¹øÈ£ */
-	customer_birthdate DATE, /* »ı³â¿ùÀÏ */
-	customer_joindate DATE, /* °¡ÀÔÀÏ */
-	customer_image_path VARCHAR2(200), /* »çÁø°æ·Î */
-	customer_state VARCHAR2(20) /* Å»ÅğÀ¯¹« */
+	customer_id VARCHAR2(20) NOT NULL, /* ê³ ê°ID */
+	customer_pw VARCHAR2(100) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
+	customer_name VARCHAR2(50) NOT NULL, /* ì´ë¦„ */
+	customer_email VARCHAR2(40), /* ì´ë©”ì¼ */
+	customer_phone VARCHAR2(30), /* ì „í™”ë²ˆí˜¸ */
+	customer_birthdate DATE, /* ìƒë…„ì›”ì¼ */
+	customer_joindate DATE, /* ê°€ì…ì¼ */
+	customer_image_path VARCHAR2(200), /* ì‚¬ì§„ê²½ë¡œ */
+	customer_state VARCHAR2(20) /* íƒˆí‡´ìœ ë¬´ */
 );
 
 ALTER TABLE customer
@@ -42,14 +42,14 @@ ALTER TABLE customer
 			customer_id
 		);
 
-/* ÆÇ¸ÅÀÚ */
+/* íŒë§¤ì */
 CREATE TABLE owner (
-	owner_id VARCHAR2(20) NOT NULL, /* ÆÇ¸ÅÀÚID */
-	owner_pw VARCHAR2(100) NOT NULL, /* ºñ¹Ğ¹øÈ£ */
-	owner_name VARCHAR2(50) NOT NULL, /* ÀÌ¸§ */
-	owner_phone VARCHAR2(30), /* ÀüÈ­¹øÈ£ */
-	owner_email VARCHAR2(40), /* ÀÌ¸ŞÀÏ */
-	owner_joindate DATE /* °¡ÀÔÀÏ */
+	owner_id VARCHAR2(20) NOT NULL, /* íŒë§¤ìID */
+	owner_pw VARCHAR2(100) NOT NULL, /* ë¹„ë°€ë²ˆí˜¸ */
+	owner_name VARCHAR2(50) NOT NULL, /* ì´ë¦„ */
+	owner_phone VARCHAR2(30), /* ì „í™”ë²ˆí˜¸ */
+	owner_email VARCHAR2(40), /* ì´ë©”ì¼ */
+	owner_joindate DATE /* ê°€ì…ì¼ */
 );
 
 ALTER TABLE owner
@@ -59,17 +59,17 @@ ALTER TABLE owner
 			owner_id
 		);
 
-/* ½Ä´ç */
+/* ì‹ë‹¹ */
 CREATE TABLE restaurant (
-	restaurant_license VARCHAR2(50) NOT NULL, /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
-	owner_id VARCHAR2(20) NOT NULL, /* ÆÇ¸ÅÀÚID */
-	restaurant_name VARCHAR2(50), /* »óÈ£¸í */
-	restaurant_phone VARCHAR2(30), /* ÀüÈ­¹øÈ£ */
-	restaurant_representative VARCHAR2(50), /* ´ëÇ¥ÀÚ¸í */
-	restaurant_detail VARCHAR2(50), /* »ó¼¼ÁÖ¼Ò */
-	restaurant_item VARCHAR2(10), /* Á¾¸ñ */
-	restaurant_introduction VARCHAR2(1000), /* ¼Ò°³±Û */
-	restaurant_image_path VARCHAR2(200) /* »çÁø°æ·Î */
+	restaurant_license VARCHAR2(50) NOT NULL, /* ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ */
+	owner_id VARCHAR2(20) NOT NULL, /* íŒë§¤ìID */
+	restaurant_name VARCHAR2(50), /* ìƒí˜¸ëª… */
+	restaurant_phone VARCHAR2(30), /* ì „í™”ë²ˆí˜¸ */
+	restaurant_representative VARCHAR2(50), /* ëŒ€í‘œìëª… */
+	restaurant_detail VARCHAR2(50), /* ìƒì„¸ì£¼ì†Œ */
+	restaurant_item VARCHAR2(10), /* ì¢…ëª© */
+	restaurant_introduction VARCHAR2(1000), /* ì†Œê°œê¸€ */
+	restaurant_image_path VARCHAR2(200) /* ì‚¬ì§„ê²½ë¡œ */
 );
 
 ALTER TABLE restaurant
@@ -79,13 +79,13 @@ ALTER TABLE restaurant
 			restaurant_license
 		);
 
-/* ¿¹¾à */
+/* ì˜ˆì•½ */
 CREATE TABLE booking (
-	booking_id VARCHAR2(13) NOT NULL, /* ¿¹¾à¹øÈ£ */
-	customer_id VARCHAR2(20), /* °í°´ID */
-	restaurant_license VARCHAR2(50), /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
-	booking_datetime DATE, /* ¿¹¾à½Ã°£ */
-	booking_count INTEGER /* ¿¹¾àÀÎ¿ø */
+	booking_id VARCHAR2(13) NOT NULL, /* ì˜ˆì•½ë²ˆí˜¸ */
+	customer_id VARCHAR2(20), /* ê³ ê°ID */
+	restaurant_license VARCHAR2(50), /* ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ */
+	booking_datetime DATE, /* ì˜ˆì•½ì‹œê°„ */
+	booking_count INTEGER /* ì˜ˆì•½ì¸ì› */
 );
 
 ALTER TABLE booking
@@ -95,14 +95,14 @@ ALTER TABLE booking
 			booking_id
 		);
 
-/* ½Ä´ç¸Ş´º */
+/* ì‹ë‹¹ë©”ë‰´ */
 CREATE TABLE menu (
-	menu_id VARCHAR2(20) NOT NULL, /* ¸Ş´ºID */
-	restaurant_license VARCHAR2(50) NOT NULL, /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
-	menu_name VARCHAR2(50), /* ¸Ş´º¸í */
-	menu_category VARCHAR2(50) NOT NULL, /* ¸Ş´ººĞ·ù */
-	menu_price INTEGER, /* °¡°İ */
-	menu_image_path VARCHAR2(200) /* »çÁø°æ·Î */
+	menu_id VARCHAR2(20) NOT NULL, /* ë©”ë‰´ID */
+	restaurant_license VARCHAR2(50) NOT NULL, /* ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ */
+	menu_name VARCHAR2(50), /* ë©”ë‰´ëª… */
+	menu_category VARCHAR2(50) NOT NULL, /* ë©”ë‰´ë¶„ë¥˜ */
+	menu_price INTEGER, /* ê°€ê²© */
+	menu_image_path VARCHAR2(200) /* ì‚¬ì§„ê²½ë¡œ */
 );
 
 ALTER TABLE menu
@@ -112,15 +112,15 @@ ALTER TABLE menu
 			menu_id
 		);
 
-/* ¸®ºä */
+/* ë¦¬ë·° */
 CREATE TABLE review (
-	review_id VARCHAR2(20) NOT NULL, /* ¸®ºäID */
-	restaurant_license VARCHAR2(50), /* »ç¾÷ÀÚµî·Ï¹øÈ£ */
-	customer_id VARCHAR2(20), /* °í°´ID */
-	review_score INTEGER, /* º°Á¡ */
-	review_content VARCHAR2(1000), /* ³»¿ë */
-	review_writedate DATE, /* ÀÛ¼ºÀÏÀÚ */
-	review_image_path VARCHAR2(200) /* »çÁø°æ·Î */
+	review_id VARCHAR2(20) NOT NULL, /* ë¦¬ë·°ID */
+	restaurant_license VARCHAR2(50), /* ì‚¬ì—…ìë“±ë¡ë²ˆí˜¸ */
+	customer_id VARCHAR2(20), /* ê³ ê°ID */
+	review_score INTEGER, /* ë³„ì  */
+	review_content VARCHAR2(1000), /* ë‚´ìš© */
+	review_writedate DATE, /* ì‘ì„±ì¼ì */
+	review_image_path VARCHAR2(200) /* ì‚¬ì§„ê²½ë¡œ */
 );
 
 ALTER TABLE review
