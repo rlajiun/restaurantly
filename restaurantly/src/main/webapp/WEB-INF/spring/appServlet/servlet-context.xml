@@ -31,13 +31,13 @@
 	
 	<context:component-scan base-package="com.restaurantly" />
 	
-<!-- 	<mvc:interceptors>
+	<mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/*/*.do" />
 			<mvc:mapping path="/*/*/*.do" />
 			<beans:bean class="com.restaurantly.common.interceptor.ViewNameInterceptor" />
 		</mvc:interceptor>
-	</mvc:interceptors> -->
+	</mvc:interceptors>
 
 	<!-- 멀티파트 리졸버 -->
 	<beans:bean id="multipartResolver"

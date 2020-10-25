@@ -2,15 +2,15 @@ package com.restaurantly.restaurant.service;
 
 import java.util.List;
 
-import com.restaurantly.restaurant.dto.RestaurantDTO;
+import com.restaurantly.restaurant.vo.RestaurantVO;
 
 public interface RestaurantService {
-	// ½Ä´ç Á¾¸ñ(ÇÑ½Ä, ÀÏ½Ä, Áß½Ä, ¾ç½Ä µî)¿¡ µû¶ó ½Ä´ç ¸®½ºÆ® Ãâ·Â
-	public List<RestaurantDTO> listRestaurant(String restaurant_item) throws Exception;
+	// ì‹ë‹¹ ì¢…ëª©(í•œì‹, ì¼ì‹, ì¤‘ì‹, ì–‘ì‹ ë“±)ì— ë”°ë¼ ì‹ë‹¹ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+	public List<RestaurantVO> listRestaurant(String restaurant_item) throws Exception;
 
-	// ·£´ı À½½Ä ¼±ÅÃµÇ¾úÀ»¶§ ³ª¿Â À½½ÄÀÌ ÀÖ´Â ¸ğµç ½Ä´ç ¸®½ºÆ® Ãâ·Â
-	public List<RestaurantDTO> listRandomRestaurant(String menu_category) throws Exception;
+	// ëœë¤ ìŒì‹ ì„ íƒë˜ì—ˆì„ë•Œ ë‚˜ì˜¨ ìŒì‹ì´ ìˆëŠ” ëª¨ë“  ì‹ë‹¹ ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+	public List<RestaurantVO> listRandomRestaurant(String menu_category) throws Exception;
 
-	// ¸®½ºÆ®¿¡¼­ ½Ä´ç ¼±ÅÃµÇ¾úÀ» ¶§ ¼±ÅÃµÈ ½Ä´ç¿¡ ´ëÇÑ Á¤º¸ Ãâ·Â
-	public RestaurantDTO restaurantInfo(String restaurant_license) throws Exception;
+	// ë¦¬ìŠ¤íŠ¸ì—ì„œ ì‹ë‹¹ ì„ íƒë˜ì—ˆì„ ë•Œ ì„ íƒëœ ì‹ë‹¹ì— ëŒ€í•œ ì •ë³´ ì¶œë ¥
+	public RestaurantVO restaurantInfo(String restaurant_license) throws Exception;
 }

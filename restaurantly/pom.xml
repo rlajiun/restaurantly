@@ -151,6 +151,12 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>1.1.0</version>
 		</dependency>
+		
+		<dependency><!-- sqlSessionFactory 만들때 없으면 에러남 -->
+			<groupId>cglib</groupId>
+			<artifactId>cglib-nodep</artifactId>
+			<version>2.2</version>
+		</dependency>
 
 		<!-- tiles 설정관련 라이브러리 -->
 		<dependency>
@@ -257,8 +263,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.5.1</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
+					<source>1.8</source>
+					<target>1.8</target>
 					<compilerArgument>-Xlint:all</compilerArgument>
 					<showWarnings>true</showWarnings>
 					<showDeprecation>true</showDeprecation>
