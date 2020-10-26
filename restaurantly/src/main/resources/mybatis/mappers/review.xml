@@ -13,12 +13,6 @@
 		<result property="review_image_path" column="review_image_path" />
 	</resultMap>
 
-	<resultMap id="imgResult" type="imageVO">
-		<result property="imageFileNO" column="imageFileNO" />
-		<result property="review_id" column="review_id" />
-		<result property="review_image_path" column="review_image_path" />
-	</resultMap>
-
 	<!-- 리뷰 등록 -->
 	<insert id="insertNewReview" parameterType="java.util.Map">
 		<![CDATA[

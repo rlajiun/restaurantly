@@ -33,7 +33,7 @@
 		where customer_id = #{id}
 	</select>
 
-	<insert id="insertNewMember" parameterType="memberVO">
+	<insert id="insertNewMember" parameterType="customerVO">
   <![CDATA[
     	insert into customer(customer_id,
 				 					 customer_pw,

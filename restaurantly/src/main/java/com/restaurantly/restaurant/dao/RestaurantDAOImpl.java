@@ -13,6 +13,12 @@ import com.restaurantly.restaurant.vo.RestaurantVO;
 public class RestaurantDAOImpl implements RestaurantDAO {
 	@Autowired
 	private SqlSession sqlSession;
+	
+	@Override
+	public List<RestaurantVO> selectRestaurantList() throws DataAccessException {
+		List<RestaurantVO> restaurantList = (List)sqlSession.selectList("mapper.restaurant.selectAllRestaurantList");
+		return restaurantList;
+	}
 
 	@Override
 	public List<RestaurantVO> selectRestaurantList(String restaurant_item) throws DataAccessException {
@@ -28,7 +34,7 @@ public class RestaurantDAOImpl implements RestaurantDAO {
 
 	@Override
 	public RestaurantVO selectRestaurant(String restaurant_license) throws DataAccessException {
-		RestaurantVO restaurant = (RestaurantVO)sqlSession.selectList("mapper.restaurant.selectRestaurant", restaurant_license);
+		RestaurantVO restaurant = (RestaurantVO)sqlSession.selectOne("mapper.restaurant.selectRestaurant", restaurant_license);
 		return restaurant;
 	}
 

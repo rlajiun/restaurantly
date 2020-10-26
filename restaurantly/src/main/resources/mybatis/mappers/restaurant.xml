@@ -16,6 +16,12 @@
 		<result property="restaurant_image_path" column="restaurant_image_path" />
 	</resultMap>
 	
+	<select id="selectAllRestaurantList" resultMap="restaurantResult">
+		<![CDATA[
+         select * from restaurant where rowNum < 16
+	    ]]>
+	</select>
+	
 	<select id="selectRestaurantList" parameterType="String" resultMap="restaurantResult">
 		<![CDATA[
          select * from restaurant where restaurant_item = #{restaurant_item} and rowNum < 16

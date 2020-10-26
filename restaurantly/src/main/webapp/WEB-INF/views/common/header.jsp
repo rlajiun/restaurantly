@@ -33,7 +33,7 @@
 						<a href="${contextPath}/owner/restaurant/restaurantMain.do">식당 관리</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="active"><a href="${contextPath}/owner/index.jsp">Home</a></li>
+					<li class="active"><a href="${contextPath}/main/main.do">Home</a></li>
 					<li><a href="${contextPath}/menu/whatToEat.do">오늘의 음식</a></li>
 					<li><a href="${contextPath}/booking/bookingList.do">예약 목록</a></li>
 					<li class="book-a-table text-center" id="book-a-table">

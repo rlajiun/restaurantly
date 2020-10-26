@@ -5,6 +5,7 @@
 <configuration>
   <typeAliases>
     <typeAlias type="com.restaurantly.restaurant.vo.RestaurantVO" alias="restaurantVO" />
+    <typeAlias type="com.restaurantly.menu.vo.MenuVO" alias="menuVO" />
     <typeAlias type="com.restaurantly.customer.vo.CustomerVO" alias="customerVO" />
     <typeAlias type="com.restaurantly.review.dto.ReviewDTO" alias="reviewDTO" />
   </typeAliases>
