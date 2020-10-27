@@ -17,12 +17,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.restaurantly.common.base.BaseController;
 import com.restaurantly.owner.user.service.OwnerService;
 import com.restaurantly.owner.user.vo.OwnerVO;
 
 @Controller("ownerController")
 @RequestMapping(value = "/owner")
-public class OwnerControllerImpl implements OwnerController {
+public class OwnerControllerImpl extends BaseController implements OwnerController {
 	@Autowired
 	private OwnerService ownerService;
 	@Autowired
