@@ -15,7 +15,7 @@ import lombok.Setter;
 @Getter @Setter
 public class ReviewDTO {
 	private String review_id;
-	private int restaurant_license;
+	private String restaurant_license;
 	private String customer_id;
 	private int review_score;
 	private Date review_writedate;

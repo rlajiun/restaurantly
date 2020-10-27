@@ -1,6 +1,7 @@
 package com.restaurantly.review.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +15,6 @@ import com.restaurantly.review.dto.ReviewDTO;
 public class ReviewDAOImpl implements ReviewDAO{
 	@Autowired
 	private SqlSession sqlSession;
-	
-	@Override
-	public List<String> selectReviewCategory() throws DataAccessException{
-		List<String> reviewList = (List)sqlSession.selectList("mapper.review.selectReviewCategory");
-		return reviewList;
-	}
 
 	@Override
 	public List<ReviewDTO> selectReviewList(String restaurant_license) throws DataAccessException{
@@ -28,23 +23,49 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public String insertReview(ReviewDTO reviewDTO) throws DataAccessException{
-		String review_id = sqlSession.insert("mapper.review.insertReview", reviewDTO);
+	public String insertNewReview(Map reviewMap) throws DataAccessException{
+		
+		sqlSession.insert("mapper.review.insertReview", reviewMap);
+		// String review_id = Integer.toString(selectNewReviewID()); // type casting
+		String review_id=selectNewReviewID();
+		reviewMap.put("review_id", review_id);
 		return review_id;
+		
+		
 	}
 
 	@Override
-	public ReviewDTO updateReview(ReviewDTO reviewDTO) throws DataAccessException{
-		sqlSession.insert("mapper.review.updateReview", reviewDTO);
-		return reviewDTO;
+	public void updateReview(Map reviewMap) throws DataAccessException{
+		sqlSession.insert("mapper.review.updateReview", reviewMap);
 	
 	}
 
 	@Override
-	public ReviewDTO deleteReview(ReviewDTO reviewDTO) throws DataAccessException{
-		sqlSession.selectOne("mapper.review.deleteReview", reviewDTO);
-		return reviewDTO;
+	public void deleteReview(String review_id) throws DataAccessException{
+		sqlSession.selectOne("mapper.review.deleteReview", review_id);
 	
 	}
+
+
+	@Override
+	public String selectNewReviewID() throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.review.selectNewReviewID");
+		
+	}
+
+	@Override
+	public float calScore(String restaurant_license) throws DataAccessException {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne("mapper.review.calculateScore", restaurant_license);
+		
+	}
+
+	
+	
+	
+
+
+
 
 }

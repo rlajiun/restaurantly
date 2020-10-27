@@ -12,6 +12,11 @@
          <put-attribute name="title" value="회원 가입 페이지" />
          <put-attribute name="body" value="/WEB-INF/views/form/joinForm.jsp" />
       </definition>
+      
+      <definition name="/form/ownerJoinForm" extends="baseLayout">
+         <put-attribute name="title" value="회원 가입 페이지 for Owner" />
+         <put-attribute name="body" value="/WEB-INF/views/form/ownerJoinForm.jsp" />
+      </definition>
   
 </tiles-definitions>
 

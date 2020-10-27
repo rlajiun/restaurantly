@@ -1,6 +1,7 @@
 package com.restaurantly.review.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -8,14 +9,17 @@ import com.restaurantly.review.dto.ReviewDTO;
 
 public interface ReviewDAO {
 
-	List<String> selectReviewCategory() throws DataAccessException;
+	public List<ReviewDTO> selectReviewList(String restaurant_license) throws DataAccessException;
 
-	List<ReviewDTO> selectReviewList(String restaurant_license) throws DataAccessException;
+	public void updateReview(Map reviewMap) throws DataAccessException;
 
-	String insertReview(ReviewDTO reviewDTO) throws DataAccessException;
+	public void deleteReview(String review_id) throws DataAccessException;
 
-	ReviewDTO updateReview(ReviewDTO reviewDTO) throws DataAccessException;
+	public String selectNewReviewID() throws DataAccessException;
 
-	ReviewDTO deleteReview(ReviewDTO reviewDTO) throws DataAccessException;
+	public String insertNewReview(Map reviewMap);
+
+	public float calScore(String restaurant_license) throws DataAccessException;
+
 
 }
