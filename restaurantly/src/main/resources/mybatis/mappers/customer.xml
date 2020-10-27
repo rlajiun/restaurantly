@@ -58,4 +58,11 @@
                                         
    ]]>
 	</insert>
+	
+	<update id="updateMember" parameterType="customerVO">
+  <![CDATA[
+    	
+                                        
+   ]]>
+	</update>
 </mapper>

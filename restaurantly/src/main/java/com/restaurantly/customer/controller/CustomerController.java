@@ -19,4 +19,6 @@ public interface CustomerController {
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
 	public ModelAndView deletemember(@ModelAttribute("CustomerVO") CustomerVO customer,
 			HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ModelAndView deletemember(String customer_id, HttpServletRequest request, HttpServletResponse response)
+			throws Exception;
 }

@@ -1,35 +1,37 @@
-package com.restaurantly.customer.dao;
+package com.restaurantly.customer.service;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.restaurantly.customer.dao.CustomerDAO;
 import com.restaurantly.customer.vo.CustomerVO;
 
-
-@Repository
-public class CustomerDAOImpl implements CustomerDAO  {
+@Service
+@Transactional
+public class CustomerServiceImpl implements CustomerService  {
 	
 	@Autowired
-	private SqlSession sqlSession;
+	private CustomerDAO customerDAO;
  	
 
 	@Override
 	public CustomerVO addmember(CustomerVO customerVO) throws DataAccessException {
-		sqlSession.insert("mapper.customer.insertNewMember",customerVO);
+		customerDAO.addmember(customerVO);
 		return customerVO;
 	}
 
 	@Override
 	public CustomerVO modmember(CustomerVO customerVO) throws DataAccessException {
-		sqlSession.insert("mapper.customer.insertNewMember",customerVO);
+		customerDAO.modmember(customerVO);
 		return customerVO;
 	}
 
 	@Override
 	public CustomerVO deletemember(CustomerVO customerVO) throws DataAccessException {
-		sqlSession.selectOne("mapper.customer.deletemember",customerVO);
+		customerDAO.deletemember(customerVO);
 		return customerVO;
 	}
 
