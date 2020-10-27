@@ -60,7 +60,7 @@
 	</delete>
 
 	<!-- 점수 계산 -->
-	<update id="calculateScore"  >
+	<select id="calculateScore" parameterType="string" resultType="float">
 	<![CDATA[
 	SELECT AVG(review_score)
 	FROM review
@@ -68,7 +68,7 @@
 	    ]]>
 
 
-	</update>
+	</select>
 
 
 

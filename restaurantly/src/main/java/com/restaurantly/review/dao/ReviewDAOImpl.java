@@ -55,9 +55,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public void calScore(String review_id) throws DataAccessException {
+	public float calScore(String restaurant_license) throws DataAccessException {
 		// TODO Auto-generated method stub
-		sqlSession.selectOne("mapper.review.calculateScore");
+		return sqlSession.selectOne("mapper.review.calculateScore", restaurant_license);
 		
 	}
 

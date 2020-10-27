@@ -9,17 +9,17 @@ import com.restaurantly.review.dto.ReviewDTO;
 
 public interface ReviewDAO {
 
-	List<ReviewDTO> selectReviewList(String restaurant_license) throws DataAccessException;
+	public List<ReviewDTO> selectReviewList(String restaurant_license) throws DataAccessException;
 
-	void updateReview(Map reviewMap) throws DataAccessException;
+	public void updateReview(Map reviewMap) throws DataAccessException;
 
-	void deleteReview(String review_id) throws DataAccessException;
+	public void deleteReview(String review_id) throws DataAccessException;
 
-	String selectNewReviewID() throws DataAccessException;
+	public String selectNewReviewID() throws DataAccessException;
 
-	String insertNewReview(Map reviewMap);
+	public String insertNewReview(Map reviewMap);
 
-	void calScore(String review_id) throws DataAccessException;
+	public float calScore(String restaurant_license) throws DataAccessException;
 
 
 }

@@ -60,8 +60,8 @@ public class ReviewServiceImpl implements ReviewService {
 		reviewDAO.deleteReview(review_id);
 	}
 	
-	public void calScore(String review_id) {
-		reviewDAO.calScore(review_id);
+	public void calScore(String restaurant_license) {
+		reviewDAO.calScore(restaurant_license);
 	}
 
 

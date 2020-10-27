@@ -25,7 +25,6 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.myspring.pro30.member.vo.MemberVO;
 import com.restaurantly.restaurant.service.RestaurantService;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 import com.restaurantly.review.dto.ReviewDTO;
@@ -68,7 +67,7 @@ public class ReviewControllerImpl implements ReviewController {
 
 		String imageFileName = upload(multipartRequest);
 		HttpSession session = multipartRequest.getSession();
-		ReviewDTO reviewDTO = (reviewDTO) session.getAttribute("review");
+		ReviewDTO reviewDTO = (ReviewDTO) session.getAttribute("review");
 		String review_id = reviewDTO.getReview_id();
 
 		reviewMap.put("review_id", review_id);
