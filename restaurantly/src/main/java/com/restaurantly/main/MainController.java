@@ -20,7 +20,7 @@ public class MainController {
 		mav.setViewName(viewName);
 
 		session = request.getSession();
-		session.setAttribute("side_menu", "user");
+		session.setAttribute("user", "customer");
 
 		return mav;
 	}
@@ -34,7 +34,7 @@ public class MainController {
 		mav.setViewName(viewName);
 
 		session = request.getSession();
-		session.setAttribute("side_menu", "owner");
+		session.setAttribute("user", "owner");
 
 		return mav;
 	}

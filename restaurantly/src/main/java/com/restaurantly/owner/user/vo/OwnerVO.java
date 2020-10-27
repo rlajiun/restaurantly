@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Component("Owner")
+@Component
 @NoArgsConstructor
 @Getter @Setter
 public class OwnerVO {

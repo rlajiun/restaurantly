@@ -25,7 +25,7 @@ public class CustomerDAOImpl implements CustomerDAO  {
 
 	@Override
 	public CustomerVO deletemember(CustomerVO customerVO) throws DataAccessException {
-		=sqlSession.selectOne("mapper.customer.deletemember",customerVO);
+		sqlSession.selectOne("mapper.customer.deletemember",customerVO);
 		return customerVO;
 	}
 

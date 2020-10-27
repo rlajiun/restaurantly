@@ -23,7 +23,6 @@ public class OwnerDAOImpl implements OwnerDAO {
 	@Override
 	public void insertNewOwner(OwnerVO ownerVO) throws DataAccessException {
 		sqlSession.insert("mapper.owner.insertNewOwner", ownerVO);
-
 	}
 
 	@Override
