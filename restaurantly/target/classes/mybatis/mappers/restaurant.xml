@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	
+<mapper namespace="mapper.restaurant">
+	<resultMap type="restaurantVO" id="restaurantResult">
+		<result property="restaurant_license" column="restaurant_license" />
+		<result property="owner_id" column="owner_id" />
+		<result property="restaurant_name" column="restaurant_name" />
+		<result property="restaurant_phone" column="restaurant_phone" />
+		<result property="restaurant_representative" column="restaurant_representative" />
+		<result property="restaurant_detail" column="restaurant_detail" />
+		<result property="restaurant_item" column="restaurant_item" />
+		<result property="restaurant_introduction" column="restaurant_introduction" />
+		<result property="restaurant_image_path" column="restaurant_image_path" />
+	</resultMap>
+	
+	<select id="selectAllRestaurantList" resultMap="restaurantResult">
+		<![CDATA[
+         select * from restaurant where rowNum < 16
+	    ]]>
+	</select>
+	
+	<select id="selectRestaurantList" parameterType="String" resultMap="restaurantResult">
+		<![CDATA[
+         select * from restaurant where restaurant_item = #{restaurant_item} and rowNum < 16
+	    ]]>
+	</select>
+	
+	<select id="selectRandomRestaurantList" parameterType="String" resultMap="restaurantResult">
+		<![CDATA[
+         select r.* from restaurant r, menu m 
+         where r.restaurant_license = m.restaurant_license 
+         and m.menu_category = #{menu_category}
+	    ]]>
+	</select>
+	
+	<select id="selectRestaurant" parameterType="String" resultMap="restaurantResult">
+		<![CDATA[
+         select * from restaurant where restaurant_license = #{restaurant_license}
+	    ]]>
+	</select>
+</mapper>
