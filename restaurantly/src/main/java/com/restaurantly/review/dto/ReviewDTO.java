@@ -4,12 +4,14 @@ import java.sql.Date;
 
 import org.springframework.stereotype.Component;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Component("review")
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter @Setter
 public class ReviewDTO {
 	private String review_id;
