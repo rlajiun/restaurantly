@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.restaurantly.menu.service.MenuService;
+import com.restaurantly.menu.vo.MenuVO;
 import com.restaurantly.restaurant.service.RestaurantService;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
@@ -20,9 +22,11 @@ import com.restaurantly.restaurant.vo.RestaurantVO;
 @RequestMapping(value = "/restaurant")
 public class RestaurantControllerImpl implements RestaurantController {
 	@Autowired
-	private RestaurantVO restaurantVO;
+	private RestaurantVO restaurant;
 	@Autowired
 	private RestaurantService restaurantService;
+	@Autowired
+	private MenuService menuService;
 
 	@Override
 	@RequestMapping(value = "/restaurantList.do", method = RequestMethod.GET)
@@ -57,8 +61,14 @@ public class RestaurantControllerImpl implements RestaurantController {
 	@RequestMapping(value = "/restaurantMain/{restaurant_license}", method = RequestMethod.GET)
 	public ModelAndView restaurantInfo(@PathVariable("restaurant_license") String restaurant_license, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		String viewName = "/restaurant/restaurantMain";
+		ModelAndView mav = new ModelAndView(viewName);
+		restaurant = restaurantService.restaurantInfo(restaurant_license);
+		mav.addObject("restaurant", restaurant);
+		List<MenuVO> menuList = menuService.listMenu(restaurant_license);
+		mav.addObject("menuList", menuList);
+		
+		return mav;
 	}
 
 }

@@ -27,7 +27,13 @@ public class MenuServiceImpl implements MenuService {
 
 	@Override
 	public List<MenuVO> listRandomMenuPic(String menu_category) throws Exception {
-		List<MenuVO> menuList = menuDAO.selectMenuList(menu_category);
+		List<MenuVO> menuList = menuDAO.selectCatMenuList(menu_category);
+		return menuList;
+	}
+
+	@Override
+	public List<MenuVO> listMenu(String restaurant_license) throws Exception {
+		List<MenuVO> menuList = menuDAO.selectMenuList(restaurant_license);
 		return menuList;
 	}
 

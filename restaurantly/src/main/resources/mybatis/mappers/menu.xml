@@ -19,9 +19,15 @@
 	    ]]>
 	</select>
 	
-	<select id="selectMenuList" parameterType="String" resultMap="menuResult">
+	<select id="selectCatMenuList" parameterType="String" resultMap="menuResult">
 		<![CDATA[
          select * from menu where menu_category=#{menu_category} and rowNum < 16
+	    ]]>
+	</select>
+	
+	<select id="selectMenuList" parameterType="String" resultMap="menuResult">
+		<![CDATA[
+         select * from menu where restaurant_license=#{restaurant_license}
 	    ]]>
 	</select>
 </mapper>

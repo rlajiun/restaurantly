@@ -11,16 +11,30 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller("mainController")
 public class MainController {
-	@RequestMapping(value= "/main/main.do", method={RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception{
+	@RequestMapping(value = "/main/main.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session;
-		
-		ModelAndView mav=new ModelAndView();
-		String viewName=(String)request.getAttribute("viewName");
+
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
 		mav.setViewName(viewName);
-		
-		session=request.getSession();
-		session.setAttribute("side_menu", "user"); 
+
+		session = request.getSession();
+		session.setAttribute("side_menu", "user");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "owner/main/main.do", method = { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView mainOwner(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session;
+
+		ModelAndView mav = new ModelAndView();
+		String viewName = (String) request.getAttribute("viewName");
+		mav.setViewName(viewName);
+
+		session = request.getSession();
+		session.setAttribute("side_menu", "owner");
 
 		return mav;
 	}

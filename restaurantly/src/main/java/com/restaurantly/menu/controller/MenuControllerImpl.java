@@ -26,9 +26,9 @@ public class MenuControllerImpl implements MenuController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		String menu_category = menuService.randomCat();
-		List<MenuVO> menuList = menuService.listRandomMenuPic(menu_category);
+		List<MenuVO> catMenuList = menuService.listRandomMenuPic(menu_category);
 		mav.addObject("menu_category", menu_category);
-		mav.addObject("menuList", menuList);
+		mav.addObject("catMenuList", catMenuList);
 
 		return mav;
 	}
