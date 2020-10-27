@@ -35,12 +35,12 @@
 		<div class="row">
 			<c:forEach var="item" items="${restaurantList }">
 				<div class="col-sm-6 col-md-4">
-				    <div class="thumbnail category-item">
+				    <div class="thumbnail">
 				      <img src="${contextPath}/${item.restaurant_image_path}/thumbnail.jpg">
 				      <div class="caption">
 				        <h3>${item.restaurant_name }</h3>
 				        <p>${item.restaurant_introduction }</p>
-				        <p><a href="${contextPath}/restaurant/restaurantMain/${item.restaurant_license}" class="btn btn-primary" role="button">자세히 보기</a></p>
+				        <p><a href="${contextPath}/restaurant/restaurantMain/${item.restaurant_license}" class="btn-detail" role="button">자세히 보기</a></p>
 				      </div>
 				    </div>
 				  </div>			

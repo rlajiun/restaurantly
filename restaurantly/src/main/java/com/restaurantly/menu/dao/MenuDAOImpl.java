@@ -21,8 +21,14 @@ public class MenuDAOImpl implements MenuDAO {
 	}
 
 	@Override
-	public List<MenuVO> selectMenuList(String menu_category) throws DataAccessException {
-		List<MenuVO> menuList = (List)sqlSession.selectList("mapper.menu.selectMenuList", menu_category);
+	public List<MenuVO> selectCatMenuList(String menu_category) throws DataAccessException {
+		List<MenuVO> menuList = (List)sqlSession.selectList("mapper.menu.selectCatMenuList", menu_category);
+		return menuList;
+	}
+
+	@Override
+	public List<MenuVO> selectMenuList(String restaurant_license) throws DataAccessException {
+		List<MenuVO> menuList = (List)sqlSession.selectList("mapper.menu.selectMenuList", restaurant_license);
 		return menuList;
 	}
 

@@ -6,7 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Component("menu")
+@Component
 @NoArgsConstructor
 @Getter @Setter
 public class MenuVO {

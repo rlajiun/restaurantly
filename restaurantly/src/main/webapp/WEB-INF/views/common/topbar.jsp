@@ -26,8 +26,8 @@
 					<li><a href="${contextPath}/owner/myPageMain.do">MyPage</a></li>
 				</c:when>
 				<c:otherwise>
-					<li><a href="${contextPath}/loginForm.do">Login</a></li>
-					<li><a href="${contextPath}/joinForm.do">Join</a></li>
+					<li><a href="${contextPath}/form/loginForm.do">Login</a></li>
+					<li><a href="${contextPath}/form/joinForm.do">Join</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>

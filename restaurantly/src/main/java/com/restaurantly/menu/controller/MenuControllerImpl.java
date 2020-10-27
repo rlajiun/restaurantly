@@ -11,12 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.restaurantly.common.base.BaseController;
 import com.restaurantly.menu.service.MenuService;
 import com.restaurantly.menu.vo.MenuVO;
 
 @Controller("MenuController")
 @RequestMapping(value = "/menu")
-public class MenuControllerImpl implements MenuController {
+public class MenuControllerImpl extends BaseController implements MenuController {
 	@Autowired
 	private MenuService menuService;
 
@@ -26,9 +27,9 @@ public class MenuControllerImpl implements MenuController {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
 		String menu_category = menuService.randomCat();
-		List<MenuVO> menuList = menuService.listRandomMenuPic(menu_category);
+		List<MenuVO> catMenuList = menuService.listRandomMenuPic(menu_category);
 		mav.addObject("menu_category", menu_category);
-		mav.addObject("menuList", menuList);
+		mav.addObject("catMenuList", catMenuList);
 
 		return mav;
 	}
