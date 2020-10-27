@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 public class BaseController {
-	@RequestMapping(value = "/*Form.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "form/*Form.do", method = { RequestMethod.POST, RequestMethod.GET })
 	protected ModelAndView viewForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
