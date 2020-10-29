@@ -24,11 +24,11 @@
 
        <form action="${contextPath}/customer/login.do" method="post" role="form" class="php-email-form">
           <div class="form-group">
-            <input type="text" name="id" class="form-control" id="id" placeholder="Id" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="text" name="customer_id" class="form-control" id="id" placeholder="Id" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="pw" id="pw" placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="password" class="form-control" name="customer_pw" id="pw" placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
             <div class="validate"></div>
           </div>
          <div class="text-center"><button type="submit">Login</button></div>

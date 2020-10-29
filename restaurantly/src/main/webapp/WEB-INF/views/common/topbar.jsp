@@ -18,6 +18,7 @@
 		<ul>
 			<c:choose>
 				<c:when test="${not empty customer }">
+					<li><p>${customer.customer_name }님 환영합니다.</p></li>
 					<li><a href="${contextPath}/customer/logout.do">Logout</a></li>
 					<li><a href="${contextPath}/customer/myPageMain.do">MyPage</a></li>
 				</c:when>

@@ -1,6 +1,8 @@
 package com.restaurantly.customer.dao;
 
 
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 
 import com.restaurantly.customer.vo.CustomerVO;
@@ -10,8 +12,8 @@ import com.restaurantly.customer.vo.CustomerVO;
  */
 
 public interface CustomerDAO {
-	public CustomerVO addmember(CustomerVO customerVO) throws DataAccessException;
-	public CustomerVO modmember(CustomerVO customerVO) throws DataAccessException;
-	public CustomerVO deletemember(CustomerVO customerVO) throws DataAccessException;
+
+	CustomerVO login(Map<String, String> loginMap);
+	
 
 }

@@ -1,5 +1,7 @@
 package com.restaurantly.customer.service;
 
+import java.util.Map;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -15,24 +17,18 @@ public class CustomerServiceImpl implements CustomerService  {
 	
 	@Autowired
 	private CustomerDAO customerDAO;
+
+	@Override
+	public CustomerVO login(Map<String, String> loginMap) {
+		return customerDAO.login(loginMap);
+	}
+
+	@Override
+	public void addCustomer(CustomerVO customerVO) {
+		// TODO Auto-generated method stub
+		
+	}
  	
 
-	@Override
-	public CustomerVO addmember(CustomerVO customerVO) throws DataAccessException {
-		customerDAO.addmember(customerVO);
-		return customerVO;
-	}
-
-	@Override
-	public CustomerVO modmember(CustomerVO customerVO) throws DataAccessException {
-		customerDAO.modmember(customerVO);
-		return customerVO;
-	}
-
-	@Override
-	public CustomerVO deletemember(CustomerVO customerVO) throws DataAccessException {
-		customerDAO.deletemember(customerVO);
-		return customerVO;
-	}
 
 }

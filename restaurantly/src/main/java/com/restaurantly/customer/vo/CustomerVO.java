@@ -3,7 +3,6 @@ package com.restaurantly.customer.vo;
 import org.springframework.stereotype.Component;
 
 @Component("customerVO")
-
 public class CustomerVO {
 	private String customer_id;
 	private String customer_pw;

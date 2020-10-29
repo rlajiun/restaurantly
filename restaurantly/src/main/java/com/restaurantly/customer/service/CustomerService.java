@@ -1,10 +1,11 @@
 package com.restaurantly.customer.service;
 
 
+import java.util.Map;
+
 import org.springframework.dao.DataAccessException;
 
 import com.restaurantly.customer.vo.CustomerVO;
-
 
 
 /*
@@ -12,8 +13,10 @@ import com.restaurantly.customer.vo.CustomerVO;
  */
 
 public interface CustomerService {
-	public CustomerVO addmember(CustomerVO customerVO) throws DataAccessException;
-	public CustomerVO modmember(CustomerVO customerVO) throws DataAccessException;
-	public CustomerVO deletemember(CustomerVO customerVO) throws DataAccessException;
+
+	CustomerVO login(Map<String, String> loginMap);
+
+	public void addCustomer(CustomerVO customerVO);
+	
 
 }
