@@ -18,6 +18,7 @@ public class ReviewVO {
 	private String review_id;
 	private String restaurant_license;
 	private String customer_id;
+	private String review_content;
 	private int review_score;
 	private Date review_writedate;
 	private String review_image_path;

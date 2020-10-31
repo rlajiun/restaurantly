@@ -14,7 +14,7 @@ import com.restaurantly.review.vo.ReviewVO;
 
 public interface ReviewController {
 
-	ModelAndView listReview(String restaurant_license, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView listReview(String restaurant_license, HttpServletRequest request, HttpServletResponse response)
 			throws Exception;
 
 	public ResponseEntity addNewReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
@@ -23,7 +23,7 @@ public interface ReviewController {
 	
 	public ModelAndView reviewForm(HttpServletRequest request, HttpServletResponse response) throws Exception;
 
-	ResponseEntity modReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
+	public ResponseEntity modReview(MultipartHttpServletRequest multipartRequest, HttpServletResponse response)
 			throws Exception;
 	
 	public ResponseEntity removeReview(String review_id, HttpServletRequest request, HttpServletResponse response)
