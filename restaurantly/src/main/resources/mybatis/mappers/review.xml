@@ -7,7 +7,8 @@
 	<resultMap id="reviewsResult" type="reviewVO">
 		<result property="review_id" column="review_id" />
 		<result property="customer_id" column="customer_id" />
-		<result property="restaurant_license" column="restaurant_license" />
+		<result property="restaurant_license"
+			column="restaurant_license" />
 		<result property="review_score" column="review_score" />
 		<result property="review_content" column="review_content" />
 		<result property="review_writedate" column="review_writedate" />
@@ -22,17 +23,23 @@
       where review_id = #{review_id}		
     ]]>
 	</select>
-	
+
 	<!-- 리뷰 목록 -->
-	<select id="selectAllReviewsList" resultMap="reviewsResult"> <![CDATA[ 
+	<select id="selectReviewList" resultMap="reviewsResult"  parameterType="java.lang.String"> 
+	<![CDATA[ 
+		SELECT * from review 
+		WHERE restaurant_license = #{restaurant_license}		]]>
+	</select>
+	<!-- 리뷰 전체 -->
+	<select id="selectAllReviewList" resultMap="reviewsResult"> <![CDATA[ 
 		SELECT * from review ]]>
 	</select>
 
 	<!-- 리뷰 등록 -->
 	<insert id="insertReview" parameterType="java.util.Map">
 		<![CDATA[
-			INSERT into review(review_id, review_score, review_content, review_image_path, customer_id, restaurannt_license)
-			VALUES(#{review_id},#{review_score},	#{review_content}, #{review_image_path},	#{customer_id},#{restaurannt_license})
+			INSERT into review(review_id, review_score, review_content, review_image_path, customer_id, restaurant_license)
+			VALUES(#{review_id},#{review_score}, #{review_content}, #{review_image_path}, #{customer_id}, #{restaurant_license})
 		]]>
 	</insert>
 
@@ -45,12 +52,12 @@
 
 	<!-- 리뷰 수정 -->
 	<update id="updateReivew" parameterType="java.util.Map">
-    update review
+		update review
 		set review_content=#{review_content}
 		<if test="review_image_path!='' and review_image_path!=null">
 			, review_image_path=#{review_image_path}
 		</if>
-		where review_id=#{review_id}	
+		where review_id=#{review_id}
 	</update>
 
 	<!-- 리뷰 삭제 -->
@@ -62,7 +69,8 @@
 	</delete>
 
 	<!-- 점수 계산 -->
-	<select id="calculateScore" parameterType="string" resultType="float">
+	<select id="calculateScore" parameterType="string"
+		resultType="float">
 	<![CDATA[
 	SELECT AVG(review_score)
 	FROM review

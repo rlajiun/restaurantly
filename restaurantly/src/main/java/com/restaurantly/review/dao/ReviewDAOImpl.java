@@ -18,8 +18,9 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 	@Override
 	public List<ReviewVO> selectReviewList(String restaurant_license) throws DataAccessException{
-		List<ReviewVO> reviewList = (List)sqlSession.selectList("mapper.review.selectReviewList ", restaurant_license);
-		return reviewList ;
+		System.out.println(restaurant_license);
+		List<ReviewVO> reviewList = (List)sqlSession.selectList("mapper.review.selectReviewList", restaurant_license);
+		return reviewList;
 	}
 
 	@Override
@@ -36,13 +37,13 @@ public class ReviewDAOImpl implements ReviewDAO{
 
 	@Override
 	public void updateReview(Map reviewMap) throws DataAccessException{
-		sqlSession.insert("mapper.review.updateReview", reviewMap);
+		sqlSession.update("mapper.review.updateReview", reviewMap);
 	
 	}
 
 	@Override
 	public void deleteReview(String review_id) throws DataAccessException{
-		sqlSession.selectOne("mapper.review.deleteReview", review_id);
+		sqlSession.delete("mapper.review.deleteReview", review_id);
 	
 	}
 

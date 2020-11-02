@@ -25,8 +25,8 @@ public class ReviewServiceImpl implements ReviewService {
 
 	@Override
 	public List<ReviewVO> listReview(String restaurant_license) throws Exception{
-		List<ReviewVO> menuList = reviewDAO.selectReviewList(restaurant_license);
-		return menuList;
+		List<ReviewVO> reviewList = reviewDAO.selectReviewList(restaurant_license);
+		return reviewList;
 	}
 
 

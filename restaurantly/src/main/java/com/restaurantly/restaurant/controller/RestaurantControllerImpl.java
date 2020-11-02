@@ -18,6 +18,8 @@ import com.restaurantly.menu.service.MenuService;
 import com.restaurantly.menu.vo.MenuVO;
 import com.restaurantly.restaurant.service.RestaurantService;
 import com.restaurantly.restaurant.vo.RestaurantVO;
+import com.restaurantly.review.service.ReviewService;
+import com.restaurantly.review.vo.ReviewVO;
 
 @Controller("restaurantController")
 @RequestMapping(value = "/restaurant")
@@ -28,6 +30,11 @@ public class RestaurantControllerImpl extends BaseController implements Restaura
 	private RestaurantService restaurantService;
 	@Autowired
 	private MenuService menuService;
+	@Autowired
+	private ReviewVO reviewVO;
+	@Autowired
+	private ReviewService reviewService;
+	
 
 	@Override
 	@RequestMapping(value = "/restaurantList.do", method = RequestMethod.GET)
@@ -68,7 +75,9 @@ public class RestaurantControllerImpl extends BaseController implements Restaura
 		mav.addObject("restaurant", restaurant);
 		List<MenuVO> menuList = menuService.listMenu(restaurant_license);
 		mav.addObject("menuList", menuList);
-		
+		/* 수정: review 리스트 */
+		List<ReviewVO> reviewList = reviewService.listReview(restaurant_license);
+		mav.addObject("reviewList", reviewList);
 		return mav;
 	}
 
