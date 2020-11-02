@@ -7,13 +7,13 @@ import com.restaurantly.review.vo.ReviewVO;
 
 public interface ReviewService {
 
-	List<ReviewVO> listReview(String restaurant_license) throws Exception;
+	public List<ReviewVO> listReview(String restaurant_license) throws Exception;
 
-	String addNewReview(Map reviewMap);
+	public String addNewReview(Map reviewMap);
 
-	void modReview(Map reviewMap);
+	public void modReview(Map reviewMap);
 
-	void removeReview(String review_id);
+	public void removeReview(String review_id);
 
 	public void calScore(String review_id);
 

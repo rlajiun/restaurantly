@@ -35,7 +35,7 @@ import com.restaurantly.review.vo.ReviewVO;
 public class ReviewControllerImpl implements ReviewController {
 	private static final String ARTICLE_IMAGE_REPO = "C:\\board\\article_image";
 	@Autowired
-	private ReviewVO reviewDTO;
+	private ReviewVO reviewVO;
 	@Autowired
 	private ReviewService reviewService;
 
@@ -67,8 +67,8 @@ public class ReviewControllerImpl implements ReviewController {
 
 		String imageFileName = upload(multipartRequest);
 		HttpSession session = multipartRequest.getSession();
-		ReviewVO reviewDTO = (ReviewVO) session.getAttribute("review");
-		String review_id = reviewDTO.getReview_id();
+		ReviewVO reviewVO = (ReviewVO) session.getAttribute("review");
+		String review_id = reviewVO.getReview_id();
 
 		reviewMap.put("review_id", review_id);
 		reviewMap.put("imageFileName", imageFileName);
@@ -152,8 +152,8 @@ public class ReviewControllerImpl implements ReviewController {
 
 		String imageFileName = upload(multipartRequest);
 		HttpSession session = multipartRequest.getSession();
-		ReviewVO reviewDTO = (ReviewVO) session.getAttribute("member");
-		String review_id = reviewDTO.getReview_id();
+		ReviewVO reviewVO = (ReviewVO) session.getAttribute("member");
+		String review_id = reviewVO.getReview_id();
 		reviewMap.put("review_id", review_id);
 		reviewMap.put("imageFileName", imageFileName);
 
