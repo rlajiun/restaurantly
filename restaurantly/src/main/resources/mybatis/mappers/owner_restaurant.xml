@@ -16,6 +16,34 @@
 		<result property="restaurant_image_path" column="restaurant_image_path" />
 	</resultMap>
 	
+	<select id="selectRestaurant" parameterType="String" resultMap="restaurantResult">
+		<![CDATA[
+         select * from restaurant where owner_id = #{owner_id}
+	    ]]>
+	</select>
+	
+	<insert id="insertRestaurant" parameterType="restaurantVO">
+	  <![CDATA[
+	    	insert into restaurant(restaurant_license,
+                              owner_id,
+                              restaurant_name,
+                              restaurant_phone,
+                              restaurant_representative,
+                              restaurant_detail,
+                              restaurant_item,
+                              restaurant_introduction,
+                              restaurant_image_path)
+					 values(#{restaurant_license},
+							#{owner_id},
+							#{restaurant_name},
+                         	#{restaurant_phone},
+                           	#{restaurant_representative},
+                           	#{restaurant_detail},
+                           	#{restaurant_item},
+                           	#{restaurant_introduction},
+                           	#{restaurant_image_path})
+	   ]]>
+	</insert>
 	
 	
 </mapper>

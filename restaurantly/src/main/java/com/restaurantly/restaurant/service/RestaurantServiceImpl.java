@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.restaurantly.menu.dao.MenuDAO;
-import com.restaurantly.menu.vo.MenuVO;
 import com.restaurantly.restaurant.dao.RestaurantDAO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
@@ -17,8 +15,6 @@ import com.restaurantly.restaurant.vo.RestaurantVO;
 public class RestaurantServiceImpl implements RestaurantService {
 	@Autowired
 	private RestaurantDAO restaurantDAO;
-	@Autowired
-	private MenuDAO menuDAO;
 	
 	@Override
 	public List<RestaurantVO> listRestaurant() throws Exception {

@@ -1,10 +1,164 @@
 @charset "UTF-8";
 
 /*--------------------------------------------------------------
+# topbar
+--------------------------------------------------------------*/
+#topbar a {
+	color: #fff;
+}
+
+#topbar p {
+	color: white;
+	margin: 0;
+}
+
+/*--------------------------------------------------------------
 # Login
 --------------------------------------------------------------*/
 .login-form {
 	margin: auto;
+}
+
+@media ( min-width : 992px) {
+	.login-form {
+		max-width: 720px;
+	}
+}
+
+@media ( min-width : 768px) {
+	.login-form {
+		max-width: 540px;
+	}
+}
+
+.login-form ul li {
+	align-self: baseline;
+}
+
+.login-form ul li+li {
+	padding-left: 10px;
+}
+
+.login-form ul li+li::before {
+	display: inline-block;
+	padding-right: 10px;
+	color: #625b4b;
+	content: "|";
+	height: 30px;
+}
+
+.login-form ul {
+	margin-bottom: 8px;
+	height: 30px;
+}
+
+.login-form ul li.active a {
+	font-size: 1.2rem;
+	color: #cda45e;
+}
+
+.login-form ul li a {
+	color: #fff;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.login-form ul li:hover a {
+	color: #cda45e;
+}
+
+/*--------------------------------------------------------------
+# Join Section
+--------------------------------------------------------------*/
+.join-form .form-group {
+	padding-bottom: 8px;
+}
+
+.join-form .validate {
+	display: none;
+	color: red;
+	margin: 0 0 15px 0;
+	font-weight: 400;
+	font-size: 13px;
+}
+
+.join-form .error-message {
+	display: none;
+	color: #fff;
+	background: #ed3c0d;
+	text-align: left;
+	padding: 15px;
+	font-weight: 600;
+}
+
+.join-form .error-message br+br {
+	margin-top: 25px;
+}
+
+.join-form .sent-message {
+	display: none;
+	color: #fff;
+	background: #18d26e;
+	text-align: center;
+	padding: 15px;
+	font-weight: 600;
+}
+
+.join-form .loading {
+	display: none;
+	text-align: center;
+	padding: 15px;
+}
+
+.join-form .loading:before {
+	content: "";
+	display: inline-block;
+	border-radius: 50%;
+	width: 24px;
+	height: 24px;
+	margin: 0 10px -6px 0;
+	border: 3px solid #cda45e;
+	border-top-color: #1a1814;
+	-webkit-animation: animate-loading 1s linear infinite;
+	animation: animate-loading 1s linear infinite;
+}
+
+.join-form input, .join-form textarea, .join-form select {
+	border-radius: 0;
+	box-shadow: none;
+	font-size: 14px;
+	background: #0c0b09;
+	border-color: #625b4b;
+	color: white;
+}
+
+.join-form input::placeholder, .join-form textarea::placeholder, .join-form select::placeholder {
+	color: #a49b89;
+}
+
+.join-form input:focus, .join-form textarea:focus, .join-form select:focus {
+	border-color: #cda45e;
+}
+
+.join-form input, .join-form select {
+	height: 44px;
+}
+
+.join-form textarea {
+	padding: 10px 12px;
+}
+
+.join-form button[type="submit"] {
+	background: #cda45e;
+	border: 0;
+	padding: 10px 35px;
+	color: #fff;
+	transition: 0.4s;
+	border-radius: 50px;
+}
+
+.join-form button[type="submit"]:hover {
+	background: #d3af71;
 }
 
 /*--------------------------------------------------------------
@@ -68,7 +222,7 @@ a.thumbnail .category-info {
 	margin-bottom: 50px;
 	text-align: center;
 	border: 1px solid #ddd;
-    border-radius: 4px;
+	border-radius: 4px;
 }
 
 #list .thumbnail img {
@@ -77,7 +231,7 @@ a.thumbnail .category-info {
 	min-height: 150px;
 	max-height: 180px;
 	object-fit: cover;
-}	
+}
 
 #list .btn-detail {
 	font-weight: 600;
@@ -95,5 +249,35 @@ a.thumbnail .category-info {
 
 #list .btn-detail:hover {
 	background: #cda45e;
-    color: #fff;
+	color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Add Section
+--------------------------------------------------------------*/
+#file {
+	display: none;
+}
+
+.pic-btn {
+	cursor: pointer;
+}
+
+#image {
+	max-width: 120px;
+	height: 120px;
+}
+
+.pic-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.pic-group {
+	width: 70%;
+}
+
+.pic-group div+div {
+	padding-bottom: 0;
+	margin-bottom: 0;
 }

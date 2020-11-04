@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Component
 @NoArgsConstructor
 @Getter @Setter
+@ToString
 public class RestaurantVO {
 	private String restaurant_license; /* 사업자등록번호 */
 	private String owner_id; /* 판매자ID */

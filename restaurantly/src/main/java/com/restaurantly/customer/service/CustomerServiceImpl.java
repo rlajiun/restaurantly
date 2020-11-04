@@ -22,8 +22,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void addCustomer(CustomerVO customerVO) throws Exception {
-		// TODO Auto-generated method stub
-
+		customerDAO.insertNewCustomer(customerVO);
 	}
 
 }

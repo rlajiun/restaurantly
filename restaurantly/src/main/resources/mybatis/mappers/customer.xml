@@ -9,11 +9,9 @@
 		<result property="customer_name" column="customer_name" />
 		<result property="customer_email" column="customer_email" />
 		<result property="customer_phone" column="customer_phone" />
-		<result property="customer_birthdate"
-			column="customer_birthdate" />
+		<result property="customer_birthdate" column="customer_birthdate" />
 		<result property="customer_joindate" column="customer_joindate" />
-		<result property="customer_image_path"
-			column="customer_image_path" />
+		<result property="customer_image_path" column="customer_image_path" />
 		<result property="customer_state" column="customer_state" />
 	</resultMap>
 
@@ -31,7 +29,7 @@
 		where customer_id = #{id}
 	</select>
 
-	<insert id="insertNewMember" parameterType="customerVO">
+	<insert id="insertNewCustomer" parameterType="customerVO">
 	  <![CDATA[
 	    	insert into customer(customer_id,
 					 					 customer_pw,
@@ -39,9 +37,7 @@
 	                                     customer_email,
 	                                     customer_phone,
 	                                     customer_birthdate,
-	                                     customer_joindate,
-	                                     customer_image_path,
-	                                     customer_state
+	                                     customer_joindate
 	                                     )
 								 values(#{customer_id},
 										#{customer_pw},
@@ -49,15 +45,13 @@
 	                                 	#{customer_email},
 	                                   	#{customer_phone},
 	                                   	#{customer_birthdate},
-	                                    #{customer_joindate},
-	                                    #{customer_image_path},
-	                                    #{customer_state}
+	                                    sysdate
 	                                    )
 	                                        
 	   ]]>
 	</insert>
 	
-	<update id="updateMember" parameterType="customerVO">
+	<update id="updateCustomer" parameterType="customerVO">
 	  <![CDATA[
 	    	
 	                                        

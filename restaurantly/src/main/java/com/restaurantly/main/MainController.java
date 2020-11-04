@@ -13,7 +13,7 @@ import com.restaurantly.common.base.BaseController;
 
 @Controller("mainController")
 public class MainController extends BaseController {
-	@RequestMapping(value = "/main/main.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/main.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView main(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session;
 
@@ -27,7 +27,7 @@ public class MainController extends BaseController {
 		return mav;
 	}
 
-	@RequestMapping(value = "owner/main/main.do", method = { RequestMethod.POST, RequestMethod.GET })
+	@RequestMapping(value = "/owner/main.do", method = { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView mainOwner(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		HttpSession session;
 

@@ -5,7 +5,7 @@ import java.util.Map;
 import com.restaurantly.owner.user.vo.OwnerVO;
 
 public interface OwnerService {
-	public OwnerVO login(Map loginMap) throws Exception;
+	public OwnerVO login(Map<String, String> loginMap) throws Exception;
 
 	public void addOwner(OwnerVO ownerVO) throws Exception;
 
