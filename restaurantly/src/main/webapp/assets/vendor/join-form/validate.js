@@ -7,7 +7,6 @@ $(function(){
   $('form.join-form').submit(function(e) {
     console.log("시작");
     e.preventDefault();
-    var formData = new FormData($("form")[0]); 
     var f = $(this).find('.form-group'),
     ferror = false,
     emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i,
@@ -75,6 +74,7 @@ $(function(){
 
     var this_form = $(this);
     var action = $(this).attr('action');
+    var formData = new FormData($("form")[0]); 
 
     if( ! action ) {
       this_form.find('.loading').slideUp();

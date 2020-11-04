@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
         <div class="about-img">
-          <img src="${contextPath}/${restaurant.restaurant_image_path}">
+          <img src="${contextPath}/upload/${restaurant.restaurant_license}/${restaurant.restaurant_image_path }">
         </div>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">

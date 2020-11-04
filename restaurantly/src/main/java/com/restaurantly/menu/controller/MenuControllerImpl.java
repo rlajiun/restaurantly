@@ -11,13 +11,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.restaurantly.common.base.BaseController;
+import com.restaurantly.common.base.BaseService;
 import com.restaurantly.menu.service.MenuService;
 import com.restaurantly.menu.vo.MenuVO;
 
 @Controller("MenuController")
 @RequestMapping(value = "/menu")
-public class MenuControllerImpl extends BaseController implements MenuController {
+public class MenuControllerImpl extends BaseService implements MenuController {
 	@Autowired
 	private MenuService menuService;
 

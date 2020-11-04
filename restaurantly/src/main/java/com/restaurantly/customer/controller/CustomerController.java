@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.restaurantly.common.base.BaseController;
+import com.restaurantly.common.base.BaseService;
 import com.restaurantly.customer.service.CustomerService;
 import com.restaurantly.customer.vo.CustomerVO;
 
@@ -24,7 +24,7 @@ import com.restaurantly.customer.vo.CustomerVO;
 
 @Controller("customerController")
 @RequestMapping(value = "/customer")
-public class CustomerController extends BaseController {
+public class CustomerController extends BaseService {
 
 	@Autowired
 	private CustomerService customerService;
