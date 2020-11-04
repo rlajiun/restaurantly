@@ -145,17 +145,22 @@
 
     <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
 
-      <div class="testimonial-item">
-        <p>
-          <i class="bx bxs-quote-alt-left quote-icon-left"></i>
-          <img src="${contextPath}//thumbnail.jpg">
-          Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-          <i class="bx bxs-quote-alt-right quote-icon-right"></i>
-        </p>
-        <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-        <h3>Saul Goodman</h3>
-        <h4>Ceo &amp; Founder</h4>
-      </div>	
+     <!-- 리뷰 목록 -->
+			<c:forEach var="item" items="${reviewList }">
+				<div class="testimonial-item">
+					<p>
+						<i class="bx bxs-quote-alt-left quote-icon-left"></i> <img
+							src="${contextPath}//thumbnail.jpg"> ${item.review_content} <i
+							class="bx bxs-quote-alt-right quote-icon-right"></i>
+					</p>
+					<img src="assets/img/testimonials/testimonials-1.jpg"
+						class="testimonial-img" alt="">
+					<h3>${item.customer_id}</h3>
+					<h4>Ceo &amp; Founder</h4>
+				</div>
+
+			</c:forEach>
+
 
     </div>
 

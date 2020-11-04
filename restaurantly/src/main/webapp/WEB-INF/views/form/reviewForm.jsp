@@ -4,7 +4,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="contextPath" value="${pageContext.request.contextPath}" />
 <%
-  request.setCharacterEncoding("UTF-8");
+	request.setCharacterEncoding("UTF-8");
 %>
 
 <head>
@@ -13,34 +13,35 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script type="text/javascript">
-   function readURL(input) {
-      if (input.files && input.files[0]) {
-    	  console.log(input);
-    	  //console.log($(this)); //Window
-    	  console.log($(input)); //Window
-	    	  console.log($(input).find('.preview'));
-	         var reader = new FileReader();
-         reader.onload = function (e) {
-        	 //console.log($(this)); //0: FileReader {readyState: 2, result: "data:image/jpeg;base64,/9j/4AAQSkZJRgABAAEAYABgAAD…wIe33D9KHuMZ2FNCYL1oBCnpSKYo6/hQLqB60DQdhQAUwP//Z", error: null, onloadstart: null, onprogress: null, …}
-        	 $(input).parent().next().find('.preview').attr('src', e.target.result);
-          }
-         reader.readAsDataURL(input.files[0]);
-      }
-  }  
- 
-  
-  var cnt=0;
-  function fn_addFile(){
-     cnt++;
-     /* $("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"' />"); */
-     $("#d_file").append("<tr><td>"+"<input type='file' name='file"+cnt+"' onchange='readURL(this);' /></td><td><img class='preview' scr='#' width=200 height=200/></td></tr>");
-  }  
+	function readURL(input) {
+		if (input.files && input.files[0]) {
+			console.log(input);
+			console.log($(input).find('.preview'));
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				$(input).parent().next().find('.preview').attr('src',
+						e.target.result);
+			}
+			reader.readAsDataURL(input.files[0]);
+		}
+	}
 
+	var cnt = 0;
+	function fn_addFile() {
+		cnt++;
+		/* $("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"' />"); */
+		$("#d_file")
+				.append(
+						"<tr><td>"
+								+ "<input type='file' name='file"
+								+ cnt
+								+ "' onchange='readURL(this);' /></td><td><img class='preview' scr='#' width=200 height=200/></td></tr>");
+	}
 </script>
 
 </head>
 <body>
-	<h1 style="text-align: center">글쓰기</h1>
+	<h1 style="text-align: center">리뷰 쓰기</h1>
 	<form name="reviewForm" method="post"
 		action="${contextPath}/review/addNewReview.do"
 		enctype="multipart/form-data">
@@ -48,11 +49,11 @@
 			<tr>
 				<td align="right">작성자</td>
 				<td colspan=2 align="left"><input type="text" size="20"
-					maxlength="100" value="${member.name }" readonly /></td>
+					maxlength="100" value="${customer_id}" readonly /></td>
 			</tr>
 
 			<tr>
-				<td align="right" valign="top"><br>글내용:</td>
+				<td align="right" valign="top"><br>리뷰 내용:</td>
 				<td colspan=2><textarea name="content" rows="10" cols="65"
 						maxlength="4000"></textarea></td>
 			</tr>
@@ -74,7 +75,7 @@
 			</tr>
 			<tr>
 				<td align="right"></td>
-				<td colspan="2"><input type="submit" value="글쓰기" /></td>
+				<td colspan="2"><input type="submit" value="완료" /></td>
 			</tr>
 		</table>
 	</form>
