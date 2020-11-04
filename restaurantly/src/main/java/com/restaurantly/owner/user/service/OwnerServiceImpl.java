@@ -17,7 +17,7 @@ public class OwnerServiceImpl implements OwnerService {
 	private OwnerDAO ownerDAO;
 
 	@Override
-	public OwnerVO login(Map loginMap) throws Exception {
+	public OwnerVO login(Map<String, String> loginMap) throws Exception {
 		return ownerDAO.login(loginMap);
 	}
 

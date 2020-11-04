@@ -16,8 +16,12 @@ public class CustomerDAOImpl implements CustomerDAO {
 
 	@Override
 	public CustomerVO login(Map<String, String> loginMap) throws DataAccessException {
-		System.out.println("customerDAO >>>>> " + loginMap);
-		return sqlSession.selectOne("mapper.customer.login", loginMap);
+		return (CustomerVO) sqlSession.selectOne("mapper.customer.login", loginMap);
+	}
+
+	@Override
+	public void insertNewCustomer(CustomerVO customerVO) throws DataAccessException {
+		sqlSession.insert("mapper.customer.insertNewCustomer", customerVO);
 	}
 
 }

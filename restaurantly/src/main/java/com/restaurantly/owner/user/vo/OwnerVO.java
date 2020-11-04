@@ -5,10 +5,12 @@ import org.springframework.stereotype.Component;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 
 @Component
 @NoArgsConstructor
 @Getter @Setter
+@ToString
 public class OwnerVO {
 	private String owner_id; /* 판매자ID */
 	private String owner_pw; /* 비밀번호 */

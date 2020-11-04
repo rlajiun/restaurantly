@@ -20,30 +20,36 @@
 
   <div class="container" data-aos="fade-up">
 
-     <div class="login-from">
+     <div class="login-form">
 
-       <form action="${contextPath}/owner/addOwner.do" method="post" role="form" class="php-email-form">
+       <form action="${contextPath}/owner/addOwner.do" method="post" role="form" class="join-form">
           <div class="form-group">
-            <input type="text" name="owner_id" class="form-control" id="owner_id" placeholder="Id" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="text" name="owner_id" class="form-control" id="id" placeholder="Id" data-rule="required" data-msg="아이디를 입력해주세요" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="owner_pw" id="owner_pw" placeholder="Password" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="password" class="form-control" name="owner_pw" id="pw" placeholder="Password" data-rule="required" data-msg="비밀번호를 입렵해주세요" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="password" class="form-control" name="owner_pw2" id="owner_pw2" placeholder="Password Repeat" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="password" class="form-control" name="owner_pw2" id="pw2" placeholder="Password Repeat" data-rule="repeat" data-msg="입력된 비밀번호가 다릅니다" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="text" name="owner_name" class="form-control" id="owner_name" placeholder="Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <input type="text" name="owner_name" class="form-control" id="name" placeholder="Name" data-rule="required" data-msg="이름을 입력해주세요" />
             <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="text" name="owner_phone" class="form-control" id="owner_phone" placeholder="Phone" />
+            <input type="text" name="owner_phone" class="form-control" id="phone" placeholder="Phone" data-rule="phone" data-msg="번호를 입력해주세요"  />
+            <div class="validate"></div>
           </div>
           <div class="form-group">
-            <input type="text" name="owner_email" class="form-control" id="owner_email" placeholder="Email" />
+            <input type="text" name="owner_email" class="form-control" id="email" placeholder="Email" data-rule="email" data-msg="이메일을 입력해주세요" />
+            <div class="validate"></div>
+          </div>
+          <div class="mb-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
           </div>
          <div class="text-center"><button type="submit">Join</button></div>
        </form>

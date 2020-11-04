@@ -15,7 +15,7 @@ public class OwnerDAOImpl implements OwnerDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public OwnerVO login(Map loginMap) throws DataAccessException {
+	public OwnerVO login(Map<String, String> loginMap) throws DataAccessException {
 		OwnerVO owner = (OwnerVO) sqlSession.selectOne("mapper.owner.login", loginMap);
 		return owner;
 	}

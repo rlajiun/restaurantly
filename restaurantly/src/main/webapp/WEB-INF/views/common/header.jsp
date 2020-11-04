@@ -12,10 +12,10 @@
 	<h1 class="logo mr-auto">
 		<c:choose>
 			<c:when test="${user eq 'owner' }">
-				<a href="${contextPath}/owner/main/main.do">Restaurantly for Owner</a>
+				<a href="${contextPath}/owner/main.do">Restaurantly for Owner</a>
 			</c:when>
 			<c:otherwise>
-				<a href="${contextPath}/main/main.do">Restaurantly</a>
+				<a href="${contextPath}/main.do">Restaurantly</a>
 			</c:otherwise>
 		</c:choose>
 	</h1>
@@ -26,14 +26,14 @@
 		<ul>
 			<c:choose>
 				<c:when test="${user eq 'owner' }">
-					<li class="active"><a href="${contextPath}/owner/main/main.do">Home</a></li>
+					<li class="active"><a href="${contextPath}/owner/main.do">Home</a></li>
 					<li><a href="${contextPath}/owner/booking/bookingList.do">예약 목록</a></li>
 					<li><a href="${contextPath}/owner/review/reviewList.do">리뷰 목록</a></li>
 					<li class="book-a-table text-center" id="book-a-table">
-						<a href="${contextPath}/owner/restaurant/restaurantMain.do">식당 관리</a></li>
+						<a href="${contextPath}/owner/restaurant/restaurantMain.do?owner_id=${owner.owner_id}">식당 관리</a></li>
 				</c:when>
 				<c:otherwise>
-					<li class="active"><a href="${contextPath}/main/main.do">Home</a></li>
+					<li class="active"><a href="${contextPath}/main.do">Home</a></li>
 					<li><a href="${contextPath}/menu/whatToEat.do">오늘의 음식</a></li>
 					<li><a href="${contextPath}/booking/bookingList.do">예약 목록</a></li>
 					<li class="book-a-table text-center" id="book-a-table">

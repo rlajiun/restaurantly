@@ -14,4 +14,6 @@ public interface CustomerDAO {
 
 	public CustomerVO login(Map<String, String> loginMap) throws DataAccessException;
 
+	public void insertNewCustomer(CustomerVO customerVO) throws DataAccessException;
+
 }
