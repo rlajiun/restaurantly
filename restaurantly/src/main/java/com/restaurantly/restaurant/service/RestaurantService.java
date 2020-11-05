@@ -1,7 +1,9 @@
 package com.restaurantly.restaurant.service;
 
 import java.util.List;
+import java.util.Map;
 
+import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
 public interface RestaurantService {
@@ -16,5 +18,10 @@ public interface RestaurantService {
 
 	// 리스트에서 식당 선택되었을 때 선택된 식당에 대한 정보 출력
 	public RestaurantVO restaurantInfo(String restaurant_license) throws Exception;
+	
+	public String randomCat() throws Exception;
+
+	public List<MenuVO> listMenuForCat(String menu_category) throws Exception;
+
 
 }

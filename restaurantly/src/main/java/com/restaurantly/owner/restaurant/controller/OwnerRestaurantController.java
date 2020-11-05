@@ -17,9 +17,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.restaurantly.menu.service.MenuService;
-import com.restaurantly.menu.vo.MenuVO;
 import com.restaurantly.owner.restaurant.service.OwnerRestaurantService;
+import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
 @Controller
@@ -29,8 +28,6 @@ public class OwnerRestaurantController {
 	private RestaurantVO restaurantVO;
 	@Autowired
 	private OwnerRestaurantService ownerRestaurantService;
-	@Autowired
-	private MenuService menuService;
 
 	@RequestMapping(value = "/restaurantMain.do", method = RequestMethod.GET)
 	public ModelAndView restaurantInfo(@RequestParam("owner_id") String owner_id, HttpServletRequest request,
@@ -42,8 +39,7 @@ public class OwnerRestaurantController {
 		System.out.println(restaurantVO);
 		if (restaurantVO != null) {
 			mav.addObject("restaurant", restaurantVO);
-			System.out.println(restaurantVO.getRestaurant_license());
-			List<MenuVO> menuList = menuService.listMenu(restaurantVO.getRestaurant_license());
+			List<MenuVO> menuList = restaurantVO.getMenuList();
 			mav.addObject("menuList", menuList);
 		} else {
 			viewName = "/owner/restaurant/addRestaurantForm";

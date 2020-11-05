@@ -28,7 +28,7 @@
 
 				<div class="row no-gutters">
 
-					<c:forEach var="menu" items="${catMenuList }">
+					<c:forEach var="menu" items="${menuList }">
 						<div class="col-lg-3 col-md-4">
 							<div class="gallery-item">
 								<a href="${contextPath}/restaurant/restaurantMain.do?license=${menu.restaurant_license}" class="venobox"

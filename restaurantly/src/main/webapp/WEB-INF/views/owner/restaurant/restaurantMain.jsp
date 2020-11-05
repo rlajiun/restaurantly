@@ -14,15 +14,25 @@
     <div class="row">
       <div class="col-lg-8">
         <h1>Welcome to <span>${restaurant.restaurant_name }</span></h1>
-        <h2>Delivering great food for more than 18 years!</h2>
 
         <div class="btns">
-          <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
-          <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Book a Table</a>
+	        <c:choose>
+		        <c:when test="${not empty menuList }">
+		          <a href="${contextPath}" class="btn-menu animated fadeInUp scrollto">Edit Menu</a>		        
+		        </c:when>
+	        	<c:otherwise>
+		          <a href="${contextPath}" class="btn-menu animated fadeInUp scrollto">Add Menu</a>		        
+	        	</c:otherwise>
+	        </c:choose>
+	        <c:choose>
+	        	<c:when test="${not empty photoList }">
+		          <a href="${contextPath}" class="btn-book animated fadeInUp scrollto">Edit Gallery</a>
+	        	</c:when>
+	        	<c:otherwise>
+		          <a href="${contextPath}" class="btn-book animated fadeInUp scrollto">Add Gallery</a>
+	        	</c:otherwise>
+	        </c:choose>
         </div>
-      </div>
-      <div class="col-lg-4 d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
-        <a href="https://www.youtube.com/watch?v=GlrxcuEDyF8" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
       </div>
 
     </div>
@@ -51,37 +61,34 @@
 </section><!-- End About Section -->
 
 <!-- ======= Menu Section ======= -->
-<c:choose>
-	<c:when test="${not empty menuList }">
-		<section id="menu" class="menu section-bg">
-		  <div class="container" data-aos="fade-up">
-		
-		    <div class="section-title">
-		      <h2>Menu</h2>
-		      <p>Check Our Tasty Menu</p>
-		    </div>
-		
-		    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-		    	<c:forEach var="menu" items="menuList">
-			      <div class="col-lg-6 menu-item">
-			        <img src="${contextPath}/${menu.menu_image_path }/${menu.menu_id }.jpg" class="menu-img" alt="">
-			        <div class="menu-content">
-			          <a href="#">${menu.menu_name }</a><span>${menu.menu_price }</span>
-			        </div>
-			        <div class="menu-ingredients">
-			          ${menu.menu_category }
-			        </div>
-			      </div>
-		    	</c:forEach>
-		
-		    </div>
-		
-		  </div>
-		</section><!-- End Menu Section -->
+<c:if test="${not empty menuList }">
+	<section id="menu" class="menu section-bg">
+	  <div class="container" data-aos="fade-up">
 	
-	</c:when>
+	    <div class="section-title">
+	      <h2>Menu</h2>
+	      <p>Check Our Tasty Menu</p>
+	    </div>
+	
+	    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+	    	<c:forEach var="menu" items="menuList">
+		      <div class="col-lg-6 menu-item">
+		        <img src="${contextPath}/${menu.menu_image_path }/${menu.menu_id }.jpg" class="menu-img" alt="">
+		        <div class="menu-content">
+		          <a href="#">${menu.menu_name }</a><span>${menu.menu_price }</span>
+		        </div>
+		        <div class="menu-ingredients">
+		          ${menu.menu_category }
+		        </div>
+		      </div>
+	    	</c:forEach>
+	
+	    </div>
+	
+	  </div>
+	</section><!-- End Menu Section -->
 
-</c:choose>
+</c:if>
 
 <!-- ======= Book A Table Section ======= -->
 <section id="book-a-table" class="book-a-table">
@@ -162,6 +169,35 @@
   </div>
 </section><!-- End Testimonials Section -->
 
+<!-- ======= Gallery Section ======= -->
+<c:if test="${not empty photoList }">
+
+	<section id="gallery" class="gallery">
+	
+	  <div class="container" data-aos="fade-up">
+	    <div class="section-title">
+	      <h2>Gallery</h2>
+	      <p>Some photos from Our Restaurant</p>
+	    </div>
+	  </div>
+	
+	  <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+	
+	    <div class="row no-gutters">
+		    <c:forEach var="photo" items="photoList">
+		      <div class="col-lg-3 col-md-4">
+		        <div class="gallery-item">
+		          <a href="assets/img/gallery/gallery-1.jpg" class="venobox" data-gall="gallery-item">
+		            <img src="assets/img/gallery/gallery-1.jpg" alt="" class="img-fluid">
+		          </a>
+		        </div>
+		      </div>
+		    </c:forEach>	
+	    </div>
+	
+	  </div>
+	</section><!-- End Gallery Section -->
+</c:if>
 
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">

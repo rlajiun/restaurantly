@@ -20,6 +20,7 @@ public class OwnerRestaurantServiceImpl extends BaseService implements OwnerRest
 	@Override
 	public RestaurantVO restaurantInfo(String owner_id) throws Exception {
 		RestaurantVO restaurant = ownerRestaurantDAO.selectRestaurant(owner_id);
+		restaurant.setMenuList(ownerRestaurantDAO.selectMenuList(restaurant.getRestaurant_license()));
 		return restaurant;
 	}
 
