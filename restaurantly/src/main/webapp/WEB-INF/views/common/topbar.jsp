@@ -19,10 +19,10 @@
 					<i class="icofont-clock-time icofont-rotate-180"></i> Mon-Sat: 11:00 AM - 23:00 PM</span>
 			</c:when>
 			<c:when test="${user eq 'owner' }">
-				<a href="${contextPath}/main.do" onclick="return confirm('로그아웃하셔야 이용 가능합니다. 로그아웃 하시겠습니까?');">소비자 페이지 가기</a>
+				<a href="${contextPath}/main.do" <c:if test="${not empty owner }">onclick="return confirm('로그아웃하셔야 이용 가능합니다. 로그아웃 하시겠습니까?');"</c:if>>소비자 페이지 가기</a>
 			</c:when>
 			<c:otherwise>				
-				<a href="${contextPath}/owner/main.do" onclick="return confirm('로그아웃하셔야 이용 가능합니다. 로그아웃 하시겠습니까?');">판매자 페이지 가기</a>
+				<a href="${contextPath}/owner/main.do" <c:if test="${not empty customer }">onclick="return confirm('로그아웃하셔야 이용 가능합니다. 로그아웃 하시겠습니까?');"</c:if>>판매자 페이지 가기</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
