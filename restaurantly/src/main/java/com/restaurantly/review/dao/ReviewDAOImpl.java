@@ -8,9 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
-import com.restaurantly.menu.vo.MenuVO;
-import com.restaurantly.restaurant.vo.RestaurantVO;
 import com.restaurantly.review.vo.ReviewVO;
+
 @Repository("reviewDAO")
 public class ReviewDAOImpl implements ReviewDAO{
 	@Autowired
@@ -24,20 +23,24 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public String insertNewReview(Map reviewMap) throws DataAccessException{
-		
+	public String insertReview(Map reviewMap) throws DataAccessException{
+		System.out.println("dao: insert review");
 		sqlSession.insert("mapper.review.insertReview", reviewMap);
 		// String review_id = Integer.toString(selectNewReviewID()); // type casting
 		String review_id=selectNewReviewID();
 		reviewMap.put("review_id", review_id);
 		return review_id;
-		
-		
+	}
+	
+	@Override
+	public void insertReview(ReviewVO reviewVO) throws DataAccessException{
+		System.out.println("dao: insert review");
+		sqlSession.insert("mapper.review.insertReview", reviewVO);
 	}
 
 	@Override
-	public void updateReview(Map reviewMap) throws DataAccessException{
-		sqlSession.update("mapper.review.updateReview", reviewMap);
+	public void updateReview(ReviewVO reviewVO) throws DataAccessException{
+		sqlSession.update("mapper.review.updateReview", reviewVO);
 	
 	}
 

@@ -36,7 +36,7 @@
 	</select>
 
 	<!-- 리뷰 등록 -->
-	<insert id="insertReview" parameterType="java.util.Map">
+	<insert id="insertReview" parameterType="reviewVO">
 		<![CDATA[
 			INSERT into review(review_id, review_score, review_content, review_image_path, customer_id, restaurant_license)
 			VALUES(#{review_id},#{review_score}, #{review_content}, #{review_image_path}, #{customer_id}, #{restaurant_license})
@@ -51,12 +51,9 @@
 	</select>
 
 	<!-- 리뷰 수정 -->
-	<update id="updateReivew" parameterType="java.util.Map">
+	<update id="updateReivew" parameterType="reviewVO">
 		update review
 		set review_content=#{review_content}
-		<if test="review_image_path!='' and review_image_path!=null">
-			, review_image_path=#{review_image_path}
-		</if>
 		where review_id=#{review_id}
 	</update>
 

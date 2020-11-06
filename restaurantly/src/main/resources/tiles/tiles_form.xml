@@ -17,6 +17,20 @@
          <put-attribute name="title" value="회원 가입 페이지 for Owner" />
          <put-attribute name="body" value="/WEB-INF/views/form/ownerJoinForm.jsp" />
       </definition>
+      
+      <definition name="/review/reviewForm" extends="baseLayout">
+         <put-attribute name="title" value="리뷰 페이지 " />
+         <put-attribute name="body" value="/WEB-INF/views/form/reviewForm.jsp" />
+      </definition>
+  
+  	<definition name="/review/modReviewForm" extends="baseLayout">
+         <put-attribute name="title" value="리뷰 페이지 " />
+         <put-attribute name="body" value="/WEB-INF/views/form/reviewForm.jsp" />
+    </definition>
+  <definition name="/customer/userProfile" extends="baseLayout">
+         <put-attribute name="title" value="리뷰 페이지 " />
+         <put-attribute name="body" value="/WEB-INF/views/customer/userProfile.jsp" />
+    </definition>
   
 </tiles-definitions>
 

@@ -12,6 +12,8 @@ public class BaseController {
 	protected ModelAndView viewForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
+		System.out.println(viewName);
+		
 		return mav;
 	}
 }

@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
         <div class="about-img">
-          <img src="${contextPath}/${restaurant.restaurant_image_path}">
+          <img src="${contextPath}/${restaurant.restaurant_image}">
         </div>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
@@ -144,24 +144,26 @@
     </div>
 
     <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
-
-     <!-- 리뷰 목록 -->
-			<c:forEach var="item" items="${reviewList }">
+	<!-- 리뷰 목록: 사진여러장 -->
+			<c:forEach var="item" items="${reviewList}">
 				<div class="testimonial-item">
 					<p>
-						<i class="bx bxs-quote-alt-left quote-icon-left"></i> <img
-							src="${contextPath}//thumbnail.jpg"> ${item.review_content} <i
-							class="bx bxs-quote-alt-right quote-icon-right"></i>
+					  <div class="owl-carousel testimonials-carousel data-aos="zoom-in" data-aos-delay="100"" >
+					 
+					  <img src="${contextPath}//thumbnil.jpg">
+					 
+					  </div>
+						<i class="bx bxs-quote-alt-left quote-icon-left"></i>  
+						${item.review_content} 
+						<i class="bx bxs-quote-alt-right quote-icon-right"></i>
 					</p>
 					<img src="assets/img/testimonials/testimonials-1.jpg"
 						class="testimonial-img" alt="">
 					<h3>${item.customer_id}</h3>
 					<h4>Ceo &amp; Founder</h4>
 				</div>
-
 			</c:forEach>
-
-
+	<!-- end of 리뷰목록 -->
     </div>
 
   </div>
