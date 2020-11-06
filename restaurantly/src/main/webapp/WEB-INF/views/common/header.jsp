@@ -35,9 +35,9 @@
 				<c:otherwise>
 					<li class="active"><a href="${contextPath}/main.do">Home</a></li>
 					<li><a href="${contextPath}/menu/whatToEat.do">오늘의 음식</a></li>
-					<li><a href="${contextPath}/booking/bookingList.do">예약 목록</a></li>
+					<li><a href="${contextPath}/booking/bookingList.do">리뷰 목록</a></li>
 					<li class="book-a-table text-center" id="book-a-table">
-						<a href="${contextPath}/restaurant/restaurantList.do">Book a Table</a></li>
+						<a href="${contextPath}/restaurant/restaurantList.do">예약 목록</a></li>
 				</c:otherwise>
 			</c:choose>
 		</ul>
