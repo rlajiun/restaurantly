@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.restaurantly.common.base.BaseController;
+import com.restaurantly.customer.vo.CustomerVO;
+import com.restaurantly.owner.user.vo.OwnerVO;
 
 @Controller("mainController")
 public class MainController extends BaseController {
@@ -23,6 +25,11 @@ public class MainController extends BaseController {
 
 		session = request.getSession();
 		session.setAttribute("user", "customer");
+		OwnerVO owner = (OwnerVO) session.getAttribute("owner");
+
+		if (owner != null) {
+			session.removeAttribute("owner");
+		}
 
 		return mav;
 	}
@@ -37,6 +44,11 @@ public class MainController extends BaseController {
 
 		session = request.getSession();
 		session.setAttribute("user", "owner");
+		CustomerVO customer = (CustomerVO) session.getAttribute("customer");
+
+		if (customer != null) {
+			session.removeAttribute("customer");
+		}
 
 		return mav;
 	}

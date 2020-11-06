@@ -46,13 +46,14 @@ $(function() {
 		$('#pw').attr('name', name_pw);
 	});
 	
-	$('form.join-form').submit(function(e) {
+	$('form.login-form').submit(function(e) {
 		e.preventDefault();
 		
 		var this_form = $(this);
 	    var action = $(this).attr('action');
+	    var data = $(this).serialize();
 	    
-	    join_form_submit(this_form,action,data);
+	    login_form_submit(this_form,action,data);
 	    
 	    return true;
 	});
@@ -72,7 +73,6 @@ $(function() {
 
 	      if (url != null) {
 	        this_form.find('.loading').slideUp();
-	        alert(msg);
 	        window.location.href = url;
 	      } else {
 	        this_form.find('.loading').slideUp();
@@ -119,7 +119,7 @@ $(function() {
 
 		<div class="login-form">
 
-			<form method="post" role="form" class="php-email-form">
+			<form method="post" role="form" class="php-email-form login-form">
 				<ul class="nav login-nav">
 					<c:choose>
 						<c:when test="${user eq 'owner' }">
@@ -138,6 +138,10 @@ $(function() {
 				<div class="form-group">
 					<input type="password" class="form-control" id="pw" placeholder="Password" />
 				</div>
+				<div class="mb-3">
+		            <div class="loading">Loading</div>
+		            <div class="error-message"></div>
+		        </div>
 				<div class="text-center">
 					<button type="submit" >Login</button>
 				</div>

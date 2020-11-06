@@ -8,6 +8,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
 import com.restaurantly.restaurant.vo.MenuVO;
+import com.restaurantly.restaurant.vo.RestaurantImageVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
 @Repository("ownerRestaurantDAO")
@@ -30,6 +31,17 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 	public List<MenuVO> selectMenuList(String restaurant_license) throws DataAccessException {
 		List<MenuVO> menuList = (List)sqlSession.selectList("mapper.owner.restaurant.selectMenuList", restaurant_license);
 		return menuList;
+	}
+
+	@Override
+	public void updateRestaurant(RestaurantVO restaurantVO) throws DataAccessException {
+		sqlSession.update("mapper.owner.restaurant.updateRestaurant", restaurantVO);
+	}
+
+	@Override
+	public List<RestaurantImageVO> selectPhotoList(String restaurant_license) throws DataAccessException {
+		List<RestaurantImageVO> photoList = (List)sqlSession.selectList("mapper.owner.restaurant.selectPhotoList", restaurant_license);
+		return photoList;
 	}
 	
 	

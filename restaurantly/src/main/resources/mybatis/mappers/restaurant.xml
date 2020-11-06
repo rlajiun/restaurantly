@@ -13,7 +13,7 @@
 		<result property="restaurant_detail" column="restaurant_detail" />
 		<result property="restaurant_item" column="restaurant_item" />
 		<result property="restaurant_introduction" column="restaurant_introduction" />
-		<result property="restaurant_image_path" column="restaurant_image_path" />
+		<result property="restaurant_image" column="restaurant_image" />
 	</resultMap>
 	
 	<resultMap type="menuVO" id="menuResult">

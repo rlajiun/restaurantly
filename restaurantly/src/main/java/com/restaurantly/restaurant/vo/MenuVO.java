@@ -17,5 +17,5 @@ public class MenuVO {
 	private String menu_name; /* 메뉴명 */
 	private String menu_category; /* 메뉴분류 */
 	private int menu_price; /* 가격 */
-	private String menu_image_path; /* 사진경로 */
+	private String menu_image; /* 사진경로 */
 }

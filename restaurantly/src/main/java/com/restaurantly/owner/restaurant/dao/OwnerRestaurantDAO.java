@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.dao.DataAccessException;
 
 import com.restaurantly.restaurant.vo.MenuVO;
+import com.restaurantly.restaurant.vo.RestaurantImageVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
 public interface OwnerRestaurantDAO {
@@ -14,5 +15,9 @@ public interface OwnerRestaurantDAO {
 	public void insertRestaurant(RestaurantVO restaurantVO) throws DataAccessException;
 
 	public List<MenuVO> selectMenuList(String restaurant_license) throws DataAccessException;
+
+	public void updateRestaurant(RestaurantVO restaurantVO) throws DataAccessException;
+
+	public List<RestaurantImageVO> selectPhotoList(String restaurant_license) throws DataAccessException;
 	
 }

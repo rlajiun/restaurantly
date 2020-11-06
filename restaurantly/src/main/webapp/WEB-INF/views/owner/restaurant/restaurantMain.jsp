@@ -13,19 +13,19 @@
   <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
     <div class="row">
       <div class="col-lg-8">
-        <h1>Welcome to <span>${restaurant.restaurant_name }</span></h1>
+        <h1>Welcome to <span>${myRestaurant.restaurant_name }</span></h1>
 
         <div class="btns">
 	        <c:choose>
-		        <c:when test="${not empty menuList }">
+		        <c:when test="${not empty myRestaurant.menuList }">
 		          <a href="${contextPath}" class="btn-menu animated fadeInUp scrollto">Edit Menu</a>		        
 		        </c:when>
 	        	<c:otherwise>
-		          <a href="${contextPath}" class="btn-menu animated fadeInUp scrollto">Add Menu</a>		        
+		          <a href="${contextPath}/owner/restaurant/addMenuForm.do" class="btn-menu animated fadeInUp scrollto">Add Menu</a>		        
 	        	</c:otherwise>
 	        </c:choose>
 	        <c:choose>
-	        	<c:when test="${not empty photoList }">
+	        	<c:when test="${not empty myRestaurant.photoList }">
 		          <a href="${contextPath}" class="btn-book animated fadeInUp scrollto">Edit Gallery</a>
 	        	</c:when>
 	        	<c:otherwise>
@@ -34,7 +34,10 @@
 	        </c:choose>
         </div>
       </div>
-
+      <div class="col-lg-4 d-flex align-items-center justify-content-center btns">
+        <a href="${contextPath}/owner/restaurant/editRestaurantForm.do" class="btn-edit animated fadeInUp scrollto">Edit<br>Restaurant</a>
+      </div>
+		
     </div>
   </div>
 </section><!-- End Hero -->
@@ -46,13 +49,13 @@
     <div class="row">
       <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
         <div class="about-img">
-          <img src="${contextPath}/upload/${restaurant.restaurant_license}/${restaurant.restaurant_image_path }">
+          <img src="${contextPath}/upload/${myRestaurant.restaurant_license}/${myRestaurant.restaurant_image }">
         </div>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-        <h3>${restaurant.restaurant_name }</h3>
+        <h3>${myRestaurant.restaurant_name }</h3>
         <p class="font-italic">
-          ${restaurant.restaurant_introduction }
+          ${myRestaurant.restaurant_introduction }
         </p>
       </div>
     </div>
@@ -222,7 +225,7 @@
           <div class="address">
             <i class="icofont-google-map"></i>
             <h4>Location:</h4>
-            <p>${restaurant.restaurant_detail }</p>
+            <p>${myRestaurant.restaurant_detail }</p>
           </div>
 
           <div class="open-hours">
@@ -237,7 +240,7 @@
           <div class="phone">
             <i class="icofont-phone"></i>
             <h4>Call:</h4>
-            <p>${restaurant.restaurant_phone }</p>
+            <p>${myRestaurant.restaurant_phone }</p>
           </div>
 
         </div>

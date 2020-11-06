@@ -36,7 +36,7 @@
 			<c:forEach var="item" items="${restaurantList }">
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				      <img src="${contextPath}/${item.restaurant_image_path}/thumbnail.jpg">
+				      <img src="${contextPath}/${item.restaurant_image}/thumbnail.jpg">
 				      <div class="caption">
 				        <h3>${item.restaurant_name }</h3>
 				        <p>${item.restaurant_introduction }</p>

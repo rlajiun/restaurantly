@@ -1,0 +1,61 @@
+@charset "UTF-8";
+
+/*--------------------------------------------------------------
+# Add Section
+--------------------------------------------------------------*/
+#file {
+	display: none;
+}
+
+.pic-btn {
+	cursor: pointer;
+}
+
+#image {
+	max-width: 120px;
+	height: 120px;
+}
+
+.pic-form {
+	display: flex;
+	justify-content: space-between;
+}
+
+.pic-group {
+	width: 70%;
+}
+
+.pic-group div+div {
+	padding-bottom: 0;
+	margin-bottom: 0;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+#hero .btn-edit {
+	font-weight: 600;
+	font-size: 20px;
+	letter-spacing: 0.5px;
+	text-transform: uppercase;
+	display: inline-block;
+	padding: 12px 30px;
+	border-radius: 50px;
+	transition: 0.3s;
+	line-height: 1;
+	color: white;
+	border: 2px solid #cda45e;
+	text-align: center!important;
+}
+
+#hero .btn-edit:hover {
+    background: #cda45e;
+    color: #fff;
+}
+
+/*--------------------------------------------------------------
+# Hero Section
+--------------------------------------------------------------*/
+.form-control:disabled, .form-control[readonly] {
+	background-color: #0c0b09!important;
+}

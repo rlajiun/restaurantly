@@ -113,7 +113,6 @@ $(function(){
         window.location.href = url;
       } else {
         this_form.find('.loading').slideUp();
-        this_form.find("input:not(input[type=submit]), textarea").val('');
         if(!msg) {
           msg = 'Form submission failed and no error message returned from: ' + action + '<br>';
         }

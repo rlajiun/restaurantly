@@ -252,32 +252,3 @@ a.thumbnail .category-info {
 	color: #fff;
 }
 
-/*--------------------------------------------------------------
-# Add Section
---------------------------------------------------------------*/
-#file {
-	display: none;
-}
-
-.pic-btn {
-	cursor: pointer;
-}
-
-#image {
-	max-width: 120px;
-	height: 120px;
-}
-
-.pic-form {
-	display: flex;
-	justify-content: space-between;
-}
-
-.pic-group {
-	width: 70%;
-}
-
-.pic-group div+div {
-	padding-bottom: 0;
-	margin-bottom: 0;
-}

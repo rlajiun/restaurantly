@@ -32,10 +32,13 @@ public class OwnerController extends BaseService {
 	@Autowired
 	private OwnerVO ownerVO;
 
+	@ResponseBody
 	@RequestMapping(value = "/login.do", method = RequestMethod.POST)
-	public ModelAndView login(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
+	public Map<String, String> login(@RequestParam Map<String, String> loginMap, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		ModelAndView mav = new ModelAndView();
+		Map<String, String> ckloginMap = new HashMap<String, String>();
+		String msg = null;
+		String url = null;
 		ownerVO = ownerService.login(loginMap);
 		if (ownerVO != null && ownerVO.getOwner_id() != null) {
 			HttpSession session = request.getSession();
@@ -43,17 +46,18 @@ public class OwnerController extends BaseService {
 
 			String action = (String) session.getAttribute("action");
 			if (action != null && action.equals("/booking/bookList.do")) {
-				mav.setViewName("forward:" + action);
+				url = "forward:" + action;
 			} else {
-				mav.setViewName("redirect:main.do");
+				url = request.getContextPath() + "/owner/main.do";
 			}
 
 		} else {
-			String message = "로그인 실패";
-			mav.addObject("message", message);
-			mav.setViewName("/form/loginForm");
+			msg = "아이디와 비밀번호를 확인해주세요.";
 		}
-		return mav;
+		ckloginMap.put("msg", msg);
+		ckloginMap.put("url", url);
+		
+		return ckloginMap;
 	}
 
 	@RequestMapping(value = "/logout.do", method = RequestMethod.GET)

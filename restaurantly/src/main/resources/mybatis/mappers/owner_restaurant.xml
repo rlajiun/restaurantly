@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-	
+
 <mapper namespace="mapper.owner.restaurant">
 	<resultMap type="restaurantVO" id="restaurantResult">
 		<result property="restaurant_license" column="restaurant_license" />
@@ -13,9 +13,9 @@
 		<result property="restaurant_detail" column="restaurant_detail" />
 		<result property="restaurant_item" column="restaurant_item" />
 		<result property="restaurant_introduction" column="restaurant_introduction" />
-		<result property="restaurant_image_path" column="restaurant_image_path" />
+		<result property="restaurant_image" column="restaurant_image" />
 	</resultMap>
-	
+
 	<resultMap type="menuVO" id="menuResult">
 		<result property="menu_id" column="menu_id" />
 		<result property="restaurant_license" column="restaurant_license" />
@@ -24,21 +24,20 @@
 		<result property="menu_price" column="menu_price" />
 		<result property="menu_image_path" column="menu_image_path" />
 	</resultMap>
-	
+
 	<resultMap type="restaurantImageVO" id="imageResult">
 		<result property="image_id" column="image_id" />
 		<result property="restaurant_license" column="restaurant_license" />
 		<result property="fileName" column="fileName" />
 		<result property="fileType" column="fileType" />
-		<result property="fileType" column="fileType" />
 	</resultMap>
-	
+
 	<select id="selectRestaurant" parameterType="String" resultMap="restaurantResult">
 		<![CDATA[
          select * from restaurant where owner_id = #{owner_id}
 	    ]]>
 	</select>
-	
+
 	<insert id="insertRestaurant" parameterType="restaurantVO">
 	  <![CDATA[
 	    	insert into restaurant(restaurant_license,
@@ -49,7 +48,7 @@
                               restaurant_detail,
                               restaurant_item,
                               restaurant_introduction,
-                              restaurant_image_path)
+                              restaurant_image)
 					 values(#{restaurant_license},
 							#{owner_id},
 							#{restaurant_name},
@@ -58,14 +57,37 @@
                            	#{restaurant_detail},
                            	#{restaurant_item},
                            	#{restaurant_introduction},
-                           	#{restaurant_image_path})
+                           	#{restaurant_image})
 	   ]]>
 	</insert>
-	
+
 	<select id="selectMenuList" parameterType="String" resultMap="menuResult">
 		<![CDATA[
          select * from menu where restaurant_license=#{restaurant_license}
 	    ]]>
 	</select>
+
+	<update id="updateRestaurant" parameterType="restaurantVO">
+	  <![CDATA[
+	    	update restaurant
+	    	set 
+	    	owner_id = #{owner_id},
+	    	restaurant_name = #{restaurant_name},
+	    	restaurant_phone = #{restaurant_phone},
+	    	restaurant_representative = #{restaurant_representative},
+	    	restaurant_detail = #{restaurant_detail},
+	    	restaurant_item = #{restaurant_item},
+	    	restaurant_introduction = #{restaurant_introduction},
+	    	restaurant_image = #{restaurant_image}
+	    	where restaurant_license = #{restaurant_license}
+	   ]]>
+	</update>
 	
+	<select id="selectPhotoList" parameterType="String" resultMap="menuResult">
+		<![CDATA[
+         select image_id, restaurant_license, fileName, fileType 
+         from restaurant_image 
+         where restaurant_license=#{restaurant_license}
+	    ]]>
+	</select>
 </mapper>

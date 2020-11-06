@@ -69,7 +69,7 @@ CREATE TABLE restaurant (
 	restaurant_detail VARCHAR2(50), /* 상세주소 */
 	restaurant_item VARCHAR2(10), /* 종목 */
 	restaurant_introduction VARCHAR2(1000), /* 소개글 */
-	restaurant_image_path VARCHAR2(200) /* 사진경로 */
+	restaurant_image VARCHAR2(200) /* 사진경로 */
 );
 
 ALTER TABLE restaurant

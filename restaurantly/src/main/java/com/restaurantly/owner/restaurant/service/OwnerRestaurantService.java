@@ -10,4 +10,6 @@ public interface OwnerRestaurantService {
 
 	public void addRestaurant(RestaurantVO restaurantVO, MultipartFile file) throws Exception;
 
+	public void editRestaurant(RestaurantVO restaurantVO, MultipartFile file) throws Exception;
+
 }

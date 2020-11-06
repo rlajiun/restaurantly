@@ -36,13 +36,17 @@
 	<!-- Template Main CSS File -->
 	<link href="${contextPath}/assets/css/style.css" rel="stylesheet">
 	<link href="${contextPath}/assets/css/main.css" rel="stylesheet">
+	<link href="${contextPath}/assets/css/owner.css" rel="stylesheet">
+	
+	<!-- Validate JS File -->
+	<script src="${contextPath}/assets/vendor/validate/validate.js"></script>
+	<script src="${contextPath}/assets/vendor/validate/menu.js"></script>
 	
 	<!-- Vendor JS Files -->
 	<script src="${contextPath}/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="${contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${contextPath}/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
 	<script src="${contextPath}/assets/vendor/php-email-form/validate.js"></script>
-	<script src="${contextPath}/assets/vendor/join-form/validate.js"></script>
 	<script src="${contextPath}/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="${contextPath}/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 	<script src="${contextPath}/assets/vendor/venobox/venobox.min.js"></script>

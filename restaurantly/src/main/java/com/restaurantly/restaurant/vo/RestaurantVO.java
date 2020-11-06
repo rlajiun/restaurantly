@@ -22,6 +22,7 @@ public class RestaurantVO {
 	private String restaurant_detail; /* 소재지(도로명) */
 	private String restaurant_item; /* 소재지(도로명) */
 	private String restaurant_introduction; /* 소개글 */
-	private String restaurant_image_path; /* 사진경로 */
+	private String restaurant_image; /* 사진경로 */
 	private List<MenuVO> menuList; /* 메뉴정보 */
+	private List<RestaurantImageVO> photoList; /* 사진정보 */
 }
