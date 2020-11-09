@@ -19,5 +19,13 @@ public interface OwnerRestaurantDAO {
 	public void updateRestaurant(RestaurantVO restaurantVO) throws DataAccessException;
 
 	public List<RestaurantImageVO> selectPhotoList(String restaurant_license) throws DataAccessException;
+
+	public void insertMenu(List<MenuVO> menuList) throws DataAccessException;
+
+	public List<String> selectCategory() throws DataAccessException;
+
+	public void updateMenu(List<MenuVO> menuList) throws DataAccessException;
+
+	public void deleteMenu(String menu_id) throws DataAccessException;
 	
 }

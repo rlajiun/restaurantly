@@ -6,21 +6,36 @@
      <definition name="/owner/restaurant/restaurantMain" extends="baseLayout">
        <put-attribute name="title" value="식당 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/restaurantMain.jsp" />
-    </definition>
+     </definition>
     
      <definition name="/owner/restaurant/addRestaurantForm" extends="baseLayout">
        <put-attribute name="title" value="식당 등록 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/addRestaurantForm.jsp" />
-    </definition>
+     </definition>
     
      <definition name="/owner/restaurant/editRestaurantForm" extends="baseLayout">
        <put-attribute name="title" value="식당 수정 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/editRestaurantForm.jsp" />
-    </definition>
+     </definition>
     
      <definition name="/owner/restaurant/addMenuForm" extends="baseLayout">
        <put-attribute name="title" value="메뉴 등록 페이지" />
        <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/menu/addMenuForm.jsp" />
-    </definition>
+   	 </definition>
+    
+     <definition name="/owner/restaurant/editMenuForm" extends="baseLayout">
+       <put-attribute name="title" value="메뉴 수정 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/menu/editMenuForm.jsp" />
+     </definition>
+     
+     <definition name="/owner/restaurant/addGalleryForm" extends="baseLayout">
+       <put-attribute name="title" value="사진 등록 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/gallery/addGalleryForm.jsp" />
+   	 </definition>
+    
+     <definition name="/owner/restaurant/editGalleryForm" extends="baseLayout">
+       <put-attribute name="title" value="사진 수정 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/gallery/editGalleryForm.jsp" />
+     </definition>
     
 </tiles-definitions>

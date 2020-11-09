@@ -25,12 +25,17 @@
 	}
 }
 
-@media ( min-width : 768px) {
-	.login-form {
-		max-width: 540px;
-	}
+@media
+(
+min-width
+:
+768px)
+{
+.login-form {
+	max-width: 540px;
 }
 
+}
 .login-form ul li {
 	align-self: baseline;
 }
@@ -95,15 +100,6 @@
 	margin-top: 25px;
 }
 
-.join-form .sent-message {
-	display: none;
-	color: #fff;
-	background: #18d26e;
-	text-align: center;
-	padding: 15px;
-	font-weight: 600;
-}
-
 .join-form .loading {
 	display: none;
 	text-align: center;
@@ -132,16 +128,19 @@
 	color: white;
 }
 
-.join-form input::placeholder, .join-form textarea::placeholder, .join-form select::placeholder {
+.join-form input::placeholder, .join-form textarea::placeholder,
+	.join-form select::placeholder {
 	color: #a49b89;
 }
 
-.join-form input:focus, .join-form textarea:focus, .join-form select:focus {
+.join-form input:focus, .join-form textarea:focus, .join-form select:focus
+	{
 	border-color: #cda45e;
 }
 
 .join-form input, .join-form select {
 	height: 44px;
+	margin-right: 20px;
 }
 
 .join-form textarea {
@@ -164,9 +163,18 @@
 /*--------------------------------------------------------------
 # whatToEat
 --------------------------------------------------------------*/
+#what-to-eat .section-title p {
+	font-weight: 500;
+}
+
 span.whatToEat {
 	text-transform: uppercase;
 	letter-spacing: 1px;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+#what-to-eat .text-center {
+	margin-top: 1rem;
 }
 
 /*--------------------------------------------------------------
@@ -221,15 +229,15 @@ a.thumbnail .category-info {
 #list .thumbnail {
 	margin-bottom: 50px;
 	text-align: center;
-	border: 1px solid #ddd;
-	border-radius: 4px;
+	border: 1px solid #625b4b;
+	border-radius: 0;
+	height: 25rem;
 }
 
 #list .thumbnail img {
 	overflow: hidden;
 	width: 100%;
-	min-height: 150px;
-	max-height: 180px;
+	height: 10rem;
 	object-fit: cover;
 }
 
@@ -252,3 +260,58 @@ a.thumbnail .category-info {
 	color: #fff;
 }
 
+div.caption {
+	display: grid;
+    height: 15rem;
+}
+
+div.caption h4 {
+	margin: .5rem auto;
+    max-width: 80%;
+    overflow: hidden;
+    white-space: nowrap;
+	text-overflow: ellipsis;
+	color: #cda45e;
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
+div.caption p.intro {
+	overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 1.4;
+	margin: 0 .5rem;
+	font-weight: 300;
+	display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+}
+
+div.caption p.list-btn {
+	margin: .5rem auto;
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+.menu .menu-img {
+	margin-right: 10px;
+	height: 70px;
+	object-fit: cover;
+}
+
+.menu .menu-content {
+	margin-left: 0;	
+}
+
+/*--------------------------------------------------------------
+# Contact Section
+--------------------------------------------------------------*/
+@media ( max-width : 991px) {
+	.contact .info {
+		display: flex;
+		justify-content: space-between;
+	}
+	.contact .info .open-hours, .contact .info .phone {
+		margin-top: 0;
+	}
+}

@@ -36,7 +36,7 @@
     <div class="row">
       <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
         <div class="about-img">
-          <img src="${contextPath}/${restaurant.restaurant_image}">
+          <img src="${contextPath}/upload/${restaurant.restaurant_license}/${restaurant.restaurant_image}">
         </div>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
@@ -51,37 +51,37 @@
 </section><!-- End About Section -->
 
 <!-- ======= Menu Section ======= -->
-<c:choose>
-	<c:when test="${not empty menuList }">
-		<section id="menu" class="menu section-bg">
-		  <div class="container" data-aos="fade-up">
-		
-		    <div class="section-title">
-		      <h2>Menu</h2>
-		      <p>Check Our Tasty Menu</p>
-		    </div>
-		
-		    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-		    	<c:forEach var="menu" items="menuList">
-			      <div class="col-lg-6 menu-item">
-			        <img src="${contextPath}/${menu.menu_image_path }/${menu.menu_id }.jpg" class="menu-img" alt="">
-			        <div class="menu-content">
-			          <a href="#">${menu.menu_name }</a><span>${menu.menu_price }</span>
-			        </div>
-			        <div class="menu-ingredients">
-			          ${menu.menu_category }
-			        </div>
-			      </div>
-		    	</c:forEach>
-		
-		    </div>
-		
-		  </div>
-		</section><!-- End Menu Section -->
+<c:if test="${not empty menuList }">
+	<section id="menu" class="menu section-bg">
+	  <div class="container" data-aos="fade-up">
 	
-	</c:when>
-
-</c:choose>
+	    <div class="section-title">
+	      <h2>Menu</h2>
+	      <p>Check Our Tasty Menu</p>
+	    </div>
+	
+	    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
+	    	<c:forEach var="menu" items="${menuList }">
+		      <div class="col-lg-6 menu-item">
+		      	<div class="menu-content">
+			          <a href="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="venobox" data-gall="gallery-item">
+			        	<img src="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="menu-img">${menu.menu_name }
+			          </a>
+			          <fmt:formatNumber  value="${menu.menu_price}" type="number" var="menu_price" />
+			          <span>${menu_price }원</span>
+			        <div class="menu-ingredients">
+			          ${menu.menu_description }
+			        </div>
+		      	</div>
+		      </div>
+	    	</c:forEach>
+	
+	    </div>
+	
+	  </div>
+	</section><!-- End Menu Section -->
+	
+</c:if>
 
 <!-- ======= Book A Table Section ======= -->
 <section id="book-a-table" class="book-a-table">
@@ -92,30 +92,20 @@
       <p>Book a Table</p>
     </div>
 
-    <form action="forms/book-a-table.php" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+    <form action="${contextPath}/booking/bookatable.do" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
       <div class="form-row">
+          <input type="hidden" name="customer_id" class="form-control" id="id" value="${customer.customer_id }">
+          <input type="hidden" name="restaurant_license" class="form-control" id="id" value="${restaurant.restaurant_license }">
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+          <input type="number" name="booking_date" class="form-control" id="date" placeholder="Date" data-rule="required" data-msg="예약날짜를 입력해주세요">
           <div class="validate"></div>
         </div>
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email">
+          <input type="text" class="form-control" name="booking_time" id="time" placeholder="Time" data-rule="required" data-msg="예약시간을 입력해주세요">
           <div class="validate"></div>
         </div>
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" class="form-control" name="phone" id="phone" placeholder="Your Phone" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-        <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" name="date" class="form-control" id="date" placeholder="Date" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-        <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" class="form-control" name="time" id="time" placeholder="Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
-          <div class="validate"></div>
-        </div>
-        <div class="col-lg-4 col-md-6 form-group">
-          <input type="number" class="form-control" name="people" id="people" placeholder="# of people" data-rule="minlen:1" data-msg="Please enter at least 1 chars">
+          <input type="text" class="form-control" name="people" id="people" placeholder="# of people">
           <div class="validate"></div>
         </div>
       </div>
@@ -123,7 +113,7 @@
         <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
         <div class="validate"></div>
       </div>
-      <div class="mb-3">
+      <div class="mb-3">	
         <div class="loading">Loading</div>
         <div class="error-message"></div>
         <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>

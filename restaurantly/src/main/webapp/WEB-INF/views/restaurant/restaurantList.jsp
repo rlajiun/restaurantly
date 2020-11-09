@@ -36,11 +36,11 @@
 			<c:forEach var="item" items="${restaurantList }">
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				      <img src="${contextPath}/${item.restaurant_image}/thumbnail.jpg">
+				      <img src="${contextPath}/upload/${item.restaurant_license}/${item.restaurant_image}">
 				      <div class="caption">
-				        <h3>${item.restaurant_name }</h3>
-				        <p>${item.restaurant_introduction }</p>
-				        <p><a href="${contextPath}/restaurant/restaurantMain/${item.restaurant_license}" class="btn-detail" role="button">자세히 보기</a></p>
+				        <h4>${item.restaurant_name }</h4>
+				        <p class="intro">${item.restaurant_introduction }</p>
+				        <p class="list-btn"><a href="${contextPath}/restaurant/restaurantMain/${item.restaurant_license}" class="btn-detail" role="button">자세히 보기</a></p>
 				      </div>
 				    </div>
 				  </div>			
