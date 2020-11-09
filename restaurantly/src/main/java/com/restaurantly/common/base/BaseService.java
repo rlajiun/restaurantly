@@ -2,14 +2,10 @@ package com.restaurantly.common.base;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
-
-import com.restaurantly.review.vo.ReviewImageVO;
 
 public class BaseService {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\restaurantly\\file_repo";
@@ -28,7 +24,13 @@ public class BaseService {
 						target.createNewFile();
 					}
 				}
-				file.transferTo(new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + fileName));
+				File temp = new File(CURR_IMAGE_REPO_PATH + "\\" + "temp" + "\\" + fileName);
+				if (!temp.exists()) {
+					if (temp.getParentFile().mkdirs()) {
+						temp.createNewFile();
+					}
+				}
+				file.transferTo(temp);
 			}
 		}
 		return fileName;
