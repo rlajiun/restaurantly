@@ -25,7 +25,7 @@
 </script>
 
 <!-- ======= Add Section ======= -->
-<section id="contact" class="contact breadcrumbs">
+<section id="contact" class="contact breadcrumbs <c:if test="${empty owner }">owner-login</c:if>">
 	<div class="container" data-aos="fade-up">
 
 		<div class="section-title">
@@ -99,8 +99,8 @@
 					<div class="validate"></div>
 				</div>
 				<div class="form-group">
-					<input type="text" name="restaurant_detail" class="form-control"
-						placeholder="소재지(도로명)" value="${myRestaurant.restaurant_detail }" />
+					<input type="text" name="restaurant_address" class="form-control"
+						placeholder="소재지(도로명)" value="${myRestaurant.restaurant_address }" />
 					<div class="validate"></div>
 				</div>
 				<div class="form-group">

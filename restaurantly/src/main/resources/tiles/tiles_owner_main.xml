@@ -7,5 +7,10 @@
 		<put-attribute name="title" value="Restaurantly for Owner" />
 		<put-attribute name="body" value="/WEB-INF/views/owner/main.jsp" />
 	</definition>
+	
+     <definition name="/owner/booking/myBookList" extends="baseLayout">
+		<put-attribute name="title" value="식당 예약 내역" />
+		<put-attribute name="body" value="/WEB-INF/views/owner/restaurant/myBookList.jsp" />
+	</definition>
     
 </tiles-definitions>

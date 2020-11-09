@@ -1213,7 +1213,7 @@ section {
 .book-a-table .php-email-form .sent-message {
   display: none;
   color: #fff;
-  background: #18d26e;
+  /* background: #18d26e; */
   text-align: center;
   padding: 15px;
   font-weight: 600;

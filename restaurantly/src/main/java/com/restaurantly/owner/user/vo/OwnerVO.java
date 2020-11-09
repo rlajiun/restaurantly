@@ -17,5 +17,5 @@ public class OwnerVO {
 	private String owner_name; /* 이름 */
 	private String owner_phone; /* 전화번호 */
 	private String owner_email; /* 이메일 */
-	private String owner_joindate; /* 가입일 */
+	private String restaurant_license; /* 사업자등록번호 */
 }

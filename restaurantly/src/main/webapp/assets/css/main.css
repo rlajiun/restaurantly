@@ -242,6 +242,7 @@ a.thumbnail .category-info {
 }
 
 #list .btn-detail {
+	background: transparent;
 	font-weight: 600;
 	font-size: 13px;
 	letter-spacing: 0.5px;
@@ -255,9 +256,15 @@ a.thumbnail .category-info {
 	border: 2px solid #cda45e;
 }
 
-#list .btn-detail:hover {
+#list button.btn-detail:hover {
 	background: #cda45e;
 	color: #fff;
+}
+
+#list p.btn-detail{
+	margin-bottom: 0;
+	border: none;
+	color: #cda45e;
 }
 
 div.caption {
@@ -271,23 +278,45 @@ div.caption h4 {
     overflow: hidden;
     white-space: nowrap;
 	text-overflow: ellipsis;
+	align-self: start;
 	color: #cda45e;
 	font-family: 'Noto Sans KR', sans-serif;
 }
 
-div.caption p.intro {
+div.caption .intro {
 	overflow: hidden;
-    text-overflow: ellipsis;
     line-height: 1.4;
 	margin: 0 .5rem;
 	font-weight: 300;
+    align-self: center;
 	display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;
 }
 
-div.caption p.list-btn {
+div.caption .list-btn {
 	margin: .5rem auto;
+	align-self: end;
+}
+
+/*--------------------------------------------------------------
+# BookingList Section
+--------------------------------------------------------------*/
+div.caption .list-btn .loading {
+	display: none;
+}
+
+div.caption .list-btn .loading:before {
+	content: "";
+    display: inline-block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    margin: 0 10px -6px 0;
+    border: 3px solid #cda45e;
+    border-top-color: #1a1814;
+    -webkit-animation: animate-loading 1s linear infinite;
+    animation: animate-loading 1s linear infinite;
 }
 
 /*--------------------------------------------------------------
@@ -309,9 +338,19 @@ div.caption p.list-btn {
 @media ( max-width : 991px) {
 	.contact .info {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-between!important;
 	}
+
 	.contact .info .open-hours, .contact .info .phone {
 		margin-top: 0;
 	}
+}
+
+.contact .onwer-main .info {
+	display: flex;
+	justify-content: space-around;
+}
+
+.contact .onwer-main .info .open-hours, .contact .info .phone {
+	margin-top: 0;
 }

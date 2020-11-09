@@ -7,7 +7,7 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<c:if test="${not empty msg }">
+<c:if test="${not empty action }">
 	<script>
 		alert('등록된 식당이 없습니다.\n식당을 등록해주세요!');
 	</script>
@@ -31,7 +31,7 @@
 </script>
 
 <!-- ======= Add Section ======= -->
-<section id="contact" class="contact breadcrumbs">
+<section id="contact" class="contact breadcrumbs <c:if test="${empty owner }">owner-login</c:if>">
 	<div class="container" data-aos="fade-up">
 
 		<div class="section-title">
@@ -99,7 +99,7 @@
 					<div class="validate"></div>
 				</div>
 				<div class="form-group">
-					<input type="text" name="restaurant_detail" class="form-control"
+					<input type="text" name="restaurant_address" class="form-control"
 						placeholder="소재지(도로명)" />
 					<div class="validate"></div>
 				</div>

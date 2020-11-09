@@ -20,9 +20,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.restaurantly.owner.restaurant.service.OwnerRestaurantService;
+import com.restaurantly.owner.user.vo.OwnerVO;
 import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
-import com.sun.org.glassfish.gmbal.ParameterNames;
 
 @Controller
 @RequestMapping(value = "/owner/restaurant")
@@ -33,25 +33,31 @@ public class OwnerRestaurantController {
 	private OwnerRestaurantService ownerRestaurantService;
 
 	@RequestMapping(value = "/restaurantMain.do", method = RequestMethod.GET)
-	public ModelAndView restaurantInfo(@RequestParam("owner_id") String owner_id, HttpServletRequest request,
-			HttpServletResponse response) throws Exception {
-		HttpSession session;
+	public ModelAndView restaurantInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		HttpSession session = request.getSession();
 
 		String viewName = (String) request.getAttribute("viewName");
 		ModelAndView mav = new ModelAndView(viewName);
-		session = request.getSession();
 
+		OwnerVO owner = (OwnerVO) session.getAttribute("owner");
+		System.out.println(owner);
 		try {
-			restaurantVO = ownerRestaurantService.restaurantInfo(owner_id);
-			System.out.println(restaurantVO);
-			session.setAttribute("myRestaurant", restaurantVO);
-			mav.addObject("page", "main");
+			String res_license = owner.getRestaurant_license();
+			if (res_license != null && !res_license.equals("")) {
+				restaurantVO = ownerRestaurantService.restaurantInfo(res_license);
+				System.out.println(restaurantVO);
+				session.setAttribute("myRestaurant", restaurantVO);
+				mav.addObject("page", "main"); // owner 식당 메인 페이지 확인해서 topbar 바꿔주기 용도
+
+			} else {
+				session.setAttribute("action", viewName);
+				viewName = "/owner/restaurant/addRestaurantForm";
+				mav.setViewName(viewName);
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			viewName = "/owner/restaurant/addRestaurantForm";
-			mav.setViewName(viewName);
-			String msg = "불러오기 실패";
-			mav.addObject("msg", msg);
+			session.setAttribute("action", viewName);
+			mav.setViewName("redirect:/form/loginForm.do");
 		}
 		return mav;
 	}
@@ -69,8 +75,7 @@ public class OwnerRestaurantController {
 			ownerRestaurantService.addRestaurant(restaurantVO, file);
 			System.out.println(restaurantVO);
 			msg = restaurantVO.getRestaurant_name() + " 등록 되었습니다.";
-			url = request.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
-					+ restaurantVO.getOwner_id();
+			url = request.getContextPath() + "/owner/restaurant/restaurantMain.do";
 		} catch (Exception e) {
 			msg = "등록에 실패했습니다. 정보를 확인해주세요.";
 			e.printStackTrace();
@@ -93,8 +98,7 @@ public class OwnerRestaurantController {
 			ownerRestaurantService.editRestaurant(restaurantVO, file);
 			System.out.println(restaurantVO);
 			msg = restaurantVO.getRestaurant_name() + " 수정 되었습니다.";
-			url = request.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
-					+ restaurantVO.getOwner_id();
+			url = request.getContextPath() + "/owner/restaurant/restaurantMain.do";
 		} catch (Exception e) {
 			msg = "수정에 실패했습니다. 정보를 확인해주세요.";
 			e.printStackTrace();
@@ -116,8 +120,7 @@ public class OwnerRestaurantController {
 		try {
 			ownerRestaurantService.addMenuList(menuVO, fileList);
 			msg = "메뉴가 추가되었습니다.";
-			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
-					+ restaurantVO.getOwner_id();
+			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do";
 		} catch (Exception e) {
 			System.out.println("controller catch");
 			msg = "저장에 실패했습니다. 정보를 확인해주세요.";
@@ -138,7 +141,7 @@ public class OwnerRestaurantController {
 
 		return mav;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/editMenu.do", method = RequestMethod.POST)
 	public Map<String, String> editMenu(@ModelAttribute("menuVO") MenuVO menuVO,
@@ -151,8 +154,7 @@ public class OwnerRestaurantController {
 		try {
 			ownerRestaurantService.editMenuList(menuVO, fileList);
 			msg = "메뉴가 수정되었습니다.";
-			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
-					+ restaurantVO.getOwner_id();
+			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do";
 		} catch (Exception e) {
 			System.out.println("controller catch");
 			msg = "저장에 실패했습니다. 정보를 확인해주세요.";
@@ -163,11 +165,11 @@ public class OwnerRestaurantController {
 
 		return editMap;
 	}
-	
+
 	@ResponseBody
 	@RequestMapping(value = "/delMenu.do", method = RequestMethod.POST)
-	public void delMenu(@RequestParam("menu_id") String menu_id,
-			HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public void delMenu(@RequestParam("menu_id") String menu_id, HttpServletRequest request,
+			HttpServletResponse response) throws Exception {
 		try {
 			ownerRestaurantService.delMenu(menu_id);
 		} catch (Exception e) {

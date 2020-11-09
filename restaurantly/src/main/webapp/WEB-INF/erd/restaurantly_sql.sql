@@ -66,7 +66,7 @@ CREATE TABLE restaurant (
 	restaurant_name VARCHAR2(50), /* 상호명 */
 	restaurant_phone VARCHAR2(30), /* 전화번호 */
 	restaurant_representative VARCHAR2(50), /* 대표자명 */
-	restaurant_detail VARCHAR2(50), /* 상세주소 */
+	restaurant_address VARCHAR2(50), /* 상세주소 */
 	restaurant_item VARCHAR2(10), /* 종목 */
 	restaurant_introduction VARCHAR2(1000), /* 소개글 */
 	restaurant_image VARCHAR2(200) /* 사진경로 */

@@ -31,9 +31,15 @@
 					<c:forEach var="menu" items="${menuList }">
 						<div class="col-lg-3 col-md-4">
 							<div class="gallery-item">
-								<a href="${contextPath}/restaurant/restaurantMain/${menu.restaurant_license}" target="_blank"> 
-									<img src="${contextPath}/upload/${menu.restaurant_license}/${menu.menu_image }"
-									alt="" class="img-fluid">
+								<a href="${contextPath}/restaurant/restaurantMain/${menu.restaurant_license}" target="_blank">
+								<c:choose>
+					      			<c:when test="${not empty menu.menu_image }">	      		
+										<img src="${contextPath}/upload/${menu.restaurant_license}/${menu.menu_image }" class="img-fluid">
+					      			</c:when>
+					      			<c:otherwise>
+										<img src="${contextPath}/upload/menu.jpg" class="img-fluid">	      		
+					      			</c:otherwise>
+					      		</c:choose>
 								</a>
 							</div>
 						</div>

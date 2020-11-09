@@ -10,32 +10,32 @@
     
      <definition name="/owner/restaurant/addRestaurantForm" extends="baseLayout">
        <put-attribute name="title" value="식당 등록 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/addRestaurantForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/addRestaurantForm.jsp" />
      </definition>
     
      <definition name="/owner/restaurant/editRestaurantForm" extends="baseLayout">
        <put-attribute name="title" value="식당 수정 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/editRestaurantForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/editRestaurantForm.jsp" />
      </definition>
     
      <definition name="/owner/restaurant/addMenuForm" extends="baseLayout">
        <put-attribute name="title" value="메뉴 등록 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/menu/addMenuForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/addMenuForm.jsp" />
    	 </definition>
     
      <definition name="/owner/restaurant/editMenuForm" extends="baseLayout">
        <put-attribute name="title" value="메뉴 수정 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/menu/editMenuForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/editMenuForm.jsp" />
      </definition>
      
      <definition name="/owner/restaurant/addGalleryForm" extends="baseLayout">
        <put-attribute name="title" value="사진 등록 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/gallery/addGalleryForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/addGalleryForm.jsp" />
    	 </definition>
     
      <definition name="/owner/restaurant/editGalleryForm" extends="baseLayout">
        <put-attribute name="title" value="사진 수정 페이지" />
-       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/gallery/editGalleryForm.jsp" />
+       <put-attribute name="body" value="/WEB-INF/views/owner/restaurant/form/editGalleryForm.jsp" />
      </definition>
     
 </tiles-definitions>
