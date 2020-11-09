@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import javax.print.DocFlavor.STRING;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -43,106 +44,98 @@ public class ReviewController {
 	@Autowired
 	private ReviewService reviewService;
 	
-
-	
+	// 특정 식당의 리뷰 리스트
 	@RequestMapping(value = "/reviewList.do", method = RequestMethod.GET)
 	public String listReview(@RequestParam("restaurant_license") String restaurant_license, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
-		String viewName = "reviewList";
+		String viewName = "reviewList";	
 		List<ReviewVO> reviewList = reviewService.listReview(restaurant_license);
 		model.addAttribute("reviewList", reviewList);
 		return viewName;
 	}
-	 
-//	@RequestMapping(value = "/addReview.do", method = RequestMethod.POST)
-//	public String addReview(Model model, @RequestParam("file") MultipartFile file, 
-//			HttpServletRequest request, HttpServletResponse response)
-//			throws Exception {
-//		String msg, url;
-//		System.out.println("**addReview");
-//		try {
-//			reviewService.addReview(reviewVO, file);
-//			System.out.println(reviewVO);
-//			msg = reviewVO.getReview_id() + " 등록 되었습니다.";
-//			url = request.getContextPath() + "/restaurant/restaurantMain.do?restaurant_license="+reviewVO.getRestaurant_license();
-//		} catch (Exception e) {
-//			msg = "등록에 실패했습니다. 정보를 확인해주세요.";
-//			url = request.getContextPath() + "/restaurant/restaurantMain.do?restaurant_license="+reviewVO.getRestaurant_license();
-//			e.printStackTrace();
-//		}
-//		model.addAttribute("msg", msg);
-//		System.out.println(msg);
-//		System.out.println(url);
-//		return url;
-//	}
+	// 사용자의 리뷰 리스트 "마이리뷰"
+	@RequestMapping(value = "/myReviewList.do", method = RequestMethod.GET)
+	public String myReviewList(
+			@RequestParam("customer_id") String customer_id, Model model,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		System.out.println("CONTROLLER - MY REVIEW LIST " + customer_id);
+		String viewName = "myReviewList";
+		List<ReviewVO> reviewList = reviewService.listMyReview(customer_id);
+		model.addAttribute("reviewList", reviewList);
+		String url = "/review/myReviewList";
+		
+		return url;
+	}
 	@RequestMapping(value = "/addReview.do", method = RequestMethod.POST)
 	public String addReview(
 			@ModelAttribute("reviewVO") ReviewVO reviewVO, MultipartHttpServletRequest multipartRequest,  
 			HttpServletRequest request, HttpServletResponse response)  throws Exception{ 
-		String viewName = request.getContextPath() + "/restaurant/restaurantMain.do";
-		System.out.println("**addreview2 - multiple img");
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String msg, url;
-		System.out.println("**addReview");
-		
-		//List<MultipartFile> files = multipartRequest.getFiles("mFile");
-		
 		try {
 			reviewService.addReview(multipartRequest, reviewVO);
-			
-			System.out.println(reviewVO);
+			System.out.println("CONTROLLER addreview" +reviewVO);
 			msg = reviewVO.getReview_id() + " 등록 되었습니다.";
-			url = request.getContextPath() + "/main/main.do";
+			url = "/review/myReviewList";
 		} catch (Exception e) {
 			msg = "등록에 실패했습니다. 정보를 확인해주세요.";
-			url = request.getContextPath() + "/main/main.do";
+			url = "/review/reviewForm";
 			e.printStackTrace();
 		}
 		//model.addAttribute("msg", msg);
 		System.out.println(msg);
 		System.out.println(url);
+		return url;
+	}
+	@RequestMapping(value = "/modReviewForm.do", method = RequestMethod.GET)
+	public String modReviewForm( Model model, 
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = "/review/modReviewForm";
+		/*
+		 * ReviewVO reviewVO = model.addAttribute("existing", existing);
+		 */
+		
 		
 		return viewName;
 	}
 	
 	@RequestMapping(value = "/modReview.do", method = RequestMethod.GET)
-	public String modReview(Model model, @RequestParam("file") MultipartFile file, 
-			 HttpServletRequest request, HttpServletResponse response)
-			throws Exception {
+	public String modReview( Model model, @ModelAttribute("reviewVO") ReviewVO reviewVO, MultipartHttpServletRequest multipartRequest,  
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String msg, url = null;
+		
 		try {
-			reviewService.modReview(reviewVO, file);
+			reviewService.modReview(multipartRequest, reviewVO);
 			System.out.println(reviewVO);
 			msg = reviewVO.getReview_id() + " 수정되었습니다.";
-			url = request.getContextPath() + "/restaurant/restaurantMain.do?restaurant_license="+reviewVO.getRestaurant_license();
+			url = "/review/myReviewList";
 		} catch (Exception e) {
 			msg = "실패했습니다. 정보를 확인해주세요.";
-			url = request.getContextPath() + "/restaurant/restaurantMain.do?restaurant_license="+reviewVO.getRestaurant_license();
+			url = "/review/modReview";
 			e.printStackTrace();
 		}
-		model.addAttribute("msg", msg);
+		//model.addAttribute("msg", msg);
 		return url;
 	}
 
 	
 	@RequestMapping(value = "/removeReview.do", method = RequestMethod.GET)
-	public String removeReview(@ModelAttribute("ReviewVO") ReviewVO reviewVO, @RequestParam("review_id") String review_id, 
+	public String removeReview(@ModelAttribute("ReviewVO") ReviewVO reviewVO, 
 			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		String msg, url;
 		try {
-			reviewService.removeReview(review_id);
+			reviewService.removeReview(reviewVO);
+			String review_id = reviewVO.getReview_id();
 			reviewService.calScore(review_id);
-			File destDir = new File(REVIEW_IMAGE_REPO + "\\" + review_id);
-			FileUtils.deleteDirectory(destDir);
 			msg = "리뷰를 삭제했습니다";
 		} catch (Exception e) {
 			msg = "오류 발생. 실패했습니다. 다시 시도하십시오.";
 			e.printStackTrace();
 		}
 		model.addAttribute("msg", msg);
-		url = request.getContextPath() + "/restaurant/restaurantMain.do?restaurant_license=" +reviewVO.getRestaurant_license();
+		url = "/review/myReviewList";
 		return url;
 	}
 

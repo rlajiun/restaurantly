@@ -7,15 +7,19 @@
 	<resultMap id="reviewsResult" type="reviewVO">
 		<result property="review_id" column="review_id" />
 		<result property="customer_id" column="customer_id" />
-		<result property="restaurant_license"
-			column="restaurant_license" />
+		<result property="restaurant_license" column="restaurant_license" />
 		<result property="review_score" column="review_score" />
 		<result property="review_content" column="review_content" />
 		<result property="review_writedate" column="review_writedate" />
-		<result property="review_image_path" column="review_image_path" />
+	</resultMap>
+	<resultMap id="reviewImageResult" type="reviewImageVO">
+		<result property="review_id" column="review_id" />
+		<result property="image_id" column="image_id" />
+		<result property="fileName" column="fileName" />
+		
 	</resultMap>
 
-	<!-- 리뷰 보기 -->
+	<!-- 리뷰 한개 보기 -->
 	<select id="selectReivew" resultType="reviewVO"
 		parameterType="string">
     <![CDATA[
@@ -24,44 +28,69 @@
     ]]>
 	</select>
 
-	<!-- 리뷰 목록 -->
+	<!-- 식당의 리뷰 목록 -->
 	<select id="selectReviewList" resultMap="reviewsResult"  parameterType="java.lang.String"> 
 	<![CDATA[ 
 		SELECT * from review 
-		WHERE restaurant_license = #{restaurant_license}		]]>
+		WHERE restaurant_license = #{restaurant_license} AND rowNum < 16		]]>
 	</select>
+	<!-- 사용자의 리뷰 목록 -->
+	<select id="selectMyReviewList" resultMap="reviewsResult"  parameterType="java.lang.String"> 
+	<![CDATA[ 
+		SELECT * from review 
+		WHERE customer_id = #{customer_id} AND rowNum < 16		]]>
+	</select>
+	
 	<!-- 리뷰 전체 -->
 	<select id="selectAllReviewList" resultMap="reviewsResult"> <![CDATA[ 
 		SELECT * from review ]]>
 	</select>
 
+ <select id="selectNewReviewID" resultType="string"  >
+		<![CDATA[
+			SELECT  nvl(max(review_id), 0) + 1 from review		
+		]]>
+	</select>
+	
 	<!-- 리뷰 등록 -->
 	<insert id="insertReview" parameterType="reviewVO">
+			<!-- <selectKey keyProperty="review_id" resultType="int" order="BEFORE">
+		
+	   		 select sequence_1.nextval FROM dual	
+	 		 </selectKey> -->
 		<![CDATA[
-			INSERT into review(review_id, review_score, review_content, review_image_path, customer_id, restaurant_license)
-			VALUES(#{review_id},#{review_score}, #{review_content}, #{review_image_path}, #{customer_id}, #{restaurant_license})
+			
+			 INSERT into review(	
+						    review_id,
+						    review_score,
+						    review_content,
+						    
+							customer_id,
+							restaurant_license,
+							review_writedate)
+						VALUES(
+							#{review_id},
+							#{review_score}, 
+							#{review_content}, 
+							#{customer_id}, 
+							#{restaurant_license},
+							sysdate)
+							
 		]]>
 	</insert>
 
-	<!-- 리뷰 번호 -->
-	<select id="selectNewReviewID" resultType="string">
-		<![CDATA[
-			SELECT  nvl(max(reviewID), 0) + 1 from review		
-		]]>
-	</select>
-
 	<!-- 리뷰 수정 -->
 	<update id="updateReivew" parameterType="reviewVO">
-		update review
-		set review_content=#{review_content}
-		where review_id=#{review_id}
+		UPDATE review
+		SET review_content=#{review_content}
+		WHERE review_id=#{review_id}
 	</update>
 
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview" parameterType="string">
     <![CDATA[
-      delete from review
-      where review_id=#{review_id}	
+      DELETE from review
+      WHERE review_id=#{review_id}	
     ]]>
 	</delete>
 
@@ -75,5 +104,22 @@
 	]]>
 	</select>
 
+<!-- 리뷰이미지정보 -->
+	<insert id="insertReviewImg" parameterType="reviewVO">
+		<![CDATA[
+			 INSERT into review_img(	
+					    review_id,
+					    image_id,
+					    fileName)
+			VALUES(#{review_id},#{image_id},#{fileName})
+		]]>
+	</insert>
+
+	<delete id="deleteReviewImg" parameterType="string">
+    <![CDATA[
+      DELETE from review_img
+      WHERE review_id=#{review_id}	
+    ]]>
+	</delete>
 
 </mapper>

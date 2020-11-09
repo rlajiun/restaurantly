@@ -1,8 +1,10 @@
 package com.restaurantly.review.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import org.springframework.stereotype.Component;
+
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,5 +24,7 @@ public class ReviewVO {
 	private int review_score;
 	private Date review_writedate;
 	private String review_image_path;
+	private List<ReviewImageVO> photoList; 
+
 
 }

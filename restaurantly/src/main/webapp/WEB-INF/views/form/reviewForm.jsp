@@ -6,77 +6,103 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 %>
-
 <head>
-<meta charset="UTF-8">
 <title>리뷰 작성</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:if test="${empty customer}">
 	<script>
 		alert('로그인 후 리뷰를 작성하세요.');
+		window.location.href = "http://localhost:8080/main/form/loginForm.do";
 	</script>
 </c:if>
-<script type="text/javascript">
+
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/assets/js/star.js"></script>
+
+<script>
+	$('.pic-btn').bind("click", function() {
+		$('#file').click();
+	});
+
 	function readURL(input) {
 		if (input.files && input.files[0]) {
-			console.log(input);
-			console.log($(input).find('.preview'));
 			var reader = new FileReader();
+
 			reader.onload = function(e) {
-				$(input).parent().next().find('.preview').attr('src',
-						e.target.result);
-			}
+				$('#image').attr('src', e.target.result);
+			};
 			reader.readAsDataURL(input.files[0]);
 		}
 	}
-
-	var cnt = 0;
-	function fn_addFile() {
-		cnt++;
-		/* $("#d_file").append("<br>"+"<input type='file' name='file"+cnt+"' />"); */
-		$("#d_file").append(
-						"<tr><td>"
-								+ "<input type='file' name='file"
-								+ cnt
-								+ "' onchange='readURL(this);' /></td><td><img class='preview' scr='#' width=200 height=200/></td></tr>");
-	}
+</script>
+<style>
+.stars
+{
+    margin: 20px 0;
+    font-size: 24px;
+    color: #d17581;
+}
+</style>
+<script type="text/javascript">
+$('.starrr').on('starrr:change', function(e, value){
+    ratingsField.val(value);
+  });
 </script>
 
 </head>
 <body>
-
-	<h1 style="text-align: center">리뷰 쓰기</h1>
-	<form name="reviewForm" method="post" role="form" action="${contextPath}/review/addReview.do" enctype="multipart/form-data">
-		<table border="1" align="center">
-			<tr>
-				<td align="right">작성자</td>
-				<td colspan=2 align="left">${customer.customer_id}</td>
-			</tr>
-
-			<tr>
-				<td align="right" valign="top"><br>리뷰 내용:</td>
-				<td colspan=2><textarea name="review_content" rows="10" cols="65"
-						maxlength="4000"></textarea></td>
-			</tr>
-			<tr>
-				<!-- <td align="right">이미지파일 첨부:</td>
-				<td><input type="file" name="file" onchange="readURL(this);" /></td>
-				<td><img class="preview" src="#" width=200 height=200 /></td> -->
+<!-- ======= Add Section ======= -->
+	
+<section id="contact" class="contact breadcrumbs">
+	<div class="container" >
+		<div class="section-title">
+			<h2>리뷰 남기기</h2>
+			<p>make a review</p>
+		</div>
+	</div>
+	<div class="container" >
+		<div class="login-form">
+			<form action="${contextPath}/review/addReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
+				 <input type="hidden" id="customer_id" name="customer_id" value="${customer.customer_id }" />
+				<div class="form-group">
+					<%-- <input type="text" name="restaurant_id" class="form-control"id="name" value="${ }" readonly /> --%>
+					<input type="text" name="restaurant_license" class="form-control"id="name" placeholder="식당id"  />
+				</div>
+				<label class="form-group pic-btn"> 
+						<img id="image" src="http://placehold.it/120x120"> 
+						<img class="preview" src="#" width=200 height=200 />
+						<input type="file" name="images"  multiple="multiple" class="form-control" id="file"	onchange="readURL(this);" /> 
+				</label>
 				
- 				<td><label for="image">Images: </label> </td>
-                <td> <input type="file" name="images" multiple="multiple"/></td>
-                <td><img class="preview" src="#" width=200 height=200 /></td>
-               
-			</tr>
-			<tr>
-				<td align="left"><input type="button" value="파일 추가"
-					onClick="fn_addFile()" /></td>
-			</tr>
-			<tr>
-				<td align="right"></td>
-				<td colspan="2"><input type="submit" value="완료" /></td>
-			</tr>
-		</table>
-	</form>
+				<div class="form-group">
+					<textarea name="review_content" class="form-control"
+						placeholder="리뷰를 작성해주세요" rows="8"></textarea>
+				</div>
+				<div class="form-group">
+					<input type="number" class="form-control" name="review_score"
+						id="review_score" placeholder="별점" data-rule="required"
+						data-msg="별점을 입렵해주세요" />
+					<div class="validate"></div>
+					<div class="row lead">
+					        <div id="stars" class="starrr"></div>
+					        별점: <span id="count"> 0</span> 
+						</div>
+				</div>
+				<div class="mb-3">
+					<div class="loading">Loading</div>
+					<div class="error-message"></div>
+				</div>
+				<div class="text-center">
+					<button type="submit">등록하기</button>
+				</div>
+			</form>
+		</div> <!-- end of login form -->
+	</div>
+</section>
+<!-- End Add Section -->
 </body>
 </html>

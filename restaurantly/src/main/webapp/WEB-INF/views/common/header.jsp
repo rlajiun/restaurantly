@@ -28,15 +28,15 @@
 				<c:when test="${user eq 'owner' }">
 					<li class="active"><a href="${contextPath}/owner/main.do">Home</a></li>
 					<li><a href="${contextPath}/owner/booking/bookingList.do">예약 목록</a></li>
-					<li><a href="${contextPath}/owner/review/reviewList.do">리뷰 목록</a></li>
-					<li class="book-a-table text-center" id="book-a-table">
+					<li><a href="${contextPath}/review/myReviewList.do">리뷰 목록</a></li>
+					<li class="book-a-table text-center" >
 						<a href="${contextPath}/owner/restaurant/restaurantMain.do?owner_id=${owner.owner_id}">식당 관리</a></li>
 				</c:when>
 				<c:otherwise>
 					<li class="active"><a href="${contextPath}/main.do">Home</a></li>
 					<li><a href="${contextPath}/menu/whatToEat.do">오늘의 음식</a></li>
-					<li><a href="${contextPath}/booking/bookingList.do">리뷰 목록</a></li>
-					<li class="book-a-table text-center" id="book-a-table">
+					<li><a href="${contextPath}/review/myReviewList.do?customer_id=${customer.customer_id }">리뷰 목록</a></li>
+					<li class="book-a-table text-center" >
 						<a href="${contextPath}/restaurant/restaurantList.do">예약 목록</a></li>
 				</c:otherwise>
 			</c:choose>

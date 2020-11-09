@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
+import com.restaurantly.review.vo.ReviewImageVO;
 import com.restaurantly.review.vo.ReviewVO;
 
 public interface ReviewDAO {
@@ -13,8 +14,6 @@ public interface ReviewDAO {
 
 	public void insertReview(ReviewVO reviewVO) throws DataAccessException;
 
-	public String insertReview(Map reviewMap);
-
 	public void updateReview(ReviewVO reviewVO) throws DataAccessException;
 
 	public void deleteReview(String review_id) throws DataAccessException;
@@ -22,6 +21,12 @@ public interface ReviewDAO {
 	public String selectNewReviewID() throws DataAccessException;
 
 	public float calScore(String restaurant_license) throws DataAccessException;
+
+	public List<ReviewVO> selectMyReviewList(String customer_id) throws DataAccessException;
+
+	public void insertReviewImg(ReviewImageVO reviewImageVO);
+
+	public void deleteReviewImg(String review_id); 
 
 	
 }

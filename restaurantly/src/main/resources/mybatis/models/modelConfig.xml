@@ -7,8 +7,11 @@
     <typeAlias type="com.restaurantly.customer.vo.CustomerVO" alias="customerVO" />
     <typeAlias type="com.restaurantly.owner.user.vo.OwnerVO" alias="ownerVO" />
     <typeAlias type="com.restaurantly.review.vo.ReviewVO" alias="reviewVO" />
+    <typeAlias type="com.restaurantly.review.vo.ReviewImageVO" alias="reviewImageVO" />
+    
     <typeAlias type="com.restaurantly.restaurant.vo.RestaurantVO" alias="restaurantVO" />
     <typeAlias type="com.restaurantly.restaurant.vo.MenuVO" alias="menuVO" />
     <typeAlias type="com.restaurantly.restaurant.vo.RestaurantImageVO" alias="restaurantImageVO" />
+    
   </typeAliases>
 </configuration>

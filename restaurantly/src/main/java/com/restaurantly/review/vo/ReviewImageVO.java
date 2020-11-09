@@ -11,8 +11,9 @@ import lombok.Setter;
 @Component
 @NoArgsConstructor
 @Getter @Setter
-public class ReviewImageVO extends ImageVO{
-	private String image_id; /* 이미지ID */
+public class ReviewImageVO{
+	
+	private String image_id; // 이미지 순서 0~n개
 	private String review_id; 
-	private String fileName; /*이미지파일명*/
+	private String fileName; // uuid
 }

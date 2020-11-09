@@ -15,15 +15,18 @@ public interface ReviewService {
 
 	public List<ReviewVO> listReview(String restaurant_license) throws Exception;
 
-//	public void addReview(ReviewVO reviewVO, MultipartFile file) throws Exception;
-
 	public void addReview(MultipartRequest multipartRequest, ReviewVO reviewVO) throws Exception;
 
-	public void modReview(ReviewVO reviewVO, MultipartFile file) throws Exception;
+	public void modReview(MultipartRequest multipartRequest, ReviewVO reviewVO) throws Exception;
 
-	public void removeReview(String review_id);
-
+	/*
+	 * public void removeReview(String review_id);
+	 */
 	public void calScore(String review_id);
+
+	public List<ReviewVO> listMyReview(String customer_id) throws Exception;
+
+	public void removeReview(ReviewVO reviewVO) throws Exception;
 
 	
 }
