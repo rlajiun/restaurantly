@@ -1,3 +1,4 @@
+<%@page import="com.restaurantly.review.vo.ReviewVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" isELIgnored="false"  import="com.restaurantly.customer.vo.CustomerVO"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
@@ -7,11 +8,11 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <head>
-<title>리뷰 수정</title>
+<title>리뷰 작성</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:if test="${empty customer}">
 	<script>
-		alert('로그인 후 수정하세요.');
+		alert('로그인 후 리뷰를 작성하세요.');
 		window.location.href = "http://localhost:8080/main/form/loginForm.do";
 	</script>
 </c:if>
@@ -23,22 +24,6 @@
 <script type="text/javascript"
 	src="${pageContext.request.contextPath}/assets/js/star.js"></script>
 
-<script>
-	$('.pic-btn').bind("click", function() {
-		$('#file').click();
-	});
-
-	function readURL(input) {
-		if (input.files && input.files[0]) {
-			var reader = new FileReader();
-
-			reader.onload = function(e) {
-				$('#image').attr('src', e.target.result);
-			};
-			reader.readAsDataURL(input.files[0]);
-		}
-	}
-</script>
 <style>
 .stars
 {
@@ -55,6 +40,8 @@ $('.starrr').on('starrr:change', function(e, value){
 
 </head>
 <body>
+<a href="http://localhost:8080/main/form/loginForm.do" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
+     
 <!-- ======= Add Section ======= -->
 	
 <section id="contact" class="contact breadcrumbs">
@@ -64,26 +51,24 @@ $('.starrr').on('starrr:change', function(e, value){
 			<p>make a review</p>
 		</div>
 	</div>
+	
+	<%ReviewVO existing =  
+            (ReviewVO)request.getAttribute("existing"); 
+       %> 
 	<div class="container" >
 		<div class="login-form">
-			<form action="${contextPath}/review/modReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
+			<form action="${contextPath}/review/addReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
 				 <input type="hidden" id="customer_id" name="customer_id" value="${customer.customer_id }" />
 				<div class="form-group">
 					<%-- <input type="text" name="restaurant_id" class="form-control"id="name" value="${ }" readonly /> --%>
-					<input type="text" name="restaurant_license" class="form-control"id="name" placeholder="식당id"  />
+					<input type="text" name="restaurant_license" value = <%=existing.getRestaurant_license()%> class="form-control"id="name" placeholder="식당id"  />
 				</div>
-				<label class="form-group pic-btn"> 
-						<img id="image" src="http://placehold.it/120x120"> 
-						<img class="preview" src="#" width=200 height=200 />
-						<input type="file" name="images"  multiple="multiple class="form-control" id="file"	onchange="readURL(this);" /> 
-				</label>
 				
 				<div class="form-group">
-					<textarea name="review_content" class="form-control"
-						placeholder="리뷰를 작성해주세요" rows="8"></textarea>
+					<textarea name="review_content" value = <%=existing.getReview_content() %> class="form-control" placeholder="리뷰를 작성해주세요" rows="8"></textarea>
 				</div>
 				<div class="form-group">
-					<input type="number" class="form-control" name="review_score"
+					<input type="number" class="form-control" name="review_score" value = <%=existing.getReview_score()%>
 						id="review_score" placeholder="별점" data-rule="required"
 						data-msg="별점을 입렵해주세요" />
 					<div class="validate"></div>
@@ -97,7 +82,7 @@ $('.starrr').on('starrr:change', function(e, value){
 					<div class="error-message"></div>
 				</div>
 				<div class="text-center">
-					<button type="submit">등록하기</button>
+					<button type="submit">수정하기</button>
 				</div>
 			</form>
 		</div> <!-- end of login form -->

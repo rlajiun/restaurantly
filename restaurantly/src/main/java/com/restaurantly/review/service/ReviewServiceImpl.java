@@ -75,39 +75,12 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
 	}
 	
 	@Override
-	public void modReview(MultipartRequest multipartRequest, ReviewVO reviewVO) throws Exception {
+	public void modReview(ReviewVO reviewVO) throws Exception {
 		//글 처리
 		reviewDAO.updateReview(reviewVO);
 		System.out.println("SERVICE: mod review");
 		String review_id = reviewVO.getReview_id();
 		/* 첨부파일 처리 */
-		List<MultipartFile> files = multipartRequest.getFiles("images");
-		System.out.println("files"+files);
-		List<ReviewImageVO> fileList = new ArrayList<ReviewImageVO>();
-        if (null != files && files.size() > 0){
-        	for (MultipartFile multipartFile : files) {
-            	String fileName = multipartFile.getOriginalFilename();
-            	final String image_id= UUID.randomUUID().toString();
-                System.out.println("uuid:" + image_id);
-	        	ReviewImageVO reviewImageVO = new ReviewImageVO();
-                reviewImageVO.setFileName(fileName);
-                reviewImageVO.setImage_id(image_id);
-                reviewImageVO.setReview_id(review_id);
-                fileList.add(reviewImageVO);
-                
-	        	reviewDAO.insertReviewImg(reviewImageVO); // 리뷰이미지정보 table에 이미지 정보를 저장
-	        	//File imageFile = new File(servletRequest.getServletContext().getRealPath("/image"), fileName);
-                //uploadOne(multipartFile);
-                File file = new File(CURR_IMAGE_REPO_PATH, fileName); // 파일저장
-                try{
-                    multipartFile.transferTo(file);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }   
-            }
-        	reviewVO.setPhotoList(fileList);
-        }
-		
 		
 		
 	}
