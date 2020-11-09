@@ -13,4 +13,9 @@
        <put-attribute name="body" value="/WEB-INF/views/restaurant/restaurantMain.jsp" />
     </definition>
     
+    <definition name="/restaurant/whatToEat" extends="baseLayout">
+       <put-attribute name="title" value="음식 추천 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/restaurant/whatToEat.jsp" />
+    </definition>
+    
 </tiles-definitions>

@@ -9,13 +9,13 @@
 %>  
 
 <!-- ======= What to Eat Section ======= -->
-<section id="contact" class="contact breadcrumbs">
+<section id="what-to-eat" class="contact breadcrumbs">
 	<div class="container" data-aos="fade-up">
 
 		<div class="section-title">
 			<h2>What to Eat</h2>
 			<p>
-				What Do You Think About <span class="whatToEat">${menu_category}</span>?
+				What About <span class="whatToEat">${menu_category}</span>?
 			</p>
 		</div>
 	</div>
@@ -31,8 +31,8 @@
 					<c:forEach var="menu" items="${menuList }">
 						<div class="col-lg-3 col-md-4">
 							<div class="gallery-item">
-								<a href="${contextPath}/restaurant/restaurantMain.do?license=${menu.restaurant_license}" class="venobox"
-									data-gall="gallery-item"> <img src="${contextPath}/${menu.menu_image_path }"
+								<a href="${contextPath}/restaurant/restaurantMain/${menu.restaurant_license}" target="_blank"> 
+									<img src="${contextPath}/upload/${menu.restaurant_license}/${menu.menu_image }"
 									alt="" class="img-fluid">
 								</a>
 							</div>

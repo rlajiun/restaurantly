@@ -30,14 +30,12 @@
 		<ul>
 			<c:choose>
 				<c:when test="${not empty customer }">
-					<li><p>${customer.customer_name }님 환영합니다.</p></li>
+					<li><p>${customer.customer_name }님 환영합니다</p></li>
 					<li><a href="${contextPath}/customer/logout.do">Logout</a></li>
-					<li><a href="${contextPath}/customer/myPageMain.do">MyPage</a></li>
 				</c:when>
 				<c:when test="${not empty owner }">
-					<li><p>${owner.owner_name }님 환영합니다.</p></li>
+					<li><p>${owner.owner_name }님 환영합니다</p></li>
 					<li><a href="${contextPath}/owner/logout.do">Logout</a></li>
-					<li><a href="${contextPath}/owner/myPageMain.do">MyPage</a></li>
 				</c:when>
 				<c:otherwise>
 					<li><a href="${contextPath}/form/loginForm.do">Login</a></li>

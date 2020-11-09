@@ -35,7 +35,7 @@
 		<div class="row">
 			<div class="col-md-4">
 				<div class="category-item">
-					<a href="${contextPath}/menu/whatToEat.do" class="thumbnail">
+					<a href="${contextPath}/restaurant/whatToEat.do" class="thumbnail">
 						<img src="${contextPath}/assets/img/category/what-to-eat.jpg" alt="음식 추천">
 						<span class="category-info">음식 추천</span>
 					</a>

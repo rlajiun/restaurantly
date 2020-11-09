@@ -18,7 +18,7 @@
         <div class="btns">
 	        <c:choose>
 		        <c:when test="${not empty myRestaurant.menuList }">
-		          <a href="${contextPath}" class="btn-menu animated fadeInUp scrollto">Edit Menu</a>		        
+		          <a href="${contextPath}/owner/restaurant/editMenuForm.do" class="btn-menu animated fadeInUp scrollto">Edit Menu</a>		        
 		        </c:when>
 	        	<c:otherwise>
 		          <a href="${contextPath}/owner/restaurant/addMenuForm.do" class="btn-menu animated fadeInUp scrollto">Add Menu</a>		        
@@ -26,10 +26,10 @@
 	        </c:choose>
 	        <c:choose>
 	        	<c:when test="${not empty myRestaurant.photoList }">
-		          <a href="${contextPath}" class="btn-book animated fadeInUp scrollto">Edit Gallery</a>
+		          <a href="${contextPath}/owner/restaurant/editGalleryForm.do" class="btn-book animated fadeInUp scrollto">Edit Gallery</a>
 	        	</c:when>
 	        	<c:otherwise>
-		          <a href="${contextPath}" class="btn-book animated fadeInUp scrollto">Add Gallery</a>
+		          <a href="${contextPath}/owner/restaurant/addGalleryForm.do" class="btn-book animated fadeInUp scrollto">Add Gallery</a>
 	        	</c:otherwise>
 	        </c:choose>
         </div>
@@ -64,7 +64,7 @@
 </section><!-- End About Section -->
 
 <!-- ======= Menu Section ======= -->
-<c:if test="${not empty menuList }">
+<c:if test="${not empty myRestaurant.menuList }">
 	<section id="menu" class="menu section-bg">
 	  <div class="container" data-aos="fade-up">
 	
@@ -74,15 +74,18 @@
 	    </div>
 	
 	    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-	    	<c:forEach var="menu" items="menuList">
+	    	<c:forEach var="menu" items="${myRestaurant.menuList}">
 		      <div class="col-lg-6 menu-item">
-		        <img src="${contextPath}/${menu.menu_image_path }/${menu.menu_id }.jpg" class="menu-img" alt="">
-		        <div class="menu-content">
-		          <a href="#">${menu.menu_name }</a><span>${menu.menu_price }</span>
-		        </div>
-		        <div class="menu-ingredients">
-		          ${menu.menu_category }
-		        </div>
+		      	<div class="menu-content">
+			          <a href="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="venobox" data-gall="gallery-item">
+			        	<img src="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="menu-img">${menu.menu_name }
+			          </a>
+			          <fmt:formatNumber  value="${menu.menu_price}" type="number" var="menu_price" />
+			          <span>${menu_price }원</span>
+			        <div class="menu-ingredients">
+			          ${menu.menu_description }
+			        </div>
+		      	</div>
 		      </div>
 	    	</c:forEach>
 	
@@ -173,7 +176,7 @@
 </section><!-- End Testimonials Section -->
 
 <!-- ======= Gallery Section ======= -->
-<c:if test="${not empty photoList }">
+<c:if test="${not empty myRestaurant.photoList }">
 
 	<section id="gallery" class="gallery">
 	

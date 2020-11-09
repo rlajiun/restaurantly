@@ -18,7 +18,8 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 
 	@Override
 	public RestaurantVO selectRestaurant(String owner_id) throws DataAccessException {
-		RestaurantVO restaurant = (RestaurantVO)sqlSession.selectOne("mapper.owner.restaurant.selectRestaurant", owner_id);
+		RestaurantVO restaurant = (RestaurantVO) sqlSession.selectOne("mapper.owner.restaurant.selectRestaurant",
+				owner_id);
 		return restaurant;
 	}
 
@@ -29,7 +30,8 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 
 	@Override
 	public List<MenuVO> selectMenuList(String restaurant_license) throws DataAccessException {
-		List<MenuVO> menuList = (List)sqlSession.selectList("mapper.owner.restaurant.selectMenuList", restaurant_license);
+		List<MenuVO> menuList = (List) sqlSession.selectList("mapper.owner.restaurant.selectMenuList",
+				restaurant_license);
 		return menuList;
 	}
 
@@ -40,9 +42,34 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 
 	@Override
 	public List<RestaurantImageVO> selectPhotoList(String restaurant_license) throws DataAccessException {
-		List<RestaurantImageVO> photoList = (List)sqlSession.selectList("mapper.owner.restaurant.selectPhotoList", restaurant_license);
+		List<RestaurantImageVO> photoList = (List) sqlSession.selectList("mapper.owner.restaurant.selectPhotoList",
+				restaurant_license);
 		return photoList;
 	}
-	
-	
+
+	@Override
+	public void insertMenu(List<MenuVO> menuList) throws DataAccessException {
+		for (MenuVO menu : menuList) {
+			sqlSession.insert("mapper.owner.restaurant.insertMenu", menu);
+		}
+	}
+
+	@Override
+	public List<String> selectCategory() throws DataAccessException {
+		List<String> categoryList = (List) sqlSession.selectList("mapper.owner.restaurant.selectCategory");
+		return categoryList;
+	}
+
+	@Override
+	public void updateMenu(List<MenuVO> menuList) throws DataAccessException {
+		for (MenuVO menu : menuList) {
+			sqlSession.update("mapper.owner.restaurant.updateMenu", menu);
+		}
+	}
+
+	@Override
+	public void deleteMenu(String menu_id) throws DataAccessException {
+		sqlSession.delete("mapper.owner.restaurant.deleteMenu", menu_id);
+	}
+
 }

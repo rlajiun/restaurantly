@@ -8,7 +8,7 @@
 <%
   request.setCharacterEncoding("utf-8");
 %>
-
+<!DOCTYPE html>
 <head>
 	<meta charset="utf-8">
 	<meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -36,21 +36,21 @@
 	<!-- Template Main CSS File -->
 	<link href="${contextPath}/assets/css/style.css" rel="stylesheet">
 	<link href="${contextPath}/assets/css/main.css" rel="stylesheet">
-	<link href="${contextPath}/assets/css/owner.css" rel="stylesheet">
-	
-	<!-- Validate JS File -->
-	<script src="${contextPath}/assets/vendor/validate/validate.js"></script>
-	<script src="${contextPath}/assets/vendor/validate/menu.js"></script>
+	<link href="${contextPath}/assets/css/owner.css" rel="stylesheet">	
 	
 	<!-- Vendor JS Files -->
 	<script src="${contextPath}/assets/vendor/jquery/jquery.min.js"></script>
 	<script src="${contextPath}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	<script src="${contextPath}/assets/vendor/jquery.easing/jquery.easing.min.js"></script>
-	<script src="${contextPath}/assets/vendor/php-email-form/validate.js"></script>
+	<%-- <script src="${contextPath}/assets/vendor/php-email-form/validate.min.js"></script> --%>
 	<script src="${contextPath}/assets/vendor/owl.carousel/owl.carousel.min.js"></script>
 	<script src="${contextPath}/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-	<script src="${contextPath}/assets/vendor/venobox/venobox.min.js"></script>
+	<script src="${contextPath}/assets/vendor/venobox/venobox.js"></script>
 	<script src="${contextPath}/assets/vendor/aos/aos.js"></script>
+	
+	<!-- Validate JS File -->
+	<script src="${contextPath}/assets/js/validate/validate.js"></script>
+	<script src="${contextPath}/assets/js/validate/menu.js"></script>
 	
 	<!-- =======================================================
 	* Template Name: Restaurantly - v1.1.0

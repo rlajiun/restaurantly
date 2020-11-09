@@ -1,6 +1,7 @@
 package com.restaurantly.owner.restaurant.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +16,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.restaurantly.owner.restaurant.service.OwnerRestaurantService;
+import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
+import com.sun.org.glassfish.gmbal.ParameterNames;
 
 @Controller
 @RequestMapping(value = "/owner/restaurant")
@@ -61,7 +65,7 @@ public class OwnerRestaurantController {
 		String msg = null;
 		String url = null;
 		try {
-			//TODO: 한 owner가 여러 식당 등록 불가능하게 하기 - 식당이 있으면 뷰에서 막기
+			// TODO: 한 owner가 여러 식당 등록 불가능하게 하기 - 식당이 있으면 뷰에서 막기
 			ownerRestaurantService.addRestaurant(restaurantVO, file);
 			System.out.println(restaurantVO);
 			msg = restaurantVO.getRestaurant_name() + " 등록 되었습니다.";
@@ -100,4 +104,76 @@ public class OwnerRestaurantController {
 
 		return editMap;
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/addMenu.do", method = RequestMethod.POST)
+	public Map<String, String> addMenu(@ModelAttribute("menuVO") MenuVO menuVO,
+			MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+		Map<String, String> addMap = new HashMap<String, String>();
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String msg = null;
+		String url = null;
+		try {
+			ownerRestaurantService.addMenuList(menuVO, fileList);
+			msg = "메뉴가 추가되었습니다.";
+			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
+					+ restaurantVO.getOwner_id();
+		} catch (Exception e) {
+			System.out.println("controller catch");
+			msg = "저장에 실패했습니다. 정보를 확인해주세요.";
+			e.printStackTrace();
+		}
+		addMap.put("msg", msg);
+		addMap.put("url", url);
+
+		return addMap;
+	}
+
+	@RequestMapping(value = { "/addMenuForm.do", "/editMenuForm.do" }, method = RequestMethod.GET)
+	public ModelAndView printMenuForm(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		String viewName = (String) request.getAttribute("viewName");
+		ModelAndView mav = new ModelAndView(viewName);
+		List<String> categoryList = ownerRestaurantService.listCategory();
+		mav.addObject("categoryList", categoryList);
+
+		return mav;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/editMenu.do", method = RequestMethod.POST)
+	public Map<String, String> editMenu(@ModelAttribute("menuVO") MenuVO menuVO,
+			MultipartHttpServletRequest multipartRequest, HttpServletResponse response) throws Exception {
+		System.out.println("컨트롤러 접근!!!!!");
+		Map<String, String> editMap = new HashMap<String, String>();
+		List<MultipartFile> fileList = multipartRequest.getFiles("file");
+		String msg = null;
+		String url = null;
+		try {
+			ownerRestaurantService.editMenuList(menuVO, fileList);
+			msg = "메뉴가 수정되었습니다.";
+			url = multipartRequest.getContextPath() + "/owner/restaurant/restaurantMain.do?owner_id="
+					+ restaurantVO.getOwner_id();
+		} catch (Exception e) {
+			System.out.println("controller catch");
+			msg = "저장에 실패했습니다. 정보를 확인해주세요.";
+			e.printStackTrace();
+		}
+		editMap.put("msg", msg);
+		editMap.put("url", url);
+
+		return editMap;
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/delMenu.do", method = RequestMethod.POST)
+	public void delMenu(@RequestParam("menu_id") String menu_id,
+			HttpServletRequest request, HttpServletResponse response) throws Exception {
+		try {
+			ownerRestaurantService.delMenu(menu_id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+
 }
