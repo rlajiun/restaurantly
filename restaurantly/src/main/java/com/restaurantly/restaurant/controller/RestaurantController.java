@@ -74,6 +74,7 @@ public class RestaurantController extends BaseService {
 			HttpServletResponse response) throws Exception {
 		String viewName = "/restaurant/restaurantMain";
 		ModelAndView mav = new ModelAndView(viewName);
+		System.out.println("Contro >>> " + restaurant_license);
 		restaurantVO = restaurantService.restaurantInfo(restaurant_license);
 		mav.addObject("restaurant", restaurantVO);
 		

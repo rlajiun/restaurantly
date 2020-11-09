@@ -17,7 +17,7 @@ public interface ReviewService {
 
 	public void addReview(MultipartRequest multipartRequest, ReviewVO reviewVO) throws Exception;
 
-	public void modReview(MultipartRequest multipartRequest, ReviewVO reviewVO) throws Exception;
+	public void modReview(ReviewVO reviewVO) throws Exception;
 
 	/*
 	 * public void removeReview(String review_id);

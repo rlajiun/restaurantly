@@ -142,33 +142,53 @@
       <h2>Testimonials</h2>
       <p>What they're saying about us</p>
     </div>
-
+    
+<!-- 리뷰 목록: 사진여러장 -->
     <div class="owl-carousel testimonials-carousel" data-aos="zoom-in" data-aos-delay="100">
-	<!-- 리뷰 목록: 사진여러장 -->
-			<c:forEach var="item" items="${reviewList}">
+    <!-- 리뷰 목록 -->
+			<c:forEach var="item" items="${reviewList }">
 				<div class="testimonial-item">
 					<p>
-					  <div class="owl-carousel testimonials-carousel data-aos="zoom-in" data-aos-delay="100"" >
-					 
-					  <img src="${contextPath}//thumbnil.jpg">
-					 
-					  </div>
-						<i class="bx bxs-quote-alt-left quote-icon-left"></i>  
+						<i class="bx bxs-quote-alt-left quote-icon-left"></i> 
 						${item.review_content} 
 						<i class="bx bxs-quote-alt-right quote-icon-right"></i>
 					</p>
-					<img src="assets/img/testimonials/testimonials-1.jpg"
-						class="testimonial-img" alt="">
+					<!-- <img src="assets/img/testimonials/testimonials-1.jpg"
+						class="testimonial-img" alt=""> -->
 					<h3>${item.customer_id}</h3>
 					<h4>Ceo &amp; Founder</h4>
 				</div>
+
 			</c:forEach>
-	<!-- end of 리뷰목록 -->
-    </div>
+		
+    </div> <!-- end of 리뷰목록 -->
 
   </div>
 </section><!-- End Testimonials Section -->
 
+<!-- review img gallery -->
+<section id="category" class="category">
+	<div class="container">
+		<div class="row">
+		
+			<c:forEach var="outer" items="${reviewList }">
+			
+			<c:forEach var="inner" items="${outer.photoList }">
+			
+				<div class="col-md-4">
+				<div class="category-item">
+					<a href="${contextPath}/restaurant/restaurantMain/${outer.restaurant_license}" class="thumbnail">
+						<img src="${contextPath}/upload/${inner.fileName}" alt="review image"> 
+						<img src="${contextPath}/assets/img/category/etc.jpg" alt="기타">
+						
+					</a>
+				</div>
+				</div>
+			</c:forEach>
+			</c:forEach>
+			</div> <!-- end of row -->
+		</div>
+</section>
 
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">

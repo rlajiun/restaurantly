@@ -7,12 +7,12 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 <head>
-<title>리뷰 작성</title>
+<title>리뷰 수정</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <c:if test="${empty customer}">
 	<script>
-		alert('로그인 후 리뷰를 작성하세요.');
-		window.location.href = "http://localhost:8080/main/form/loginForm.do";
+		alert('로그인 후 이용할 수 있습니다.');
+		window.location.href = "${contextPath}/loginForm.do";
 	</script>
 </c:if>
 
@@ -39,19 +39,7 @@
 		}
 	}
 </script>
-<style>
-.stars
-{
-    margin: 20px 0;
-    font-size: 24px;
-    color: #d17581;
-}
-</style>
-<script type="text/javascript">
-$('.starrr').on('starrr:change', function(e, value){
-    ratingsField.val(value);
-  });
-</script>
+
 
 </head>
 <body>
@@ -66,7 +54,7 @@ $('.starrr').on('starrr:change', function(e, value){
 	</div>
 	<div class="container" >
 		<div class="login-form">
-			<form action="${contextPath}/review/addReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
+			<form action="${contextPath}/review/modReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
 				 <input type="hidden" id="customer_id" name="customer_id" value="${customer.customer_id }" />
 				<div class="form-group">
 					<%-- <input type="text" name="restaurant_id" class="form-control"id="name" value="${ }" readonly /> --%>
@@ -75,7 +63,7 @@ $('.starrr').on('starrr:change', function(e, value){
 				<label class="form-group pic-btn"> 
 						<img id="image" src="http://placehold.it/120x120"> 
 						<img class="preview" src="#" width=200 height=200 />
-						<input type="file" name="images"  multiple="multiple" class="form-control" id="file"	onchange="readURL(this);" /> 
+						<input type="file" name="images"  multiple="multiple class="form-control" id="file"	onchange="readURL(this);" /> 
 				</label>
 				
 				<div class="form-group">
@@ -87,10 +75,7 @@ $('.starrr').on('starrr:change', function(e, value){
 						id="review_score" placeholder="별점" data-rule="required"
 						data-msg="별점을 입렵해주세요" />
 					<div class="validate"></div>
-					<div class="row lead">
-					        <div id="stars" class="starrr"></div>
-					        별점: <span id="count"> 0</span> 
-						</div>
+					
 				</div>
 				<div class="mb-3">
 					<div class="loading">Loading</div>

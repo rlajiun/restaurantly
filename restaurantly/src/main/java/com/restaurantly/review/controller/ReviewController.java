@@ -39,6 +39,7 @@ import com.restaurantly.review.vo.ReviewVO;
 @RequestMapping(value = "/review")
 public class ReviewController {
 	private static final String REVIEW_IMAGE_REPO  = "C:\\restaurantly\\file_repo";
+	
 	@Autowired
 	private ReviewVO reviewVO;
 	@Autowired
@@ -73,6 +74,7 @@ public class ReviewController {
 		multipartRequest.setCharacterEncoding("utf-8");
 		response.setContentType("text/html; charset=UTF-8");
 		String msg, url;
+		
 		try {
 			reviewService.addReview(multipartRequest, reviewVO);
 			System.out.println("CONTROLLER addreview" +reviewVO);
@@ -89,14 +91,12 @@ public class ReviewController {
 		return url;
 	}
 	@RequestMapping(value = "/modReviewForm.do", method = RequestMethod.GET)
-	public String modReviewForm( Model model, 
+	public String modReviewForm( Model model, @RequestParam("reviewVO") ReviewVO reviewVO,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		String viewName = "/review/modReviewForm";
-		/*
-		 * ReviewVO reviewVO = model.addAttribute("existing", existing);
-		 */
+		model.addAttribute("existing", reviewVO);
 		
-		
+	
 		return viewName;
 	}
 	
@@ -106,7 +106,7 @@ public class ReviewController {
 		String msg, url = null;
 		
 		try {
-			reviewService.modReview(multipartRequest, reviewVO);
+			reviewService.modReview(reviewVO);
 			System.out.println(reviewVO);
 			msg = reviewVO.getReview_id() + " 수정되었습니다.";
 			url = "/review/myReviewList";

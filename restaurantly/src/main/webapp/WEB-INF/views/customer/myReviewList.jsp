@@ -19,7 +19,39 @@
 	</script>
 
 </c:if>
+<script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script type="text/javascript">
+/* ---댓글 삭제 ajax */     
+$(document).ready(function(){
+     $(".delete").click(function(e){
+        e.preventDefault();
+        console.log("리뷰 삭제");
+        console.log($(this).attr("review_id")); 
+        var review_id = $(this).attr("review_id");
+         /*  console.log(review_id);
+          var param = JSON.stringify({"review_id": review_id});
+          console.log("data >>>> ", param); */
+         
+          $.ajax({
+           method: "GET",
+           url: "${contextPath}/review/removeReview.do",
+           contentType: "application/json; charset=UTF-8",
+           data: review_id,         
+           success: function (res) {
+              console.log("done>>> ", res);
+              if(res=='success'){
+                 $('.'+review_id).remove();
+              }
+           },
+           error: function (status) {
+              console.log("status >>> ", status);
+           } 
+           }); 
+   });
+});   
+ 
 
+</script>
 </head>
 <body>
 
@@ -40,22 +72,18 @@
 			<c:forEach var="item" items="${reviewList }">
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				    <c:forEach var="inner" items="${item.photoList }">
-   				    <%--   <img src="C:\\restaurantly\\file_repo"/${inner.fileName}"> --%>
-   				      <img src="../../img/specials-1.png">
-   				     
-				    </c:forEach>
+				  <%--   <c:forEach var="inner" items="${item.photoList }">
+   				      <img src="C:\\restaurantly\\file_repo"/${inner.fileName}">
+				    </c:forEach> --%>
+				    <img src="../../img/specials-1.png">
 				      <div class="caption">
 				        <h3>${item.review_content }</h3>
 				        <h5>${item.review_writedate }</h3>
 				        <h5>${item.review_score }.0/5.0</h5>  
 				        <span><a href="${contextPath}/restaurant/restaurantMain/${item.restaurant_license}" class="btn-detail" role="button">보기</a></span>
-				        <span><a href="${contextPath}/review/modReviewForm.do" class="btn-detail" role="button">수정</a></span>
-				      	<span><a href="${contextPath}/review/deleteReview.do?review_id=${item.review_id}" class="btn-detail" role="button">삭제</a></span>
-				       
-				       <!-- <input id="editButton" type="button" value="수정" class="btn-detail" role="button " />
-				       <input id="clickMe" type="button" value="삭제" class="btn-detail" role="button onclick="doFunction();" />
-				       -->
+				        <span><a class="edit btn-detail" href="#none" id="${item.review_id}">수정</a></span>
+				      	<span><a class="delete btn-detail" href="#none" id="${item.review_id}">삭제</a></span>
+				      	
 				       </div>
 				    </div>
 				  </div>			
@@ -67,52 +95,6 @@
 
 
 
-<!-- ======= review list section======= -->
-<section id="list" class="list">
-<div class="container">
-		<div class="row">
-	
-<c:choose>	
-	<c:when test="${not empty reviewList }">
-				
-		<c:forEach var="item" items="${reviewList}">
-		<table border="1" align="center">
-					<tr>
-						<td align="right">리뷰 내용:</td>
-						<td colspan=2 align="left">${item.review_content}</td>
-					</tr>
-					<tr>
-						<td align="right">별점:</td>
-						<td colspan=2 align="left">${item.review_content}</td>
-					</tr>
-					<tr>
-						<td align="right">작성일:</td>
-						<td colspan=2 align="left">${item.review_writedate}</td>
-					</tr>
-					<tr>
-						<td align="right">별점:</td>
-						<td colspan=2 align="left">${item.review_score}</td>
-					</tr>
-					<tr>
-						<td align="right">식당:</td>
-						<td colspan=2 align="left">${item.restaurant_license}</td>
-					</tr>
-				
-			     <%-- 	<img src="${contextPath}/${item.review_image_path}/${item.review_id}.jpg" alt="">--%>
-		</table>
-		</c:forEach>
-				
-	</c:when>
-	<c:otherwise>
-		<div class="container">
-		<div class="section-title">
-			<h2>리뷰가 없습니다. 리뷰를 작성해보세요.</h2>
-			<p>no reviews yet.</p>
-		</div>
-	</div>
-	</c:otherwise>
-</c:choose>
-		    		    	
-</section id="contact" class="contact breadcrumbs">
+
 </body>
 </html>
