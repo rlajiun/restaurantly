@@ -51,13 +51,11 @@ public class OwnerRestaurantController {
 
 			} else {
 				session.setAttribute("action", viewName);
-				viewName = "/owner/restaurant/addRestaurantForm";
-				mav.setViewName(viewName);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("action", viewName);
-			mav.setViewName("redirect:/form/loginForm.do");
+//			mav.setViewName("redirect:/form/loginForm.do");
 		}
 		return mav;
 	}

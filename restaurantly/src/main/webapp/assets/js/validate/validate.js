@@ -4,17 +4,18 @@
 * Author: BootstrapMade.com
 */
 $(function(){
-  console.log($('section').hasClass('customer-login'));
-  console.log($('section').hasClass('owner-login'));
   if($('section').hasClass('customer-login')){
-    console.log("로그인 체크!");
-      console.log("no customer login");
-      alert('로그인 후 이용해주세요.');
-      window.location.href = getContextPath() + '/form/loginForm.do';
+    console.log("no customer login");
+    alert('로그인 후 이용해주세요.');
+    window.location.href = getContextPath() + '/form/loginForm.do';
   }else if($('section').hasClass('owner-login')){
-      console.log("no owner login");
-      alert('로그인 후 이용해주세요.');
-      window.location.href = getContextPath() + '/form/loginForm.do';
+    console.log("no owner login");
+    alert('로그인 후 이용해주세요.');
+    window.location.href = getContextPath() + '/form/loginForm.do';
+  }else if($('section').hasClass('myRes-check')){
+    console.log("no owner login");
+    alert('등록된 식당이 없습니다.\n식당을 등록해주세요!');
+    window.location.href = getContextPath() + '/owner/restaurant/addRestaurantForm.do';
   }
 
   $('section.mybook-list button[role=request]').click(function(e){

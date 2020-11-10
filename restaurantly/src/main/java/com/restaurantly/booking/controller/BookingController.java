@@ -71,7 +71,7 @@ public class BookingController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("action", viewName);
-			mav.setViewName("redirect:/form/loginForm.do");
+//			mav.setViewName("redirect:/form/loginForm.do");
 		}
 		
 		return mav;

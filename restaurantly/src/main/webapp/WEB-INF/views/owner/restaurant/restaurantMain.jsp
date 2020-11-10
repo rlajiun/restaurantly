@@ -9,7 +9,14 @@
 %>
 
 <!-- ======= Hero Section ======= -->
-<section id="hero" class="d-flex align-items-center <c:if test="${empty owner }">owner-login</c:if>">
+<section id="hero" class="d-flex align-items-center 
+		<c:if test="${empty owner}">
+			owner-login
+		</c:if>
+		<c:if test="${empty myRestaurant }">
+			myRes-check
+		</c:if>
+		">
   <div class="container position-relative text-center text-lg-left" data-aos="zoom-in" data-aos-delay="100">
     <div class="row">
       <div class="col-lg-8">

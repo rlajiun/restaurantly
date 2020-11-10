@@ -39,12 +39,12 @@ public class OwnerBookingController {
 				mav.addObject("bookList", bookList);
 			} else {
 				session.setAttribute("action", viewName);
-				mav.setViewName("redirect:/owner/restaurant/addRestaurantForm.do");
+//				mav.setViewName("redirect:/owner/restaurant/addRestaurantForm.do");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			session.setAttribute("action", viewName);
-			mav.setViewName("redirect:/form/loginForm.do");
+//			mav.setViewName("redirect:/form/loginForm.do");
 		}
 		return mav;
 	}
