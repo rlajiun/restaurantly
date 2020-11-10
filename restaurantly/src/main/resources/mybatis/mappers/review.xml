@@ -12,6 +12,7 @@
 		<result property="review_content" column="review_content" />
 		<result property="review_writedate" column="review_writedate" />
 	</resultMap>
+	
 	<resultMap id="reviewImageResult" type="reviewImageVO">
 		<result property="review_id" column="review_id" />
 		<result property="image_id" column="image_id" />
@@ -19,6 +20,14 @@
 		
 	</resultMap>
 
+	<select id="selectPhotoList" parameterType="String" resultMap="reviewImageResult">
+		<![CDATA[
+         select image_id, review_id, fileName 
+         from review_img 
+         where review_id=#{review_id}
+	    ]]>
+	</select>
+	
 	<!-- 리뷰 한개 보기 -->
 	<select id="selectReivew" resultType="reviewVO"
 		parameterType="string">
@@ -40,6 +49,14 @@
 		SELECT * from review 
 		WHERE customer_id = #{customer_id} AND rowNum < 16		]]>
 	</select>
+	
+	
+	<delete id="deletePhotoList" parameterType="string">
+    <![CDATA[
+      DELETE from review_img
+      WHERE review_id=#{review_id}	
+    ]]>
+	</delete>
 	
 	<!-- 리뷰 전체 -->
 	<select id="selectAllReviewList" resultMap="reviewsResult"> <![CDATA[ 

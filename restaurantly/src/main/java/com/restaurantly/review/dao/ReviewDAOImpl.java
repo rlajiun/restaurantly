@@ -8,11 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 
+import com.restaurantly.restaurant.vo.RestaurantImageVO;
 import com.restaurantly.review.vo.ReviewImageVO;
 import com.restaurantly.review.vo.ReviewVO;
 
-@Repository("reviewDAO")
-public class ReviewDAOImpl implements ReviewDAO{
+	@Repository("reviewDAO")
+	public class ReviewDAOImpl implements ReviewDAO{
+	
 	@Autowired
 	private SqlSession sqlSession;
 
@@ -22,6 +24,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 		List<ReviewVO> reviewList = (List)sqlSession.selectList("mapper.review.selectReviewList", restaurant_license);
 		return reviewList;
 	}
+	
 	@Override
 	public List<ReviewVO> selectMyReviewList(String customer_id) throws DataAccessException{
 		System.out.println("DAO: My ReviewList:"+customer_id);
@@ -34,26 +37,23 @@ public class ReviewDAOImpl implements ReviewDAO{
 		System.out.println("DAO: insert review");
 		sqlSession.insert("mapper.review.insertReview", reviewVO);
 	}
-
 	@Override
 	public void updateReview(ReviewVO reviewVO) throws DataAccessException{
 		sqlSession.update("mapper.review.updateReview", reviewVO);
 	
 	}
-
+	
 	@Override
 	public void deleteReview(String review_id) throws DataAccessException{
 		sqlSession.delete("mapper.review.deleteReview", review_id);
 	
 	}
-
-
 	@Override
 	public String selectNewReviewID() throws DataAccessException {
 		return sqlSession.selectOne("mapper.review.selectNewReviewID");
 		
 	}
-
+	
 	@Override
 	public float calScore(String restaurant_license) throws DataAccessException {
 		return sqlSession.selectOne("mapper.review.calculateScore", restaurant_license);
@@ -65,17 +65,20 @@ public class ReviewDAOImpl implements ReviewDAO{
 	
 		
 	}
+
 	@Override
-	public void deleteReviewImg(String review_id) {
-		sqlSession.delete("mapper.review.deleteReviewImg", review_id);
+	public List<ReviewImageVO> selectPhotoList(String review_id) throws DataAccessException {
+		List<ReviewImageVO> photoList = (List) sqlSession.selectList("mapper.review.selectPhotoList", review_id);
+		return photoList;
 		
 	}
 
+	@Override
+	public void deletePhotoList(String review_id) throws DataAccessException {
+		sqlSession.delete("mapper.review.deletePhotoList", review_id);
+		
+	}
 	
 	
 	
-
-
-
-
 }

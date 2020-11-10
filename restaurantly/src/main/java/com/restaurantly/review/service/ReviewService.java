@@ -26,7 +26,7 @@ public interface ReviewService {
 
 	public List<ReviewVO> listMyReview(String customer_id) throws Exception;
 
-	public void removeReview(ReviewVO reviewVO) throws Exception;
+	public void removeReview(String review_id) throws Exception;
 
 	
 }

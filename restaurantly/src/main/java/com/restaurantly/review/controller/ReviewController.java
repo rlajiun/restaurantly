@@ -60,8 +60,8 @@ public class ReviewController {
 			@RequestParam("customer_id") String customer_id, Model model,
 			HttpServletRequest request, HttpServletResponse response) throws Exception {
 		System.out.println("CONTROLLER - MY REVIEW LIST " + customer_id);
-		String viewName = "myReviewList";
 		List<ReviewVO> reviewList = reviewService.listMyReview(customer_id);
+		System.out.println("Controller reviewlist>>>>  "+ reviewList);
 		model.addAttribute("reviewList", reviewList);
 		String url = "/review/myReviewList";
 		
@@ -119,16 +119,14 @@ public class ReviewController {
 		return url;
 	}
 
-	
+	@ResponseBody
 	@RequestMapping(value = "/removeReview.do", method = RequestMethod.GET)
-	public String removeReview(@ModelAttribute("ReviewVO") ReviewVO reviewVO, 
+	public String removeReview(@RequestParam("review_id") String review_id, 
 			Model model, HttpServletRequest request, HttpServletResponse response) throws Exception {
 		response.setContentType("text/html; charset=UTF-8");
 		String msg, url;
 		try {
-			reviewService.removeReview(reviewVO);
-			String review_id = reviewVO.getReview_id();
-			reviewService.calScore(review_id);
+			reviewService.removeReview(review_id);
 			msg = "리뷰를 삭제했습니다";
 		} catch (Exception e) {
 			msg = "오류 발생. 실패했습니다. 다시 시도하십시오.";

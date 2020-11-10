@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
-import javax.print.DocFlavor.STRING;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.restaurantly.common.base.BaseService;
-import com.restaurantly.restaurant.vo.RestaurantVO;
 import com.restaurantly.common.base.ImageVO;
 import com.restaurantly.review.dao.ReviewDAO;
 import com.restaurantly.review.vo.ReviewImageVO;
@@ -42,6 +40,12 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
 	public List<ReviewVO> listMyReview(String customer_id) throws Exception{
 		System.out.println("SERVICE: My ReviewList:"+customer_id);
 		List<ReviewVO> reviewList = reviewDAO.selectMyReviewList(customer_id);
+		
+		for(ReviewVO review: reviewList) {
+			String review_id = review.getReview_id();
+			review.setPhotoList(reviewDAO.selectPhotoList(review_id));	
+		}
+		
 		return reviewList;
 	}
 
@@ -80,31 +84,22 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
 		reviewDAO.updateReview(reviewVO);
 		System.out.println("SERVICE: mod review");
 		String review_id = reviewVO.getReview_id();
-		/* 첨부파일 처리 */
-		
 		
 	}
 	
 	@Override
-	public void removeReview(ReviewVO reviewVO) {
+	public void removeReview(String review_id) {
 		/* delete from db */
-		String review_id = reviewVO.getReview_id();
 		reviewDAO.deleteReview(review_id);
-		reviewDAO.deleteReviewImg(review_id);
-		List<ReviewImageVO> fileList = reviewVO.getPhotoList();
+		reviewDAO.deletePhotoList(review_id);
+		//List<ReviewImageVO> fileList = reviewVO.getPhotoList();
 		/* delete files */
-		for(ReviewImageVO imageVO: fileList) {
-			String fileName = imageVO.getFileName();
-			deleteFile(fileName);
-		}
+		/*
+		 * for(ReviewImageVO imageVO: fileList) { String fileName =
+		 * imageVO.getFileName(); deleteFile(fileName); }
+		 */
 	}
 	
-	/*
-	 * @Override public void removeReview(String review_id) {
-	 * reviewDAO.deleteReview(review_id); reviewDAO.deleteReviewImg(review_id);
-	 * 
-	 * }
-	 */
 	
 	@Override
 	public void calScore(String restaurant_license) {

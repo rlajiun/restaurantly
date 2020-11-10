@@ -24,9 +24,11 @@ public interface ReviewDAO {
 
 	public List<ReviewVO> selectMyReviewList(String customer_id) throws DataAccessException;
 
-	public void insertReviewImg(ReviewImageVO reviewImageVO);
+	public void insertReviewImg(ReviewImageVO reviewImageVO) throws DataAccessException;
 
-	public void deleteReviewImg(String review_id); 
+	public List<ReviewImageVO> selectPhotoList(String review_id) throws DataAccessException;
+
+	public void deletePhotoList(String review_id) throws DataAccessException; 
 
 	
 }

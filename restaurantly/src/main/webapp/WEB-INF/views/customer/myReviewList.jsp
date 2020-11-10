@@ -7,27 +7,15 @@
 <%
   request.setCharacterEncoding("UTF-8");
 %>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>마이 리뷰</title>
-<c:if test="${empty customer}">
-	<script>
-		alert('로그인 후 리뷰를 작성하세요.');
-		window.location.href = "http://localhost:8080/main/form/loginForm.do";
-	</script>
 
-</c:if>
-<script   src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript">
 /* ---댓글 삭제 ajax */     
 $(document).ready(function(){
      $(".delete").click(function(e){
         e.preventDefault();
         console.log("리뷰 삭제");
-        console.log($(this).attr("review_id")); 
-        var review_id = $(this).attr("review_id");
+        console.log($(this).attr("id")); 
+        var review_id = $(this).attr("id");
          /*  console.log(review_id);
           var param = JSON.stringify({"review_id": review_id});
           console.log("data >>>> ", param); */
@@ -52,11 +40,10 @@ $(document).ready(function(){
  
 
 </script>
-</head>
-<body>
+
 
 <!-- ======= title section======= -->
-<section id="contact" class="contact breadcrumbs">
+<section id="contact" class="contact breadcrumbs <c:if test="${empty customer }">customer-login</c:if>" >
 	<div class="container" data-aos="fade-up">
 		<div class="section-title">
 			<h2>내가 쓴 리뷰</h2>
@@ -68,14 +55,18 @@ $(document).ready(function(){
 <!-- ======= List Section ======= -->
 <section id="list" class="list">
 	<div class="container">
+	
 		<div align="center"  >
 			<c:forEach var="item" items="${reviewList }">
+			
+
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
+				    <%-- <img src="${contextPath}/upload/${item.photoList[0].fileName}">
+				     --%>
 				    <c:forEach var="inner" items="${item.photoList }">
-   				      <%-- <img src="C:\\restaurantly\\file_repo"/${inner.fileName}"> --%>
-   				      <img src="${contextPath}/upload/${inner.fileName}">
-				    </c:forEach>
+				 	<img src="${contextPath}/upload/${inner.fileName}">
+					</c:forEach> 
 				    
 				      <div class="caption">
 				        <h3>${item.review_content }</h3>
