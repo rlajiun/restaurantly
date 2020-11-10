@@ -1,6 +1,7 @@
 package com.restaurantly.owner.restaurant.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.dao.DataAccessException;
 
@@ -27,5 +28,7 @@ public interface OwnerRestaurantDAO {
 	public void updateMenu(List<MenuVO> menuList) throws DataAccessException;
 
 	public void deleteMenu(String menu_id) throws DataAccessException;
+
+	public void updateOwner(Map<String, String> updateMap) throws DataAccessException;
 	
 }

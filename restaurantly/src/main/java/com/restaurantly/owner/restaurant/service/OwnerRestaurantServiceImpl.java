@@ -3,6 +3,7 @@ package com.restaurantly.owner.restaurant.service;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +52,7 @@ public class OwnerRestaurantServiceImpl extends BaseService implements OwnerRest
 				srcFile.delete();
 			}
 			e.printStackTrace();
+			throw e;
 		}
 	}
 
@@ -173,6 +175,11 @@ public class OwnerRestaurantServiceImpl extends BaseService implements OwnerRest
 	@Override
 	public void delMenu(String menu_id) throws Exception {
 		ownerRestaurantDAO.deleteMenu(menu_id);		
+	}
+
+	@Override
+	public void updateResId(Map<String, String> updateMap) throws Exception {
+		ownerRestaurantDAO.updateOwner(updateMap);
 	}
 
 }

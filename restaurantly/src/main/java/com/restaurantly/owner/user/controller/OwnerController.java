@@ -43,14 +43,14 @@ public class OwnerController extends BaseService {
 			HttpSession session = request.getSession();
 			session.setAttribute("owner", ownerVO);
 
-			String action = (String) session.getAttribute("action");
-			if (action != null) {
-				url = request.getContextPath() + action + ".do";
-				session.removeAttribute("action");
-			} else {
-				url = request.getContextPath() + "/owner/main.do";
-			}
+//			String action = (String) session.getAttribute("action");
+//			if (action != null) {
+//				url = request.getContextPath() + action + ".do";
+//				session.removeAttribute("action");
+//			} else {
+//			}
 
+			url = request.getContextPath() + "/owner/main.do";
 		} else {
 			msg = "아이디와 비밀번호를 확인해주세요.";
 		}
@@ -66,7 +66,7 @@ public class OwnerController extends BaseService {
 		HttpSession session = request.getSession();
 		session.removeAttribute("owner");
 		session.removeAttribute("myRestaurant");
-		session.removeAttribute("action");
+//		session.removeAttribute("action");
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}
