@@ -1,6 +1,7 @@
 package com.restaurantly.owner.restaurant.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,6 +71,11 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 	@Override
 	public void deleteMenu(String menu_id) throws DataAccessException {
 		sqlSession.delete("mapper.owner.restaurant.deleteMenu", menu_id);
+	}
+
+	@Override
+	public void updateOwner(Map updateMap) throws DataAccessException {
+		sqlSession.update("mapper.owner.restaurant.updateOwner", updateMap);
 	}
 
 }

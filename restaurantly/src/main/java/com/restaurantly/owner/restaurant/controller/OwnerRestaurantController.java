@@ -63,9 +63,11 @@ public class OwnerRestaurantController {
 	@ResponseBody
 	@RequestMapping(value = "/addRestaurant.do", method = RequestMethod.POST)
 	public Map<String, String> addRestaurant(@ModelAttribute("restaurantVO") RestaurantVO restaurantVO,
+			/* @RequestParam("owner_id") String owner_id, */
 			@RequestParam("file") MultipartFile file, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		Map<String, String> addMap = new HashMap<String, String>();
+		HttpSession session = request.getSession();
 		String msg = null;
 		String url = null;
 		try {
@@ -73,6 +75,19 @@ public class OwnerRestaurantController {
 			ownerRestaurantService.addRestaurant(restaurantVO, file);
 			System.out.println(restaurantVO);
 			msg = restaurantVO.getRestaurant_name() + " 등록 되었습니다.";
+			String restaurant_license = restaurantVO.getRestaurant_license();
+			Map<String, String> updateMap = new HashMap<String, String>();
+			OwnerVO owner = (OwnerVO)session.getAttribute("owner");
+			System.out.println(owner);
+			owner.setRestaurant_license(restaurant_license);
+			session.setAttribute("owner", owner);
+			String owner_id = owner.getOwner_id();
+			System.out.println("restaurant_license: "+ restaurant_license);
+			System.out.println("owner_id: "+ owner_id);
+			updateMap.put("restaurant_license", restaurant_license);
+			updateMap.put("owner_id", owner_id);
+			
+			ownerRestaurantService.updateResId(updateMap);
 			url = request.getContextPath() + "/owner/restaurant/restaurantMain.do";
 		} catch (Exception e) {
 			msg = "등록에 실패했습니다. 정보를 확인해주세요.";

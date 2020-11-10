@@ -1,6 +1,7 @@
 package com.restaurantly.owner.restaurant.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.multipart.MultipartFile;
 
@@ -22,5 +23,7 @@ public interface OwnerRestaurantService {
 	public void editMenuList(MenuVO menuVO, List<MultipartFile> fileList) throws Exception;
 
 	public void delMenu(String menu_id) throws Exception;
+
+	public void updateResId(Map<String, String> updateMap) throws Exception;
 
 }

@@ -58,6 +58,12 @@
                            	#{restaurant_image:VARCHAR})
 	   ]]>
 	</insert>
+	
+	<update id="updateOwner" parameterType="java.util.Map">
+		<![CDATA[
+         update owner set restaurant_license=#{restaurant_license} where owner_id=#{owner_id}
+	    ]]>
+	</update>
 
 	<select id="selectMenuList" parameterType="String" resultMap="menuResult">
 		<![CDATA[
