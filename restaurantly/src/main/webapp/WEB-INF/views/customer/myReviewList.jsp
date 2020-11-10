@@ -62,11 +62,12 @@ $(document).ready(function(){
 
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				    <%-- <img src="${contextPath}/upload/${item.photoList[0].fileName}">
-				     --%>
-				    <c:forEach var="inner" items="${item.photoList }">
+				    <img src="${contextPath}/upload/${item.photoList[0].fileName}">
+				    
+				    <%-- <c:forEach var="inner" items="${item.photoList }">
 				 	<img src="${contextPath}/upload/${inner.fileName}">
 					</c:forEach> 
+					 --%>
 				    
 				      <div class="caption">
 				        <h3>${item.review_content }</h3>

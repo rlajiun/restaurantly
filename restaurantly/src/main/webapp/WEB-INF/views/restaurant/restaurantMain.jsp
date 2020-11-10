@@ -155,8 +155,8 @@
 					</p>
 					<!-- <img src="assets/img/testimonials/testimonials-1.jpg"
 						class="testimonial-img" alt=""> -->
-					<h3>${item.customer_id}</h3>
-					<h4>Ceo &amp; Founder</h4>
+					<h3>- ${item.customer_id}님</h3>
+					
 				</div>
 
 			</c:forEach>
@@ -167,29 +167,47 @@
 </section><!-- End Testimonials Section -->
 
 <!-- review img gallery -->
-<section id="category" class="category">
-	<div class="container">
-		<div class="row"> 	
-		
-			<c:forEach var="outer" items="${reviewList }">
-			
-			<c:forEach var="inner" items="${outer.photoList }">
-			
-				<div class="col-md-4">
-				<div class="category-item">
-					<a href="${contextPath}/restaurant/restaurantMain/${outer.restaurant_license}" class="thumbnail">
-						<img src="${contextPath}/upload/${inner.fileName}" alt="review image"> 
-						<img src="${contextPath}/assets/img/category/etc.jpg" alt="기타">
-						
-					</a>
-				</div>
-				</div>
-			</c:forEach>
-			</c:forEach>
-			</div> <!-- end of row -->
-		</div>
-</section>
+<!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
 
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p>Some photos from Our Restaurant</p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row no-gutters">
+			<c:forEach var="item" items="${reviewList }">
+		 		<c:forEach var="inner" items="${item.photoList }">
+					 <div class="col-lg-3 col-md-4">
+			            <div class="gallery-item">
+			              <a href="${contextPath}/upload/${inner.fileName}" class="venobox" data-gall="gallery-item">
+			               <img src="${contextPath}/upload/${inner.fileName}"  class="img-fluid">
+			              </a>
+			            </div>
+			          </div>
+				</c:forEach> 
+			</c:forEach>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
+
+<!-- 이미지 -->
+<%-- <div align="center"  >
+	<c:forEach var="item" items="${reviewList }">
+		<div class="col-sm-6 col-md-4">
+		    <div class="thumbnail">
+			    <c:forEach var="inner" items="${item.photoList }">
+			 	<img src="${contextPath}/upload/${inner.fileName}">
+				</c:forEach> 
+			</div>
+		</div>	
+	</c:forEach>
+</div> --%>
 <!-- ======= Contact Section ======= -->
 <section id="contact" class="contact">
   <div class="container" data-aos="fade-up">

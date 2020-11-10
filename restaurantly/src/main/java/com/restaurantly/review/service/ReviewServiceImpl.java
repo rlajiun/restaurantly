@@ -34,6 +34,11 @@ public class ReviewServiceImpl extends BaseService implements ReviewService {
 	public List<ReviewVO> listReview(String restaurant_license) throws Exception{
 		System.out.println("SERVICE: ReviewList:"+restaurant_license);
 		List<ReviewVO> reviewList = reviewDAO.selectReviewList(restaurant_license);
+		
+		for(ReviewVO review: reviewList) {
+			String review_id = review.getReview_id();
+			review.setPhotoList(reviewDAO.selectPhotoList(review_id));	
+		}
 		return reviewList;
 	}
 	@Override
