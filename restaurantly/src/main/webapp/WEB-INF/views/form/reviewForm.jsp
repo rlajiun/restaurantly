@@ -54,7 +54,7 @@
 	</div>
 	<div class="container" >
 		<div class="login-form">
-			<form action="${contextPath}/review/modReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
+			<form action="${contextPath}/review/addReview.do" method="post" modelAttribute="reviewVO" role="form" class="join-form"enctype="multipart/form-data">
 				 <input type="hidden" id="customer_id" name="customer_id" value="${customer.customer_id }" />
 				<div class="form-group">
 					<%-- <input type="text" name="restaurant_id" class="form-control"id="name" value="${ }" readonly /> --%>
@@ -77,10 +77,10 @@
 					<div class="validate"></div>
 					
 				</div>
-				<div class="mb-3">
+			<!-- 	<div class="mb-3">
 					<div class="loading">Loading</div>
 					<div class="error-message"></div>
-				</div>
+				</div> -->
 				<div class="text-center">
 					<button type="submit">등록하기</button>
 				</div>

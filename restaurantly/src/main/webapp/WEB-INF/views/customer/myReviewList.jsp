@@ -72,10 +72,11 @@ $(document).ready(function(){
 			<c:forEach var="item" items="${reviewList }">
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				  <%--   <c:forEach var="inner" items="${item.photoList }">
-   				      <img src="C:\\restaurantly\\file_repo"/${inner.fileName}">
-				    </c:forEach> --%>
-				    <img src="../../img/specials-1.png">
+				    <c:forEach var="inner" items="${item.photoList }">
+   				      <%-- <img src="C:\\restaurantly\\file_repo"/${inner.fileName}"> --%>
+   				      <img src="${contextPath}/upload/${inner.fileName}">
+				    </c:forEach>
+				    
 				      <div class="caption">
 				        <h3>${item.review_content }</h3>
 				        <h5>${item.review_writedate }</h3>

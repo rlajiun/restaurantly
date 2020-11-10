@@ -159,7 +159,7 @@
 <!-- review img gallery -->
 <section id="category" class="category">
 	<div class="container">
-		<div class="row">
+		<div class="row"> 	
 		
 			<c:forEach var="outer" items="${reviewList }">
 			
