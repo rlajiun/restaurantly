@@ -134,7 +134,36 @@
 
   </div>
 </section><!-- End Testimonials Section -->
+<!-- 리뷰이미지갤러리 -->
+<!-- review img gallery -->
+<!-- ======= Gallery Section ======= -->
+    <section id="gallery" class="gallery">
 
+      <div class="container" data-aos="fade-up">
+        <div class="section-title">
+          <h2>Gallery</h2>
+          <p>Some photos from Our Restaurant</p>
+        </div>
+      </div>
+
+      <div class="container-fluid" data-aos="fade-up" data-aos-delay="100">
+
+        <div class="row no-gutters">
+			<c:forEach var="item" items="${reviewList }">
+		 		<c:forEach var="inner" items="${item.photoList }">
+					 <div class="col-lg-3 col-md-4">
+			            <div class="gallery-item">
+			              <a href="${contextPath}/upload/${inner.fileName}" class="venobox" data-gall="gallery-item">
+			               <img src="${contextPath}/upload/${inner.fileName}"  class="img-fluid">
+			              </a>
+			            </div>
+			          </div>
+				</c:forEach> 
+			</c:forEach>
+        </div>
+
+      </div>
+    </section><!-- End Gallery Section -->
 <!-- ======= Gallery Section ======= -->
 <c:if test="${not empty myRestaurant.photoList }">
 
