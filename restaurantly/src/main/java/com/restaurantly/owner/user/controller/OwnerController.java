@@ -8,12 +8,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -40,13 +38,15 @@ public class OwnerController extends BaseService {
 		String msg = null;
 		String url = null;
 		ownerVO = ownerService.login(loginMap);
+		System.out.println(ownerVO);
 		if (ownerVO != null && ownerVO.getOwner_id() != null) {
 			HttpSession session = request.getSession();
 			session.setAttribute("owner", ownerVO);
 
 			String action = (String) session.getAttribute("action");
-			if (action != null && action.equals("/booking/bookList.do")) {
-				url = "forward:" + action;
+			if (action != null) {
+				url = request.getContextPath() + action + ".do";
+				session.removeAttribute("action");
 			} else {
 				url = request.getContextPath() + "/owner/main.do";
 			}
@@ -65,6 +65,8 @@ public class OwnerController extends BaseService {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		session.removeAttribute("owner");
+		session.removeAttribute("myRestaurant");
+		session.removeAttribute("action");
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}

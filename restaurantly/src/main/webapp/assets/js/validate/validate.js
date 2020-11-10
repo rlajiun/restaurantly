@@ -4,14 +4,59 @@
 * Author: BootstrapMade.com
 */
 $(function(){
-  $('form.join-form').submit(function(e) {
+  console.log($('section').hasClass('customer-login'));
+  console.log($('section').hasClass('owner-login'));
+  if($('section').hasClass('customer-login')){
+    console.log("로그인 체크!");
+      console.log("no customer login");
+      alert('로그인 후 이용해주세요.');
+      window.location.href = getContextPath() + '/form/loginForm.do';
+  }else if($('section').hasClass('owner-login')){
+      console.log("no owner login");
+      alert('로그인 후 이용해주세요.');
+      window.location.href = getContextPath() + '/form/loginForm.do';
+  }
+
+  $('section.mybook-list button[role=request]').click(function(e){
+    e.preventDefault();
+    if(!confirm('취소하시겠습니까?')) return false;
+    var booking_id = $(this).attr('name');
+    console.log(booking_id);
+    $(this).slideUp();
+    var load = $(this).closest('.loading');
+    load.slideDown();
+    var source = $(this).closest('.book');
+
+    $.ajax({
+      type: "POST",
+      url: 'cancelTable.do',
+      data: {'booking_id': booking_id}
+    }).done( function(msg){
+      if(msg=='OK'){
+        load.slideUp();
+        source.find('button.btn-detail').replaceWith('<p class="btn-detail" >취소 대기중</p>');
+      }else{
+        load.slideUp();
+        $(this).slideDown();
+        alert(msg);
+      }
+    }).fail( function(data){
+      source.find('.loading').slideUp();
+      $(this).slideDown();
+      alert('fail');
+    });
+  });
+
+  $('form.join-form, form.book-a-table').submit(function(e) {
     console.log("시작");
     e.preventDefault();
     var f = $(this).find('.form-group'),
     ferror = false,
     emailExp = /^[^\s()<>@,;:\/]+@\w[\w\.-]+\.[a-z]{2,}$/i,
     phoneExp = /^[0-9]{3}[-]+[0-9]{4}[-]+[0-9]{4}$/,
-    phoneExp2 = /^\d{11}$/;
+    phoneExp2 = /^\d{11}$/,
+    dateExp = /^\d{4}[-]+(0[1-9]|1[012])[-]+(0[1-9]|[12][0-9]|3[0-1])$/,
+    timeExp = /^([01][0-9]|2[0-3])+[:]+([0-5][0-9])$/;
 
     f.children('input').each(function() { // run all inputs
      
@@ -20,8 +65,22 @@ $(function(){
 
       if (rule !== undefined) {
         var ierror = false; // error flag for current input
+        console.log(i.val());
 
         switch (rule) {
+          case 'login':
+            console.log(i.val());
+            if(i.val() === ''){
+              if(confirm('로그인이 필요합니다.\n로그인 하시겠습니까?')){
+                sessionStorage.setItem("action", $(location).attr('href'));
+                window.location.href = getContextPath() + '/form/loginForm.do';
+              }
+              else {
+                ferror = ierror = true;
+              }
+            }
+            break;
+
           case 'required':
             if (i.val() === '') {
               ferror = ierror = true;
@@ -59,6 +118,24 @@ $(function(){
             }
             break;
 
+          case 'date':
+            if(!dateExp.test(i.val())){
+              ferror = ierror = true;
+            }else{
+              var value = getToday(i.val().substr(0,4),i.val().substr(5,2),i.val().substr(8,2));
+              console.log(value);
+              if(!value){
+                ferror = ierror = true;
+              }
+            }
+            break;
+          
+          case 'time':
+            if(!timeExp.test(i.val())){
+              ferror = ierror = true;
+            }
+            break;
+
           case 'regexp':
             exp = new RegExp(exp);
             if (!exp.test(i.val())) {
@@ -84,6 +161,7 @@ $(function(){
     
     this_form.find('.error-message').slideUp();
     this_form.find('.loading').slideDown();
+    this_form.find('.sent-message').slideUp();
 
     console.log(formData);
 
@@ -91,6 +169,30 @@ $(function(){
     
     return true;
   });
+
+  function getToday(y, m, d){
+    console.log(!isNaN(y));
+    console.log(!isNaN(m));
+    console.log(!isNaN(d));
+
+    var date = new Date();
+    var year = date.getFullYear();
+    var month = date.getMonth()+1;
+    var day = date.getDate();
+
+    if(y < year){
+      return false;
+    }else if(y == year){
+      if(m < month){
+        return false;
+      }else if(m == month){
+        if(d <= day){
+          return false;
+        }
+      }
+    }
+    return true;
+  }
 
   function join_form_submit(this_form, action, formData) {
     $.ajax({
@@ -107,8 +209,11 @@ $(function(){
       var msg = data.msg;
       var url = data.url;
 
-      if (url != null) {
+      if(msg == 'OK'){
         this_form.find('.loading').slideUp();
+        this_form.find('.sent-message').slideDown();
+        this_form.find("input:not(input[type=submit]), textarea").val('');
+      } else if (url != null) {
         alert(msg);
         window.location.href = url;
       } else {
@@ -137,6 +242,29 @@ $(function(){
       this_form.find('.loading').slideUp();
       this_form.find('.error-message').slideDown().html(error_msg);
     });
+  }
+
+  function sessionCheck(user){
+    var sessionId;
+    $.ajax({
+      type: "GET",
+      url: '/userSessionCheck.do?user='+ user,
+      datatype: 'json',
+      success: function(result){
+        sessionId = result;
+      },
+      error: function(){
+        sessionId = null;
+      }
+    });
+
+    return sessionId;
+
+  }
+
+  function getContextPath() {
+    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+    return location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
   }
 
 });

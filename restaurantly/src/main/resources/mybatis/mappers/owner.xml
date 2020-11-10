@@ -10,16 +10,15 @@
 		<result property="owner_name" column="owner_name" />
 		<result property="owner_phone" column="owner_phone" />
 		<result property="owner_email" column="owner_email" />
-		<result property="owner_joindate" column="owner_joindate" />
+		<result property="restaurant_license" column="restaurant_license" />
 	</resultMap>
 
-	<select id="login" resultType="ownerVO"
-		parameterType="java.util.Map">
+	<select id="login" resultType="ownerVO" parameterType="java.util.Map">
 	    <![CDATA[
-			select * from owner 
-			 where owner_id=#{owner_id}
-			 and owner_pw=#{owner_pw}			
-			 
+			select * 
+			from owner
+			where owner_id=#{owner_id}
+			and owner_pw=#{owner_pw}
 		]]>
 	</select>
 
@@ -39,8 +38,8 @@
 					 values(#{owner_id},
 							#{owner_pw},
 							#{owner_name},
-                         	#{owner_phone},
-                           	#{owner_email},
+                         	#{owner_phone:VARCHAR},
+                           	#{owner_email:VARCHAR},
                            	sysdate)
 	   ]]>
 	</insert>

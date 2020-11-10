@@ -9,7 +9,7 @@
 %>  
 
 <!-- ======= Edit Gallery Section ======= -->
-<section id="contact" class="contact breadcrumbs">
+<section id="contact" class="contact breadcrumbs <c:if test="${empty owner }">owner-login</c:if>">
 	<div class="container" data-aos="fade-up">
 
 		<div class="section-title">

@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.restaurantly.common.base.BaseService;
@@ -15,17 +16,21 @@ import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
 
 @Service("ownerRestaurantService")
+@Transactional
 public class OwnerRestaurantServiceImpl extends BaseService implements OwnerRestaurantService {
 	private static final String CURR_IMAGE_REPO_PATH = "C:\\restaurantly\\file_repo";
 	@Autowired
 	private OwnerRestaurantDAO ownerRestaurantDAO;
 
 	@Override
-	public RestaurantVO restaurantInfo(String owner_id) throws Exception {
-		RestaurantVO restaurant = ownerRestaurantDAO.selectRestaurant(owner_id);
-		String license = restaurant.getRestaurant_license();
-		restaurant.setMenuList(ownerRestaurantDAO.selectMenuList(license));
-		restaurant.setPhotoList(ownerRestaurantDAO.selectPhotoList(license));
+	public RestaurantVO restaurantInfo(String license) throws Exception {
+		RestaurantVO restaurant = ownerRestaurantDAO.selectRestaurant(license);
+		try {
+			restaurant.setMenuList(ownerRestaurantDAO.selectMenuList(license));
+			restaurant.setPhotoList(ownerRestaurantDAO.selectPhotoList(license));			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return restaurant;
 	}
 

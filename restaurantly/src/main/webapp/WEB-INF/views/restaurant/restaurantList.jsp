@@ -31,12 +31,19 @@
 
 <!-- ======= List Section ======= -->
 <section id="list" class="list">
-	<div class="container">
+	<div class="container" data-aos="fade-up">
 		<div class="row">
 			<c:forEach var="item" items="${restaurantList }">
 				<div class="col-sm-6 col-md-4">
 				    <div class="thumbnail">
-				      <img src="${contextPath}/upload/${item.restaurant_license}/${item.restaurant_image}">
+				      <c:choose>
+			    		<c:when test="${not empty item.restaurant_image}">
+					      <img src="${contextPath}/upload/${item.restaurant_license}/${item.restaurant_image}">
+			    		</c:when>
+			    		<c:otherwise>
+					      <img src="${contextPath}/upload/basic.jpg">							    		
+			    		</c:otherwise>
+				    	</c:choose>
 				      <div class="caption">
 				        <h4>${item.restaurant_name }</h4>
 				        <p class="intro">${item.restaurant_introduction }</p>

@@ -49,8 +49,6 @@
 	<script src="${contextPath}/assets/vendor/aos/aos.js"></script>
 	
 	<!-- Validate JS File -->
-	<script src="${contextPath}/assets/js/validate/validate.js"></script>
-	<script src="${contextPath}/assets/js/validate/menu.js"></script>
 	
 	<!-- =======================================================
 	* Template Name: Restaurantly - v1.1.0
@@ -87,6 +85,8 @@
 	
 	<!-- Template Main JS File -->
 	<script src="${contextPath}/assets/js/main.js"></script>     	
+	<script src="${contextPath}/assets/js/validate/validate.js"></script>
+	<script src="${contextPath}/assets/js/validate/menu.js"></script>
 </body>      
         
         

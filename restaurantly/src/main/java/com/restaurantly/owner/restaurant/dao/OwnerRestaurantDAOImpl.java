@@ -17,9 +17,9 @@ public class OwnerRestaurantDAOImpl implements OwnerRestaurantDAO {
 	private SqlSession sqlSession;
 
 	@Override
-	public RestaurantVO selectRestaurant(String owner_id) throws DataAccessException {
+	public RestaurantVO selectRestaurant(String license) throws DataAccessException {
 		RestaurantVO restaurant = (RestaurantVO) sqlSession.selectOne("mapper.owner.restaurant.selectRestaurant",
-				owner_id);
+				license);
 		return restaurant;
 	}
 

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.owner.booking">
+	<resultMap type="bookingVO" id="bookingResult">
+		<result property="booking_id" column="booking_id" />
+		<result property="customer_id" column="customer_id" />
+		<result property="restaurant_license" column="restaurant_license" />
+		<result property="booking_date" column="booking_date" />
+		<result property="booking_time" column="booking_time" />
+		<result property="booking_count" column="booking_count" />
+		<result property="booking_message" column="booking_message" />
+		<result property="booking_state" column="booking_state" />
+				
+		<result property="customer_name" column="customer_name" />
+		<result property="customer_phone" column="customer_phone" />
+		<result property="restaurant_name" column="restaurant_name" />
+		<result property="restaurant_phone" column="restaurant_phone" />
+		<result property="restaurant_address" column="restaurant_address" />
+		<result property="restaurant_image" column="restaurant_image" />
+	</resultMap>
+	
+	<select id="selectbookList" parameterType="String" resultMap="bookingResult">
+		<![CDATA[
+		 	select b.*, 
+		 	c.customer_name, c.customer_phone, 
+		 	r.restaurant_name, r.restaurant_phone, r.restaurant_address, r.restaurant_image 
+		 	from booking b, customer c, restaurant r
+		 	where c.customer_id = b.customer_id 
+		 	and r.restaurant_license = b.restaurant_license
+		 	and b.restaurant_license = #{restaurant_license}
+		]]>
+	</select>
+	
+	<delete id="deleteBooking" parameterType="String">
+		<![CDATA[
+	    	delete from booking where booking_id=#{booking_id}
+	   ]]>
+	</delete>
+</mapper>

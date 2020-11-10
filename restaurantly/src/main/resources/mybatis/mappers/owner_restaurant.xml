@@ -6,11 +6,10 @@
 <mapper namespace="mapper.owner.restaurant">
 	<resultMap type="restaurantVO" id="restaurantResult">
 		<result property="restaurant_license" column="restaurant_license" />
-		<result property="owner_id" column="owner_id" />
 		<result property="restaurant_name" column="restaurant_name" />
 		<result property="restaurant_phone" column="restaurant_phone" />
 		<result property="restaurant_representative" column="restaurant_representative" />
-		<result property="restaurant_detail" column="restaurant_detail" />
+		<result property="restaurant_address" column="restaurant_address" />
 		<result property="restaurant_item" column="restaurant_item" />
 		<result property="restaurant_introduction" column="restaurant_introduction" />
 		<result property="restaurant_image" column="restaurant_image" />
@@ -35,30 +34,28 @@
 
 	<select id="selectRestaurant" parameterType="String" resultMap="restaurantResult">
 		<![CDATA[
-         select * from restaurant where owner_id = #{owner_id}
+         select * from restaurant where restaurant_license = #{restaurant_license}
 	    ]]>
 	</select>
 
 	<insert id="insertRestaurant" parameterType="restaurantVO">
 	  <![CDATA[
 	    	insert into restaurant(restaurant_license,
-                              owner_id,
                               restaurant_name,
                               restaurant_phone,
                               restaurant_representative,
-                              restaurant_detail,
+                              restaurant_address,
                               restaurant_item,
                               restaurant_introduction,
                               restaurant_image)
 					 values(#{restaurant_license},
-							#{owner_id},
 							#{restaurant_name},
-                         	#{restaurant_phone},
-                           	#{restaurant_representative},
-                           	#{restaurant_detail},
-                           	#{restaurant_item},
-                           	#{restaurant_introduction},
-                           	#{restaurant_image})
+                         	#{restaurant_phone:VARCHAR},
+                           	#{restaurant_representative:VARCHAR},
+                           	#{restaurant_address:VARCHAR},
+                           	#{restaurant_item:VARCHAR},
+                           	#{restaurant_introduction:VARCHAR},
+                           	#{restaurant_image:VARCHAR})
 	   ]]>
 	</insert>
 
@@ -72,11 +69,10 @@
 	  <![CDATA[
 	    	update restaurant
 	    	set 
-	    	owner_id = #{owner_id},
 	    	restaurant_name = #{restaurant_name},
 	    	restaurant_phone = #{restaurant_phone:VARCHAR},
 	    	restaurant_representative = #{restaurant_representative:VARCHAR},
-	    	restaurant_detail = #{restaurant_detail:VARCHAR},
+	    	restaurant_address = #{restaurant_address:VARCHAR},
 	    	restaurant_item = #{restaurant_item:VARCHAR},
 	    	restaurant_introduction = #{restaurant_introduction:VARCHAR},
 	    	restaurant_image = #{restaurant_image:VARCHAR}
@@ -107,7 +103,7 @@
 					 values(#{menu_id},
 							#{restaurant_license},
                          	#{menu_name},
-                           	#{menu_category},
+                           	#{menu_category:VARCHAR},
                            	#{menu_price},
                            	#{menu_image:VARCHAR},
                            	#{menu_description:VARCHAR})
@@ -126,7 +122,7 @@
 	    	set 
 	    	restaurant_license = #{restaurant_license},
 	    	menu_name = #{menu_name},
-	    	menu_category = #{menu_category},
+	    	menu_category = #{menu_category:VARCHAR},
 	    	menu_price = #{menu_price},
 	    	menu_image = #{menu_image:VARCHAR},
 	    	menu_description = #{menu_description:VARCHAR}

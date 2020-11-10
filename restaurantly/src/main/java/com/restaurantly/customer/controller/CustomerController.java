@@ -45,8 +45,9 @@ public class CustomerController extends BaseService {
 			session.setAttribute("customer", customerVO);
 
 			String action = (String) session.getAttribute("action");
-			if (action != null && action.equals("/booking/bookList.do")) {
-				url = "forward:" + action;
+			if (action != null) {
+				url = request.getContextPath() + action +".do";
+				session.removeAttribute("action");
 			} else {
 				url = request.getContextPath() + "/main.do";
 			}
@@ -65,6 +66,7 @@ public class CustomerController extends BaseService {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		session.removeAttribute("customer");
+		session.removeAttribute("action");
 		mav.setViewName("redirect:/main.do");
 		return mav;
 	}

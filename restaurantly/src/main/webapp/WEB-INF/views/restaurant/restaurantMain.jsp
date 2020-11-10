@@ -14,15 +14,11 @@
     <div class="row">
       <div class="col-lg-8">
         <h1>Welcome to <span>${restaurant.restaurant_name }</span></h1>
-        <h2>Delivering great food for more than 18 years!</h2>
 
         <div class="btns">
           <a href="#menu" class="btn-menu animated fadeInUp scrollto">Our Menu</a>
           <a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Book a Table</a>
         </div>
-      </div>
-      <div class="col-lg-4 d-flex align-items-center justify-content-center" data-aos="zoom-in" data-aos-delay="200">
-        <a href="https://www.youtube.com/watch?v=GlrxcuEDyF8" class="venobox play-btn" data-vbtype="video" data-autoplay="true"></a>
       </div>
 
     </div>
@@ -35,9 +31,11 @@
 
     <div class="row">
       <div class="col-lg-6 order-1 order-lg-2" data-aos="zoom-in" data-aos-delay="100">
-        <div class="about-img">
-          <img src="${contextPath}/upload/${restaurant.restaurant_license}/${restaurant.restaurant_image}">
-        </div>
+        <c:if test="${not empty restaurant.restaurant_image}">
+          <div class="about-img">
+	          <img src="${contextPath}/upload/${restaurant.restaurant_license}/${restaurant.restaurant_image}">          
+          </div>
+        </c:if>
       </div>
       <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
         <h3>${restaurant.restaurant_name }</h3>
@@ -61,20 +59,29 @@
 	    </div>
 	
 	    <div class="row menu-container" data-aos="fade-up" data-aos-delay="200">
-	    	<c:forEach var="menu" items="${menuList }">
-		      <div class="col-lg-6 menu-item">
-		      	<div class="menu-content">
-			          <a href="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="venobox" data-gall="gallery-item">
-			        	<img src="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="menu-img">${menu.menu_name }
-			          </a>
-			          <fmt:formatNumber  value="${menu.menu_price}" type="number" var="menu_price" />
-			          <span>${menu_price }원</span>
-			        <div class="menu-ingredients">
-			          ${menu.menu_description }
-			        </div>
-		      	</div>
-		      </div>
-	    	</c:forEach>
+		  <c:forEach var="menu" items="${menuList }">
+  			<div class="col-lg-6 menu-item">
+      		   <div class="menu-content">
+    			    <c:choose>
+  						<c:when test="${not empty menu.menu_image }">
+  							<a href="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="venobox" data-gall="gallery-item">
+  								<img src="${contextPath}/upload/${menu.restaurant_license }/${menu.menu_image }" class="menu-img">${menu.menu_name }
+  							</a>		      		
+	  					</c:when>
+	  					<c:otherwise>
+  						   <a>
+  							  <img src="${contextPath}/upload/menu.jpg" class="menu-img">${menu.menu_name }
+  						  </a>		      		
+  						</c:otherwise>
+	  				</c:choose>
+	  				<fmt:formatNumber  value="${menu.menu_price}" type="number" var="menu_price" />
+	  				<span>${menu_price }원</span>
+	  				<div class="menu-ingredients">
+	  				  ${menu.menu_description }
+  				   </div>
+	  			</div>
+	  		</div>
+  		</c:forEach>
 	
 	    </div>
 	
@@ -92,31 +99,34 @@
       <p>Book a Table</p>
     </div>
 
-    <form action="${contextPath}/booking/bookatable.do" method="post" role="form" class="php-email-form" data-aos="fade-up" data-aos-delay="100">
+    <form action="${contextPath}/booking/book-a-table.do" method="post" role="form" class="book-a-table php-email-form" data-aos="fade-up" data-aos-delay="100">
       <div class="form-row">
-          <input type="hidden" name="customer_id" class="form-control" id="id" value="${customer.customer_id }">
-          <input type="hidden" name="restaurant_license" class="form-control" id="id" value="${restaurant.restaurant_license }">
+      	<div class="form-group">
+          <input type="hidden" name="customer_id" class="form-control" value="${customer.customer_id }" data-rule="login">
+          <input type="hidden" name="restaurant_license" class="form-control" value="${restaurant.restaurant_license }">
+          <input type="hidden" name="booking_state" class="form-control" value="wait">
+         </div>
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="number" name="booking_date" class="form-control" id="date" placeholder="Date" data-rule="required" data-msg="예약날짜를 입력해주세요">
+          <input type="date" name="booking_date" class="form-control" id="date" placeholder="Date" data-rule="date" data-msg="예약날짜를 확인해주세요">
           <div class="validate"></div>
         </div>
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" class="form-control" name="booking_time" id="time" placeholder="Time" data-rule="required" data-msg="예약시간을 입력해주세요">
+          <input type="time" class="form-control" name="booking_time" id="time" placeholder="Time" data-rule="time" data-msg="예약시간을 확인해주세요">
           <div class="validate"></div>
         </div>
         <div class="col-lg-4 col-md-6 form-group">
-          <input type="text" class="form-control" name="people" id="people" placeholder="# of people">
+          <input type="number" class="form-control" name="booking_count" id="people" placeholder="# of people">
           <div class="validate"></div>
         </div>
       </div>
       <div class="form-group">
-        <textarea class="form-control" name="message" rows="5" placeholder="Message"></textarea>
+        <textarea class="form-control" name="booking_message" rows="5" placeholder="Message"></textarea>
         <div class="validate"></div>
       </div>
       <div class="mb-3">	
         <div class="loading">Loading</div>
         <div class="error-message"></div>
-        <div class="sent-message">Your booking request was sent. We will call back or send an Email to confirm your reservation. Thank you!</div>
+        <div class="sent-message">예약이 정상적으로 처리되었습니다. <a href="${contextPath}/booking/myBookList.do?customer_id=${customer.customer_id }"><br>예약내역 확인하러 가기</a></div>
       </div>
       <div class="text-center"><button type="submit">Book a Table</button></div>
     </form>
@@ -203,7 +213,7 @@
           <div class="address">
             <i class="icofont-google-map"></i>
             <h4>Location:</h4>
-            <p>${restaurant.restaurant_detail }</p>
+            <p>${restaurant.restaurant_address }</p>
           </div>
 
           <div class="open-hours">
