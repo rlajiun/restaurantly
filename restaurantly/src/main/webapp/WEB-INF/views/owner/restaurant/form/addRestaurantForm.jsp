@@ -7,12 +7,6 @@
 	request.setCharacterEncoding("UTF-8");
 %>
 
-<c:if test="${not empty action }">
-	<script>
-		alert('등록된 식당이 없습니다.\n식당을 등록해주세요!');
-	</script>
-</c:if>
-
 <script>
 	$('.pic-btn').bind("click", function() {
 		$('#file').click();
