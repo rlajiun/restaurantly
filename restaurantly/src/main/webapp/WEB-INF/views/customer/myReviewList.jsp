@@ -43,7 +43,7 @@ $(document).ready(function(){
 
 
 <!-- ======= title section======= -->
-<section id="contact" class="contact breadcrumbs <c:if test="${empty customer }">customer-login</c:if>" >
+<section id="contact" class="contact breadcrumbs" >
 	<div class="container" data-aos="fade-up">
 		<div class="section-title">
 			<h2>내가 쓴 리뷰</h2>

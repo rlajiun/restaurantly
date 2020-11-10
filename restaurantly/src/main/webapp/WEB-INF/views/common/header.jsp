@@ -28,7 +28,7 @@
 				<c:when test="${user eq 'owner' }">
 					<li class="active"><a href="${contextPath}/owner/main.do">Home</a></li>
 					<li><a href="${contextPath}/owner/booking/myBookList.do">예약 목록</a></li>
-					<li><a href="${contextPath}/review/myReviewList.do">리뷰 목록</a></li>
+					<li><a href="${contextPath}/review/reviewList.do?restaurant_license=${owner.restaurant_license}">리뷰 목록</a></li>
 					<li class="book-a-table text-center" >
 						<a href="${contextPath}/owner/restaurant/restaurantMain.do">식당 관리</a></li>
 				</c:when>

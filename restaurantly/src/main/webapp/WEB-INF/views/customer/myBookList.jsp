@@ -57,6 +57,7 @@
 							         <p class="btn-detail" >취소 대기중</p>
 						         	</c:when>
 						         	<c:when test="${item.booking_state eq 'confirm'}">
+						         	 <button type="submit" class="btn-detail" name="${item.restaurant_license }" role="write">리뷰 쓰기</button>
 							         <p class="btn-detail" >예약 확정</p>
 						         	</c:when>
 						         	<c:otherwise>

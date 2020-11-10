@@ -77,7 +77,6 @@ $(function(){
         $(this).find('input:not(input[type=file]), select, textarea').each(function(){
           var i = $(this); // current input
           console.log(i.val());
-          console.log(!isNaN(i.val()));
           var name_tail = '].' + i.attr('name');
           var name = name_head + index + name_tail;
 

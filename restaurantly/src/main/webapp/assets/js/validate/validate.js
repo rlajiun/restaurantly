@@ -48,6 +48,12 @@ $(function(){
     });
   });
 
+  $('section.mybook-list button[role=write]').click(function(){
+    var restaurant_license = $(this).attr('name');
+    console.log(restaurant_license);
+    window.location.href = getContextPath() + '/review/reviewForm.do';
+  });
+
   $('form.join-form, form.book-a-table').submit(function(e) {
     console.log("시작");
     e.preventDefault();
