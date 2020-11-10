@@ -23,6 +23,8 @@ import com.restaurantly.owner.restaurant.service.OwnerRestaurantService;
 import com.restaurantly.owner.user.vo.OwnerVO;
 import com.restaurantly.restaurant.vo.MenuVO;
 import com.restaurantly.restaurant.vo.RestaurantVO;
+import com.restaurantly.review.service.ReviewService;
+import com.restaurantly.review.vo.ReviewVO;
 
 @Controller
 @RequestMapping(value = "/owner/restaurant")
@@ -31,6 +33,8 @@ public class OwnerRestaurantController {
 	private RestaurantVO restaurantVO;
 	@Autowired
 	private OwnerRestaurantService ownerRestaurantService;
+	@Autowired
+	private ReviewService reviewService;
 
 	@RequestMapping(value = "/restaurantMain.do", method = RequestMethod.GET)
 	public ModelAndView restaurantInfo(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -48,6 +52,9 @@ public class OwnerRestaurantController {
 				System.out.println(restaurantVO);
 				session.setAttribute("myRestaurant", restaurantVO);
 				mav.addObject("page", "main"); // owner 식당 메인 페이지 확인해서 topbar 바꿔주기 용도
+				/* 수정: review 리스트 */
+				List<ReviewVO> reviewList = reviewService.listReview(res_license);
+				mav.addObject("reviewList", reviewList);
 
 			} else {
 				session.setAttribute("action", viewName);
