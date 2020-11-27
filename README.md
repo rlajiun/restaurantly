@@ -10,19 +10,21 @@
 ### Features
 
 
-Login for multiple user types
-Board CRUD
-Reservation
-Review, Star rating
-Smart menu recommendation
+1. Login for multiple user types
+2. Board CRUD
+3. Reservation
+4. Review, Star rating
+5. Smart menu recommendation
 
 
-### Design & Tools
+### Technologies used
 
-Design & Tools:
-Spring MVC, JDBC
-Backend: Java,  Spring Boot, SQL 
-Frontend: Javascript, Jsp, CSS
+Java
+Spring Boot
+SQL 
+Javascript
+Jsp
+CSS
 Oracle
 Git
 Apache
@@ -32,7 +34,7 @@ Apache
 
 ## Created by
 
-Jiun Kim 
+Jiun Kim &
 Wanseo Kim
 
 
