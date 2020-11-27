@@ -19,14 +19,14 @@
 
 ### Technologies used
 
-Java
-Spring Boot
-SQL 
-Javascript
-Jsp
-CSS
-Oracle
-Git
+Java,
+Spring Boot,
+SQL,
+Javascript,
+Jsp,
+CSS,
+Oracle,
+Git,
 Apache
 
 
