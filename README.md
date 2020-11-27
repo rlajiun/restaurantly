@@ -33,8 +33,6 @@ Apache
 ## Created by
 
 Jiun Kim 
-https://github.com/rlajiun
-
 Wanseo Kim
-https://github.com/alexkimx
-https://alexkimx.github.io/alex.github.io/
+
+
