@@ -18,7 +18,6 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.multipart.MultipartRequest;
 
 import com.restaurantly.common.base.BaseService;
-import com.restaurantly.common.base.ImageVO;
 import com.restaurantly.review.dao.ReviewDAO;
 import com.restaurantly.review.vo.ReviewImageVO;
 import com.restaurantly.review.vo.ReviewVO;

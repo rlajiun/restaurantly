@@ -2,8 +2,6 @@ package com.restaurantly.review.vo;
 
 import org.springframework.stereotype.Component;
 
-import com.restaurantly.common.base.ImageVO;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
