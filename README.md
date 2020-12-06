@@ -6,6 +6,7 @@
 ![img](images/screenshot2.png)
 ![GitHub Logo](/images/screenshot.png)
 Format: ![this is screenshot](url)
+<img alt="WP Reliable Cookie Bar logo" src="../images/screenshot2.png?raw=true" height="100" width="100" align="right">
 ## Introduction
 
 ### Features
