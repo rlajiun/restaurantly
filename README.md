@@ -1,12 +1,11 @@
 # restaurantly
 *Restaurant curating service that connects clients and restaurant owners. Informs users of restaurants’ menu and review; provides reservation and review services.*
 
-![images](/images/screenshot.png)
+![img](\images\screenshot.png)
+![img](\images\screenshot2.png)
+![img](/images/resly-random-menu.png)
 
-![img](images/screenshot2.png)
-![GitHub Logo](/images/screenshot.png)
-Format: ![this is screenshot](url)
-<img alt="WP Reliable Cookie Bar logo" src="../images/screenshot2.png?raw=true" height="100" width="100" align="right">
+
 ## Introduction
 
 ### Features
