@@ -1,7 +1,7 @@
 # restaurantly
 *Restaurant curating service that connects clients and restaurant owners. Informs users of restaurants’ menu and review; provides reservation and review services.*
 
-![images](screenshot.png)
+![images](/images/screenshot.png)
 
 ![img](images/screenshot2.png)
 ![GitHub Logo](/images/screenshot.png)
